@@ -1,3 +1,9 @@
+<div align="center">
+  <br>
+  <img src="assets/logo-koda.png" alt="Koda Sistemas Logo" width="280px">
+  <br>
+</div>
+
 # 🛒 Controle de Validade Profissional (Mobile Edition)
 
 <p align="center">
@@ -95,4 +101,4 @@ Vá até a aba **⚙️ Banco de Dados e Perfil** para configurar o nome do Resp
 Este projeto está licenciado sob a **Licença MIT**.
 
 ---
-**Desenvolvido com ☕ e Lógica por Lucas Silva** *Araguaína, Tocantins, Brasil*
+**Desenvolvido com ☕ e Lógica por Lucas Silva | KODA Sistemas** *Araguaína, Tocantins, Brasil*
