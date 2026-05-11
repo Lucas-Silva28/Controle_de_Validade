@@ -1,104 +1,108 @@
-<div align="center">
-  <br>
-  <img src="assets/logo-koda.png" alt="Koda Sistemas Logo" width="280px">
-  <br>
-</div>
+# 🛡️ Controle de Validade Profissional
+**Gerenciamento inteligente de estoque e prazos de vencimento.**
 
-# 🛒 Controle de Validade Profissional (Mobile Edition)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-<p align="center">
-  <img src="LINK_DA_IMAGEM_BANNER" alt="Banner Controle de Validade" width="100%">
-</p>
+## 📝 1. Visão Geral do Sistema
+O **Controle de Validade Profissional** é uma solução robusta e intuitiva projetada para otimizar a gestão de estoque em tempo real. Focado em usabilidade e eficiência, o sistema permite que colaboradores e gestores monitorem prazos de validade com precisão cirúrgica, reduzindo perdas financeiras e garantindo a conformidade sanitária.
 
-<p align="center">
-  <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5">
-  <img src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3">
-  <img src="https://img.shields.io/badge/javascript-%23F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
-</p>
-
----
-
-## 📸 Demonstração do Sistema
-
-Abaixo, algumas capturas de tela da interface operando em ambiente mobile:
-
-<p align="center">
-  <img src="LINK_DA_IMAGEM_TELA_INICIAL" width="45%" title="Dashboard com Alertas">
-  <img src="LINK_DA_IMAGEM_BANCO_DADOS" width="45%" title="Configuração de Banco de Dados">
-</p>
-
-<p align="center">
-  <img src="LINK_DA_IMAGEM_PDF" width="45%" title="Relatório PDF Gerado">
-  <img src="LINK_DA_IMAGEM_DARK_MODE" width="45%" title="Interface Dark Mode">
-</p>
+### Tecnologias Utilizadas:
+* **HTML5 Semântico:** Estrutura focada em acessibilidade.
+* **CSS3 Dinâmico:** Interface responsiva com variáveis e temas.
+* **JavaScript ES6+:** Lógica avançada de processamento de dados.
+* **jsPDF & AutoTable:** Geração de relatórios profissionais em PDF.
+* **LocalStorage API:** Persistência de dados local segura e rápida.
 
 ---
 
-Este projeto é um ecossistema completo para gestão de estoque e monitoramento de prazos de validade, projetado especificamente para operação em dispositivos móveis. Desenvolvido por **Lucas Silva**, Analista de Sistemas e Desenvolvedor Full Stack, o sistema foca em alta performance, usabilidade e agilidade no chão de loja.
+## 🏗️ 2. Arquitetura Funcional
+O sistema é dividido em quatro pilares principais, garantindo um fluxo de trabalho fluido:
+
+1.  **Identidade e Perfil:** Customização total da interface e relatórios com dados do responsável.
+2.  **Banco de Inteligência:** Armazenamento local de produtos para preenchimento automático ultra-rápido.
+3.  **Gestão de Inventário:** Lançamento simplificado com cálculo automático de dias restantes e status de risco.
+4.  **Exportação e Segurança:** Geração de documentos PDF oficiais, integração com redes sociais e sistemas de backup.
 
 ---
 
-## 🚀 Visão Geral do Projeto
+## 📸 3. Demonstração Visual (Guia do Sistema)
 
-O **Controle de Validade Profissional** nasceu da necessidade de eliminar perdas financeiras causadas por produtos vencidos e pela falta de organização em inventários rotativos. Diferente de planilhas complexas, este sistema oferece uma interface fluida que permite o lançamento de centenas de itens em poucos minutos, diretamente do celular.
+Abaixo, detalhamos cada módulo do sistema através de capturas de tela:
 
-### 🎯 Objetivos Principais
-- **Redução de Desperdício:** Identificação visual imediata de itens em estado crítico.
-- **Mobilidade Total:** Desenvolvido para rodar no navegador do celular, sem necessidade de hardware caro.
-- **Relatórios Ágeis:** Geração de documentos PDF e mensagens formatadas para WhatsApp em segundos.
-- **Independência de Rede:** Funciona totalmente offline através de armazenamento local (LocalStorage).
+### 🖼️ Módulo de Interface e Perfil
 
----
+**IMAGEM 01: DASHBOARD INICIAL** > *Onde tirar: Tela principal (Home).* > Mostra a saudação de boas-vindas com o nome do mercado e do responsável, além do menu de navegação superior.  
+![Dashboard](screenshots/01.jpg)
 
-## ⚙️ Especificações Técnicas
+**IMAGEM 02: TELA DE PERFIL (FOCO VISUAL)** > *Onde tirar: Perfil do usuário.* > Exibe a estética do perfil com a foto de capa e avatar, demonstrando o design moderno e personalização.  
+![Perfil](screenshots/02.jpg)
 
-O sistema utiliza tecnologias modernas de front-end para garantir que o software seja leve e compatível com qualquer dispositivo Android ou iOS.
+**IMAGEM 03: EDIÇÃO DE DADOS PROFISSIONAIS** > *Onde tirar: Campos de entrada na tela de perfil.* > Local onde o usuário insere seu nome profissional e contato para alimentar a assinatura dos relatórios.  
+![Edição](screenshots/03.jpg)
 
-- **Linguagens:** HTML5, CSS3 (Custom Properties), JavaScript (ES6+).
-- **Persistência de Dados:** LocalStorage API para salvamento automático.
-- **Bibliotecas Externas:**
-  - [jsPDF](https://github.com/parallax/jsPDF): Geração de documentos PDF.
-  - [AutoTable](https://github.com/simonbengtsson/jsPDF-autotable): Formatação de tabelas profissionais.
+**IMAGEM 04: MODO ESCURO (DARK MODE)** > *Onde tirar: Tela principal após alternar o tema.* > Exibe a adaptação das cores para tons escuros, ideal para ambientes de baixa luminosidade em estoques.  
+![DarkMode](screenshots/04.jpg)
 
 ---
 
-## 📱 Guia de Versionamento e Fluxo Mobile
+### 🗄️ Módulo de Banco de Dados
 
-Como o projeto é mantido 100% via dispositivos móveis, a estrutura de versionamento segue um fluxo rigoroso para garantir a evolução do código:
+**IMAGEM 05: GESTÃO DE GRAMATURAS (TAGS)** > *Onde tirar: Seção Banco de Dados > Gramaturas.* > Sistema de tags dinâmicas para cadastro de pesos (1kg, 2L, 500g), padronizando os registros.  
+![Gramaturas](screenshots/05.jpg)
 
-1. **Editor de Código:** Utilização do app **Acode** para edição de scripts.
-2. **Controle de Versão:** Uso de commits granulares para cada nova funcionalidade.
-3. **Histórico de Commits:** Cada ajuste (ex: "Ajuste de PDF", "Correção de Dark Mode") recebe um commit exclusivo, criando uma linha do tempo clara de evolução.
+**IMAGEM 06: FORMULÁRIO DE CADASTRO NO BANCO** > *Onde tirar: Seção Configurar Produto no Banco.* > Campos de Nome, Peso, Tipo e Margem de Alerta, armazenando a inteligência de cada item.  
+![CadastroBanco](screenshots/06.jpg)
+
+**IMAGEM 07: LISTAGEM DO BANCO DE DADOS** > *Onde tirar: Tabela abaixo do botão Salvar no Banco.* > Mostra os produtos já salvos e a facilidade de organização e edição.  
+![ListaBanco](screenshots/07.jpg)
 
 ---
 
-## 📖 Manual de Operação (Passo a Passo)
+### 🚀 Lançamento e Monitoramento
 
-### 1. Configuração Inicial
-Vá até a aba **⚙️ Banco de Dados e Perfil** para configurar o nome do Responsável e da Loja. Isto personalizará todos os teus relatórios PDF automaticamente.
+**IMAGEM 08: LANÇAMENTO COM AUTO-FILL** > *Onde tirar: Seção Lançamento Diário.* > Demonstra o preenchimento automático de detalhes ao selecionar um produto já cadastrado.  
+![AutoFill](screenshots/08.jpg)
 
-### 2. Cadastro e Lançamento
-- Cadastre produtos fixos no **Banco** para agilizar a entrada.
-- Utilize o campo de **Pesquisa** para preenchimento automático de gramatura e nome.
-- O sistema ordena a lista automaticamente: o que vence primeiro fica no topo.
+**IMAGEM 09: SELETOR DE DATA E CALENDÁRIO** > *Onde tirar: Campo Data Vencimento.* > Interface nativa de calendário para garantir precisão absoluta nas datas.  
+![Calendario](screenshots/09.jpg)
 
-### 3. Gestão de Alertas Visuais
+**IMAGEM 10: TABELA DE MONITORAMENTO ATIVA** > *Onde tirar: Tabela principal de produtos lançados.* > Exibe a lista completa de produtos em estoque com suas respectivas datas e quantidades.  
+![Monitoramento](screenshots/10.jpg)
+
+**IMAGEM 11: BADGES DE STATUS (ESTRATÉGIA VISUAL)** > *Onde tirar: Close-up na coluna Status.* > Cores Verde (Ótimo), Amarelo (Alerta) e Vermelho (Crítico) indicando prioridade de retirada.  
+Gestão de Alertas Visuais
 - 🔴 **CRÍTICO:** Ação imediata (dentro da margem de alerta).
 - 🟡 **ALERTA:** Vencimento próximo (próximos 15 dias após a margem).
 - 🟢 **ÓTIMO:** Prazo seguro.
 
 ---
 
-## 💾 Segurança e Backup
+![Status](screenshots/11.jpg)
 
-- **Exportar Backup:** Gera um arquivo `.json` com todos os dados. Recomendado fazer diariamente.
-- **Importar Backup:** Permite restaurar os dados em outro aparelho ou após limpeza de cache.
+**IMAGEM 12: BUSCA E FILTRAGEM NA LISTA** > *Onde tirar: Barra de busca da tabela.* > Filtragem instantânea por nome, essencial para o gerenciamento de grandes estoques.  
+![Busca](screenshots/12.jpg)
+
+---
+
+### 📄 Exportação e Segurança
+
+**IMAGEM 13: RELATÓRIO PDF GERADO** > *Onde tirar: Arquivo PDF aberto.* > Documento oficial com cabeçalho personalizado e assinatura de autoria de Lucas Silva.  
+![PDF](screenshots/13.jpg)
+
+**IMAGEM 14: INTEGRAÇÃO WHATSAPP (TOAST)** > *Onde tirar: Clique em Copiar WhatsApp.* > Feedback visual da cópia dos dados formatados para compartilhamento rápido.  
+![WhatsApp](screenshots/14.jpg)
+
+**IMAGEM 15: SISTEMA DE BACKUP E SEGURANÇA** > *Onde tirar: Botões de Exportar/Importar Backup.* > Funcionalidade de salvaguarda que permite trocar de aparelho sem perder as configurações.  
+![Backup](screenshots/15.jpg)
 
 ---
 
-## ⚖️ Licença
+## 🏆 4. Conclusão e Autoria
+Este sistema representa uma solução completa de ponta a ponta. Desde a entrada de dados inteligente até a exportação de documentos oficiais, cada linha de código foi pensada para oferecer a melhor experiência ao usuário final.
 
-Este projeto está licenciado sob a **Licença MIT**.
+Desenvolvido com dedicação por **Lucas Silva**.
 
----
-**Desenvolvido com ☕ e Lógica por Lucas Silva | KODA Sistemas** *Araguaína, Tocantins, Brasil*
+📍 **Araguaína, Tocantins - 2026** *© Todos os direitos reservados.*
