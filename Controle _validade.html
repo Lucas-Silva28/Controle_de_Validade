@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Lucas Silva">
     <title>Controle de Validade Profissional</title>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -34,23 +35,37 @@
         }
         [data-theme="dark"] .whatsapp-toast { background: #1e293b; color: white !important; }
         
+        /* --- ESTILOS DO PERFIL SOFISTICADO --- */
+        .profile-screen { display: none; padding: 0; overflow: hidden; animation: slideDown 0.4s ease; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .header-profile { position: relative; margin-bottom: 60px; }
+        .cover-photo { width: 100%; height: 180px; background: #334155; background-size: cover; background-position: center; position: relative; }
+        .btn-edit-cover { position: absolute; bottom: 15px; right: 15px; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); color: white; border: none; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; font-size: 1rem; cursor: pointer; border: 1px solid rgba(255,255,255,0.2); transition: 0.2s; }
+        .profile-avatar-container { position: absolute; bottom: -50px; left: 50%; transform: translateX(-50%); width: 120px; height: 120px; }
+        .profile-avatar { width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--bg-card); object-fit: cover; background: #cbd5e1; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .btn-edit-avatar { position: absolute; bottom: 0; right: 0; background: var(--primary); color: white; border: 3px solid var(--bg-card); border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; font-size: 1rem; cursor: pointer; transition: 0.2s; }
+        .profile-info { padding: 0 25px 25px 25px; }
+        .modern-input-group { background: var(--bg-body); border: 1px solid var(--border); border-radius: 12px; padding: 12px 15px; margin-bottom: 15px; transition: 0.3s; }
+        .modern-input-group:focus-within { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1); }
+        .modern-input-group label { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; margin-bottom: 5px; color: var(--primary); font-weight: bold; text-transform: uppercase; }
+        .modern-input-group input { border: none; background: transparent; padding: 0; font-size: 1rem; width: 100%; color: var(--text-main); outline: none; font-weight: 500; }
+        .stats-container { display: flex; gap: 15px; margin-bottom: 25px; }
+        .stat-box { flex: 1; background: var(--bg-body); padding: 15px; border-radius: 15px; text-align: center; border: 1px solid var(--border); }
+        .stat-box b { display: block; font-size: 1.5rem; color: var(--text-main); }
+        .stat-box span { font-size: 0.65rem; text-transform: uppercase; color: var(--text-sub); font-weight: bold; }
+
+        /* --- ESTILOS ORIGINAIS MANTIDOS --- */
         .modal-guia { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); }
         .modal-content { background: var(--bg-card); margin: 5% auto; padding: 25px; border-radius: 20px; width: 90%; max-width: 600px; max-height: 85vh; overflow-y: auto; position: relative; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
         .close-modal { position: absolute; right: 20px; top: 20px; font-size: 24px; cursor: pointer; color: var(--text-sub); }
         .guia-item { margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 12px; line-height: 1.5; }
         .guia-item b { color: var(--primary); display: block; margin-bottom: 5px; font-size: 1rem; }
 
-        @keyframes slideDown { from { transform: translateY(-150%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         @keyframes slideUpFade { from { transform: translateY(0); opacity: 1; } to { transform: translateY(-150%); opacity: 0; } }
 
         .input-container { position: relative; display: block; width: 100%; }
         .input-container input { width: 100%; padding-right: 35px; box-sizing: border-box; }
-        .clear-input { 
-            position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
-            background: #cbd5e1; color: white; border: none; border-radius: 50%; 
-            width: 22px; height: 22px; cursor: pointer; display: flex; align-items: center; 
-            justify-content: center; font-size: 11px; font-weight: bold; transition: 0.2s; padding: 0;
-        }
+        .clear-input { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: #cbd5e1; color: white; border: none; border-radius: 50%; width: 22px; height: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; transition: 0.2s; padding: 0; }
         .clear-input:hover { background: var(--danger); }
         [data-theme="dark"] .clear-input { background: #334155; }
 
@@ -78,7 +93,6 @@
         .highlight-label { color: var(--primary) !important; font-size: 0.75rem !important; }
         .clickable-row { cursor: pointer; transition: 0.2s; }
         .clickable-row:hover { background: rgba(99, 102, 241, 0.1); }
-        .btn-backup { background: #64748b; font-size: 0.7rem; padding: 8px; }
     </style>
 </head>
 <body data-theme="dark">
@@ -88,47 +102,11 @@
         <span class="close-modal" onclick="fecharGuia()">&times;</span>
         <h2 style="text-align: center;">📘 MANUAL COMPLETO DO SISTEMA</h2>
         <hr style="margin-bottom: 20px; border: 0; border-top: 1px solid var(--border);">
-        
-        <div class="guia-item">
-            <b>🚀 Começo Rápido</b>
-            1. Vá em ⚙️ **Banco de Dados**.
-            2. Defina o **Nome da Loja** e o seu nome como **Responsável**.
-            3. No campo **Gramaturas**, adicione os pesos dos seus produtos (ex: 1kg, 2L, 500ml).
-        </div>
-        
-        <div class="guia-item">
-            <b>📦 Gestão de Produtos (Banco)</b>
-            • **Cadastrar:** Preencha o nome, selecione o peso e o tipo de embalagem (Fardo, Caixa ou Unidade). 
-            • **Margem de Alerta:** Defina quantos dias antes do vencimento o sistema deve te avisar (Padrão: 7 dias).
-            • **Editar:** Na lista de produtos cadastrados, basta **clicar em cima do nome** do produto. Os dados voltarão para os campos de cima para você corrigir.
-            • **Excluir:** Clique no ícone da lixeira (🗑️).
-        </div>
-        
-        <div class="guia-item">
-            <b>📝 Lançamento Diário</b>
-            • Comece a digitar o nome no campo **"Pesquisar Produto"**. O sistema preencherá os detalhes da embalagem sozinho se o produto já estiver no banco.
-            • Coloque a **Quantidade** e a **Data de Vencimento**.
-            • O sistema organiza a lista automaticamente colocando o que vence primeiro no topo.
-        </div>
-
-        <div class="guia-item">
-            <b>📋 Exportação e Relatórios</b>
-            • **PDF:** Gera um documento profissional com cores de alerta.
-            • **WhatsApp:** Formata uma lista limpa e bonita para colar direto no chat do seu supervisor ou grupo da loja.
-        </div>
-
-        <div class="guia-item">
-            <b>💾 Segurança (Backup)</b>
-            • Como o sistema roda no seu navegador, se você limpar o cache do celular, os dados somem. 
-            • **Sempre use o botão "Exportar Backup"** no final do dia. Se precisar trocar de celular, basta clicar em "Importar Backup".
-        </div>
-
-        <div class="guia-item">
-            <b>🐙 Dica para o GitHub Mobile</b>
-            • Edite o código no app **Acode**.
-            • A cada mudança (como esta que fizemos agora), faça um **Commit** com uma mensagem clara.
-            • Isso cria a "escada" de evolução que você quer mostrar no seu perfil.
-        </div>
+        <div class="guia-item"><b>👤 Perfil e Assinatura:</b> Toque no ícone do usuário no topo para abrir sua tela de perfil. Clique nos ícones de câmera para personalizar sua foto de perfil e capa. O nome que você definir será sua assinatura nos relatórios.</div>
+        <div class="guia-item"><b>⚙️ Banco de Dados:</b> Cadastre os produtos primeiro. Isso economiza muito tempo, pois o sistema preenche o tipo de embalagem e a quantidade automaticamente ao digitar o nome.</div>
+        <div class="guia-item"><b>📦 Gramaturas:</b> Você pode adicionar pesos personalizados (ex: 50g, 10kg) para usar nos produtos.</div>
+        <div class="guia-item"><b>📄 Relatórios Profissionais:</b> Clique em "PDF Profissional" para gerar um arquivo PDF pronto para envio, ou use "Copiar WhatsApp" para mandar o texto formatado para a sua equipe.</div>
+        <div class="guia-item"><b>💾 Backups e Segurança:</b> Como os dados ficam salvos apenas no seu celular, use a opção "Exportar Backup" toda semana. Assim, você nunca perde seus dados se limpar o histórico do navegador.</div>
     </div>
 </div>
 
@@ -136,88 +114,170 @@
 
 <div class="container">
     <div class="top-nav">
+        <button class="btn-top" onclick="toggleTela('perfil')" title="Editar Perfil">👤</button>
         <button class="btn-top btn-help" onclick="abrirGuia()">❓</button>
         <button class="btn-top" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
     </div>
 
-    <header style="text-align: center; margin-bottom: 30px;">
-        <h1 style="margin:0; color: var(--primary); font-size: 2.2rem;">Controle de Validade</h1>
-        <p id="display-welcome" style="font-weight: bold; color: var(--text-sub);"></p>
-    </header>
+    <div id="tela-perfil" class="profile-screen card">
+        <div class="header-profile">
+            <div class="cover-photo" id="capa-preview" style="background-image: url('https://images.unsplash.com/photo-1550525811-e5869dd03032?q=80&w=800');">
+                <button class="btn-edit-cover" onclick="document.getElementById('input-capa').click()">📷</button>
+            </div>
+            <div class="profile-avatar-container">
+                <img src="https://via.placeholder.com/150" class="profile-avatar" id="foto-preview">
+                <button class="btn-edit-avatar" onclick="document.getElementById('input-foto').click()">✏️</button>
+            </div>
+        </div>
+        
+        <div class="profile-info">
+            <div style="text-align: center; margin-bottom: 25px;">
+                <h2 id="nome-display" style="margin: 0; font-size: 1.6rem; color: var(--text-main);">Usuário</h2>
+                <p id="loja-display" style="margin: 5px 0 0 0; color: var(--primary); font-weight: bold; font-size: 0.9rem;">Loja não definida</p>
+            </div>
 
-    <div class="card">
-        <h2 onclick="toggleDiv('config-div')" style="cursor:pointer; display: flex; align-items: center; justify-content: space-between;">
-            <span>⚙️ Banco de Dados e Perfil</span>
-            <span style="font-size: 0.8rem; color: var(--text-sub);">(Toque para abrir)</span>
-        </h2>
-        <div id="config-div" style="display:none; margin-top: 15px;">
-            <div class="grid">
-                <div><label>Responsável</label><div class="input-container"><input type="text" id="user_name" oninput="salvarPerfil()"><button class="clear-input" onclick="limpar('user_name', true)">✕</button></div></div>
-                <div><label>Nome da Loja</label><div class="input-container"><input type="text" id="market_name" oninput="salvarPerfil()"><button class="clear-input" onclick="limpar('market_name', true)">✕</button></div></div>
+            <div class="stats-container">
+                <div class="stat-box">
+                    <b id="stat-banco">0</b>
+                    <span>No Banco</span>
+                </div>
+                <div class="stat-box">
+                    <b id="stat-lista">0</b>
+                    <span>Na Lista</span>
+                </div>
             </div>
-            <p style="font-size: 0.7rem; font-weight: bold; color: var(--primary); margin-top:15px;">GRAMATURAS:</p>
-            <div class="grid" style="grid-template-columns: 2fr 1fr;"><div class="input-container"><input type="text" id="new_gram" placeholder="Ex: 1kg, 2L"><button class="clear-input" onclick="limpar('new_gram')">✕</button></div><button class="btn" style="background:var(--primary)" onclick="addGram()">➕ Peso</button></div>
-            <div id="gram-tags" class="tag-container"></div>
-            <hr>
-            <p style="font-size: 0.7rem; font-weight: bold; color: var(--primary);">CONFIGURAR PRODUTO NO BANCO:</p>
-            <input type="hidden" id="editing_index" value="-1">
-            <div class="grid">
-                <div><label>Nome</label><div class="input-container"><input type="text" id="cfg_n"><button class="clear-input" onclick="limpar('cfg_n')">✕</button></div></div>
-                <div><label>Peso</label><select id="cfg_v_select"></select></div>
-                <div><label>Tipo</label><select id="cfg_t"><option value="Fardo">Fardo</option><option value="Cx">Cx</option><option value="Unid">Unid</option></select></div>
-                <div><label>Itens na Emb.</label><div class="input-container"><input type="number" id="cfg_u"><button class="clear-input" onclick="limpar('cfg_u')">✕</button></div></div>
-                <div><label>Margem Alerta</label><input type="number" id="cfg_m" value="7"></div>
+            
+            <input type="file" id="input-foto" style="display:none" accept="image/*" onchange="previewImg(this, 'foto-preview')">
+            <input type="file" id="input-capa" style="display:none" accept="image/*" onchange="previewImg(this, 'capa-preview')">
+
+            <div class="modern-input-group">
+                <label>👤 Nome Profissional</label>
+                <input type="text" id="perfil_nome_full" placeholder="Ex: Seu Nome" oninput="syncPerfil()">
             </div>
-            <button class="btn" id="btn-salvar-banco" style="background:var(--success);" onclick="salvarProduto()">💾 Salvar no Banco</button>
-            <div style="max-height:200px; overflow-y:auto; margin-top:15px; border: 1px solid var(--border);">
+            
+            <div class="modern-input-group">
+                <label>📱 Contato (WhatsApp / Instagram)</label>
+                <input type="text" id="perfil_tel_full" placeholder="(00) 00000-0000">
+            </div>
+            
+            <button class="btn" style="background:var(--success); margin-top:15px; font-size: 1.05rem; padding: 15px; border-radius: 12px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25);" onclick="toggleTela('home')">✅ Salvar Perfil</button>
+        </div>
+    </div>
+
+    <div id="conteudo-home">
+        <header style="text-align: center; margin-bottom: 30px;">
+            <h1 style="margin:0; color: var(--primary); font-size: 2.2rem;">Controle de Validade</h1>
+            <p id="display-welcome" style="font-weight: bold; color: var(--text-sub);"></p>
+        </header>
+
+        <div class="card">
+            <h2 onclick="toggleDiv('config-div')" style="cursor:pointer; display: flex; align-items: center; justify-content: space-between;">
+                <span>⚙️ Banco de Dados e Perfil</span>
+                <span style="font-size: 0.8rem; color: var(--text-sub);">(Toque para abrir)</span>
+            </h2>
+            <div id="config-div" style="display:none; margin-top: 15px;">
+                <div class="grid">
+                    <div><label>Responsável</label><div class="input-container"><input type="text" id="user_name" oninput="salvarPerfil()"><button class="clear-input" onclick="limpar('user_name', true)">✕</button></div></div>
+                    <div><label>Nome da Loja</label><div class="input-container"><input type="text" id="market_name" oninput="salvarPerfil()"><button class="clear-input" onclick="limpar('market_name', true)">✕</button></div></div>
+                </div>
+                <p style="font-size: 0.7rem; font-weight: bold; color: var(--primary); margin-top:15px;">GRAMATURAS:</p>
+                <div class="grid" style="grid-template-columns: 2fr 1fr;"><div class="input-container"><input type="text" id="new_gram" placeholder="Ex: 1kg, 2L"><button class="clear-input" onclick="limpar('new_gram')">✕</button></div><button class="btn" style="background:var(--primary)" onclick="addGram()">➕ Peso</button></div>
+                <div id="gram-tags" class="tag-container"></div>
+                <hr>
+                <p style="font-size: 0.7rem; font-weight: bold; color: var(--primary);">CONFIGURAR PRODUTO NO BANCO:</p>
+                <input type="hidden" id="editing_index" value="-1">
+                <div class="grid">
+                    <div><label>Nome</label><div class="input-container"><input type="text" id="cfg_n"><button class="clear-input" onclick="limpar('cfg_n')">✕</button></div></div>
+                    <div><label>Peso</label><select id="cfg_v_select"></select></div>
+                    <div><label>Tipo</label><select id="cfg_t"><option value="Fardo">Fardo</option><option value="Cx">Cx</option><option value="Unid">Unid</option></select></div>
+                    <div><label>Itens na Emb.</label><div class="input-container"><input type="number" id="cfg_u"><button class="clear-input" onclick="limpar('cfg_u')">✕</button></div></div>
+                    <div><label>Margem Alerta</label><input type="number" id="cfg_m" value="7"></div>
+                </div>
+                <button class="btn" id="btn-salvar-banco" style="background:var(--success);" onclick="salvarProduto()">💾 Salvar no Banco</button>
+                <div style="max-height:200px; overflow-y:auto; margin-top:15px; border: 1px solid var(--border);">
+                    <table>
+                        <thead><tr><th>Produto</th><th>Detalhes</th><th>Ação</th></tr></thead>
+                        <tbody id="lista-banco-corpo"></tbody>
+                    </table>
+                </div>
+                <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: 20px;">
+                    <button class="btn" style="background:#64748b; font-size:0.7rem;" onclick="exportarBackup()">📤 Exportar Backup</button>
+                    <button class="btn" style="background:#64748b; font-size:0.7rem;" onclick="document.getElementById('importFile').click()">📥 Importar Backup</button>
+                    <input type="file" id="importFile" style="display:none" accept=".json" onchange="importarBackup(event)">
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📝 Lançamento Diário</h2>
+            <div class="grid">
+                <div><label>Pesquisar Produto</label><div class="input-container"><input type="text" id="p_n" list="sugestoes" oninput="autoFill()"><button class="clear-input" onclick="limpar('p_n'); autoFill()">✕</button><datalist id="sugestoes"></datalist></div></div>
+                <div><label>Detalhes Emb.</label><input type="text" id="p_e" readonly style="opacity:0.6;"></div>
+                <div><label id="label_q">Quantidade</label><div class="input-container"><input type="number" id="p_q"><button class="clear-input" onclick="limpar('p_q')">✕</button></div></div>
+                <div><label>Data Vencimento</label><input type="date" id="p_d"></div>
+            </div>
+            <button class="btn" style="background:var(--primary); margin-top: 10px;" onclick="adicionar()">➕ Adicionar à Lista</button>
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
+            <div class="input-container" style="margin-bottom: 20px;"><input type="text" id="searchTable" class="search-bar" placeholder="🔍 Buscar na lista..." oninput="renderLista()"><button class="clear-input" style="right: 15px;" onclick="limpar('searchTable'); renderLista()">✕</button></div>
+            <div style="overflow-x: auto;">
                 <table>
-                    <thead><tr><th>Produto</th><th>Detalhes</th><th>Ação</th></tr></thead>
-                    <tbody id="lista-banco-corpo"></tbody>
+                    <thead><tr><th>Produto</th><th>Emb</th><th>Qtd</th><th>Vencimento</th><th>Status</th><th>Ação</th></tr></thead>
+                    <tbody id="tabela-corpo"></tbody>
                 </table>
             </div>
-            <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: 20px;">
-                <button class="btn btn-backup" onclick="exportarBackup()">📤 Exportar Backup</button>
-                <button class="btn btn-backup" onclick="document.getElementById('importFile').click()">📥 Importar Backup</button>
-                <input type="file" id="importFile" style="display:none" accept=".json" onchange="importarBackup(event)">
+        </div>
+
+        <div class="card">
+            <div class="grid" style="grid-template-columns: 1fr 1fr;">
+                <button class="btn" style="background:var(--danger)" onclick="pdf()">📄 PDF PROFISSIONAL</button>
+                <button class="btn" style="background:var(--whatsapp)" onclick="copiar()">📋 COPIAR WHATSAPP</button>
             </div>
         </div>
-    </div>
-
-    <div class="card">
-        <h2>📝 Lançamento Diário</h2>
-        <div class="grid">
-            <div><label>Pesquisar Produto</label><div class="input-container"><input type="text" id="p_n" list="sugestoes" oninput="autoFill()"><button class="clear-input" onclick="limpar('p_n'); autoFill()">✕</button><datalist id="sugestoes"></datalist></div></div>
-            <div><label>Detalhes Emb.</label><input type="text" id="p_e" readonly style="opacity:0.6;"></div>
-            <div><label id="label_q">Quantidade</label><div class="input-container"><input type="number" id="p_q"><button class="clear-input" onclick="limpar('p_q')">✕</button></div></div>
-            <div><label>Data Vencimento</label><input type="date" id="p_d"></div>
-        </div>
-        <button class="btn" style="background:var(--primary); margin-top: 10px;" onclick="adicionar()">➕ Adicionar à Lista</button>
-        <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
-        <div class="input-container" style="margin-bottom: 20px;"><input type="text" id="searchTable" class="search-bar" placeholder="🔍 Buscar na lista..." oninput="renderLista()"><button class="clear-input" style="right: 15px;" onclick="limpar('searchTable'); renderLista()">✕</button></div>
-        <div style="overflow-x: auto;">
-            <table>
-                <thead><tr><th>Produto</th><th>Emb</th><th>Qtd</th><th>Vencimento</th><th>Status</th><th>Ação</th></tr></thead>
-                <tbody id="tabela-corpo"></tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="grid" style="grid-template-columns: 1fr 1fr;">
-            <button class="btn" style="background:var(--danger)" onclick="pdf()">📄 PDF PROFISSIONAL</button>
-            <button class="btn" style="background:var(--whatsapp)" onclick="copiar()">📋 COPIAR WHATSAPP</button>
-        </div>
+        
+        <footer style="text-align: center; font-size: 0.7rem; color: var(--text-sub); margin-top: 20px;">
+            Desenvolvido por Lucas Silva
+        </footer>
     </div>
 </div>
 
 <script>
-    let BANCO = []; let GRAMS = ["1kg", "2kg", "500g", "1L", "2L"]; let PERFIL = { user: "", market: "" }; let LISTA = [];
+    let BANCO = []; let GRAMS = ["1kg", "2kg", "500g", "1L", "2L"]; 
+    let PERFIL = { user: "Usuário", market: "", foto: "", capa: "", contato: "" }; 
+    let LISTA = [];
 
-    function abrirGuia() { 
-        document.getElementById('modalGuia').style.display = 'block'; 
-        showZapMsg("Tutorial Aberto!");
+    // --- LOGICA ORIGINAL COM INTEGRAÇÃO VISUAL DO PERFIL ---
+    function toggleTela(onde) {
+        const h = document.getElementById('conteudo-home'); const p = document.getElementById('tela-perfil');
+        if(onde === 'perfil') { 
+            h.style.display = 'none'; p.style.display = 'block'; window.scrollTo(0,0); 
+            document.getElementById('stat-banco').innerText = BANCO.length;
+            document.getElementById('stat-lista').innerText = LISTA.length;
+            document.getElementById('nome-display').innerText = PERFIL.user || "Usuário";
+            document.getElementById('loja-display').innerText = PERFIL.market || "Loja não definida";
+        } 
+        else { p.style.display = 'none'; h.style.display = 'block'; salvarPerfil(); showZapMsg("Dados Salvos!"); }
     }
-    function fecharGuia() { document.getElementById('modalGuia').style.display = 'none'; }
+
+    function previewImg(input, targetId) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const el = document.getElementById(targetId);
+                if(targetId === 'capa-preview') { el.style.backgroundImage = `url(${e.target.result})`; PERFIL.capa = e.target.result; } 
+                else { el.src = e.target.result; PERFIL.foto = e.target.result; }
+                localStorage.setItem('db_final_perfil', JSON.stringify(PERFIL));
+                showZapMsg("Imagem atualizada!");
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function syncPerfil() {
+        PERFIL.user = document.getElementById('perfil_nome_full').value;
+        document.getElementById('user_name').value = PERFIL.user;
+        document.getElementById('nome-display').innerText = PERFIL.user || "Usuário";
+        salvarPerfil();
+    }
 
     function showZapMsg(texto) {
         const c = document.getElementById('toast-container');
@@ -225,20 +285,23 @@
         t.className = 'whatsapp-toast';
         t.innerHTML = `✅ ${texto}`;
         c.appendChild(t);
-        setTimeout(() => { t.style.animation = 'slideUpFade 0.5s forwards'; setTimeout(() => t.remove(), 500); }, 3000);
+        setTimeout(() => { t.style.animation = 'slideUpFade 0.5s forwards'; setTimeout(() => t.remove(), 500); }, 1800);
     }
+
+    function abrirGuia() { document.getElementById('modalGuia').style.display = 'block'; showZapMsg("Manual aberto!"); }
+    function fecharGuia() { document.getElementById('modalGuia').style.display = 'none'; }
 
     function limpar(id, isPerfil = false) {
         document.getElementById(id).value = "";
         if(isPerfil) salvarPerfil();
         if(id === 'cfg_n') { document.getElementById('editing_index').value = "-1"; document.getElementById('btn-salvar-banco').innerHTML = "💾 Salvar no Banco"; }
-        showZapMsg("Campo limpo!");
+        showZapMsg("Limpo!");
     }
 
     function exportarBackup() {
         const b = new Blob([JSON.stringify({ banco: BANCO, grams: GRAMS, perfil: PERFIL })], { type: "application/json" });
         const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "backup_validade.json"; a.click();
-        showZapMsg("Backup exportado!");
+        showZapMsg("Backup Exportado!");
     }
 
     function importarBackup(e) {
@@ -248,7 +311,7 @@
             localStorage.setItem('db_final_banco', JSON.stringify(BANCO));
             localStorage.setItem('db_final_grams', JSON.stringify(GRAMS));
             localStorage.setItem('db_final_perfil', JSON.stringify(PERFIL));
-            iniciarSistema(); showZapMsg("Backup importado!");
+            iniciarSistema(); showZapMsg("Backup Importado!");
         };
         reader.readAsText(f);
     }
@@ -256,8 +319,14 @@
     function iniciarSistema() {
         if(localStorage.getItem('db_final_banco')) BANCO = JSON.parse(localStorage.getItem('db_final_banco'));
         if(localStorage.getItem('db_final_grams')) GRAMS = JSON.parse(localStorage.getItem('db_final_grams'));
-        if(localStorage.getItem('db_final_perfil')) PERFIL = JSON.parse(localStorage.getItem('db_final_perfil'));
-        document.getElementById('user_name').value = PERFIL.user || "";
+        if(localStorage.getItem('db_final_perfil')) {
+            PERFIL = JSON.parse(localStorage.getItem('db_final_perfil'));
+            if(PERFIL.foto) document.getElementById('foto-preview').src = PERFIL.foto;
+            if(PERFIL.capa) document.getElementById('capa-preview').style.backgroundImage = `url(${PERFIL.capa})`;
+            document.getElementById('perfil_nome_full').value = PERFIL.user || "";
+            document.getElementById('perfil_tel_full').value = PERFIL.contato || "";
+        }
+        document.getElementById('user_name').value = PERFIL.user || "Usuário";
         document.getElementById('market_name').value = PERFIL.market || "";
         renderGrams(); renderBanco(); salvarPerfil();
     }
@@ -270,12 +339,13 @@
     function toggleTheme() { 
         const isDark = document.body.getAttribute('data-theme') === 'dark';
         document.body.setAttribute('data-theme', isDark ? 'light' : 'dark'); 
-        showZapMsg(isDark ? "Modo Claro Ativado!" : "Modo Escuro Ativado!");
+        showZapMsg(isDark ? "Modo Claro" : "Modo Escuro");
     }
 
     function salvarPerfil() {
         PERFIL.user = document.getElementById('user_name').value || "Usuário";
         PERFIL.market = document.getElementById('market_name').value || "Loja";
+        if(document.getElementById('perfil_tel_full')) PERFIL.contato = document.getElementById('perfil_tel_full').value;
         localStorage.setItem('db_final_perfil', JSON.stringify(PERFIL));
         document.getElementById('display-welcome').innerText = `${PERFIL.market} | Resp: ${PERFIL.user}`;
     }
@@ -286,10 +356,8 @@
     }
 
     function removerGram(i) {
-        GRAMS.splice(i,1);
-        localStorage.setItem('db_final_grams', JSON.stringify(GRAMS));
-        renderGrams();
-        showZapMsg("Peso removido!");
+        GRAMS.splice(i,1); localStorage.setItem('db_final_grams', JSON.stringify(GRAMS));
+        renderGrams(); showZapMsg("Peso removido!");
     }
 
     function renderGrams() {
@@ -301,27 +369,23 @@
         const p = BANCO[i]; document.getElementById('cfg_n').value = p.n; document.getElementById('cfg_v_select').value = p.v;
         document.getElementById('cfg_t').value = p.t; document.getElementById('cfg_u').value = p.u; document.getElementById('cfg_m').value = p.m;
         document.getElementById('editing_index').value = i; document.getElementById('btn-salvar-banco').innerHTML = "📝 Atualizar Produto";
-        showZapMsg("Modo edição: " + p.n);
+        showZapMsg("Editando: " + p.n);
     }
 
     function salvarProduto() {
         const n = document.getElementById('cfg_n').value; const editIdx = parseInt(document.getElementById('editing_index').value);
         if(!n) return;
         const prod = {n, v: document.getElementById('cfg_v_select').value, t: document.getElementById('cfg_t').value, u: document.getElementById('cfg_u').value, m: parseInt(document.getElementById('cfg_m').value || 7)};
-        let msg = "";
-        if(editIdx > -1) { BANCO[editIdx] = prod; msg = "Produto Atualizado!"; } 
-        else { BANCO.push(prod); msg = "Salvo no Banco!"; }
-        
+        if(editIdx > -1) { BANCO[editIdx] = prod; showZapMsg("Produto Atualizado!"); } 
+        else { BANCO.push(prod); showZapMsg("Salvo no Banco!"); }
         localStorage.setItem('db_final_banco', JSON.stringify(BANCO));
-        limpar('cfg_n'); limpar('cfg_u'); renderBanco(); showZapMsg(msg);
+        limpar('cfg_n'); limpar('cfg_u'); renderBanco();
     }
 
     function removerDoBanco(i, event) {
-        event.stopPropagation();
-        BANCO.splice(i,1);
+        event.stopPropagation(); BANCO.splice(i,1);
         localStorage.setItem('db_final_banco', JSON.stringify(BANCO));
-        renderBanco();
-        showZapMsg("Removido do Banco!");
+        renderBanco(); showZapMsg("Removido do Banco!");
     }
 
     function renderBanco() {
@@ -355,21 +419,14 @@
         let s = { l: "ÓTIMO", color: [16, 185, 129], c: "bg-bom" };
         if(diff <= pInfo.m) s = { l: "CRÍTICO", color: [239, 68, 68], c: "bg-critico" };
         else if(diff <= (pInfo.m + 15)) s = { l: "ALERTA", color: [245, 158, 11], c: "bg-alerta" };
-        
         const labelQtd = pInfo.t === "Fardo" ? "Fardos" : (pInfo.t === "Cx" ? "Caixas" : "unid");
         LISTA.push({n, e, q: q + " " + labelQtd, d, s, ts: dataVenc.getTime()});
         LISTA.sort((a,b) => a.ts - b.ts); renderLista();
-        
         document.getElementById('p_n').value = ""; document.getElementById('p_q').value = ""; document.getElementById('p_d').value = ""; 
-        autoFill();
-        showZapMsg("Item adicionado à lista!");
+        autoFill(); showZapMsg("Adicionado à lista!");
     }
 
-    function removerDaLista(i) {
-        LISTA.splice(i,1);
-        renderLista();
-        showZapMsg("Removido da Lista!");
-    }
+    function removerDaLista(i) { LISTA.splice(i,1); renderLista(); showZapMsg("Item removido!"); }
 
     function renderLista() {
         const f = document.getElementById('searchTable').value.toLowerCase();
@@ -379,18 +436,25 @@
     function pdf() {
         if(LISTA.length === 0) { showZapMsg("Lista vazia!"); return; }
         const { jsPDF } = window.jspdf; const doc = new jsPDF();
-        const agora = new Date().toLocaleString('pt-BR');
+        
+        const agora = new Date().toLocaleString('pt-BR'); 
+        
         doc.setFontSize(18); doc.text(`RELATÓRIO DE VALIDADE - ${PERFIL.market}`, 14, 18);
         doc.setFontSize(10); doc.text(`Responsável: ${PERFIL.user}`, 14, 25);
-        doc.text(`Data de Emissão: ${agora}`, 14, 30);
+        doc.text(`Data e Horário de Emissão: ${agora}`, 14, 30);
+        
         doc.autoTable({
             head: [['Produto', 'Embalagem/Peso', 'Quantidade', 'Vencimento', 'Status']],
             body: LISTA.map(p => [p.n, p.e, p.q, p.d.split('-').reverse().join('/'), p.s.l]),
             startY: 35,
             didParseCell: (data) => { if(data.column.index === 4 && data.section === 'body') { data.cell.styles.fillColor = LISTA[data.row.index].s.color; data.cell.styles.textColor = 255; } }
         });
+        
+        doc.setFontSize(8); doc.setTextColor(150);
+        doc.text("Desenvolvido por Lucas Silva", 14, doc.internal.pageSize.getHeight() - 10);
+        
         doc.save(`validade_${PERFIL.market}.pdf`);
-        showZapMsg("PDF Gerado com sucesso!");
+        showZapMsg("PDF Gerado!");
     }
 
     function copiar() {
@@ -400,7 +464,7 @@
             let emo = p.s.l === "CRÍTICO" ? "🔴" : (p.s.l === "ALERTA" ? "🟡" : "🟢"); 
             t += `${emo} *PRODUTO:* ${p.n}\n📦 *EMB:* ${p.e}\n🔢 *QTD:* ${p.q}\n⏳ *VENC:* ${p.d.split('-').reverse().join('/')}\n\n`;
         });
-        navigator.clipboard.writeText(t).then(() => showZapMsg("Copiado para o WhatsApp!"));
+        navigator.clipboard.writeText(t).then(() => showZapMsg("Copiado para WhatsApp!"));
     }
 
     window.addEventListener('DOMContentLoaded', iniciarSistema);
