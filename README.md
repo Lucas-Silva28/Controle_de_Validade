@@ -1,108 +1,130 @@
 # 🛡️ Controle de Validade Profissional
-**Gerenciamento inteligente de estoque e prazos de vencimento.**
+**Gestão inteligente de estoque e monitoramento de vencimentos em tempo real.**
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Concluído-success?style=for-the-badge)
 
 ## 📝 1. Visão Geral do Sistema
-O **Controle de Validade Profissional** é uma solução robusta e intuitiva projetada para otimizar a gestão de estoque em tempo real. Focado em usabilidade e eficiência, o sistema permite que colaboradores e gestores monitorem prazos de validade com precisão cirúrgica, reduzindo perdas financeiras e garantindo a conformidade sanitária.
+O **Controle de Validade Profissional** é uma solução robusta e intuitiva projetada para otimizar a gestão de estoque. Focado em usabilidade e eficiência, o sistema permite que colaboradores e gestores monitorem prazos de validade com precisão cirúrgica, reduzindo perdas financeiras e garantindo a conformidade sanitária.
 
-### Tecnologias Utilizadas:
-* **HTML5 Semântico:** Estrutura focada em acessibilidade.
-* **CSS3 Dinâmico:** Interface responsiva com variáveis e temas.
-* **JavaScript ES6+:** Lógica avançada de processamento de dados.
-* **jsPDF & AutoTable:** Geração de relatórios profissionais em PDF.
-* **LocalStorage API:** Persistência de dados local segura e rápida.
+### Diferenciais Técnicos:
+* **HTML5 Semântico:** Estrutura limpa e acessível.
+* **CSS3 Dinâmico:** Interface responsiva com suporte nativo a temas (Light/Dark).
+* **JavaScript ES6+:** Processamento de dados em tempo real sem recarregamento de página.
+* **jsPDF Profissional:** Geração de relatórios técnicos formatados.
+* **LocalStorage API:** Persistência de dados local segura.
 
 ---
 
 ## 🏗️ 2. Arquitetura Funcional
-O sistema é dividido em quatro pilares principais, garantindo um fluxo de trabalho fluido:
+O sistema é dividido em quatro pilares principais para garantir um fluxo de trabalho fluido:
 
-1.  **Identidade e Perfil:** Customização total da interface e relatórios com dados do responsável.
-2.  **Banco de Inteligência:** Armazenamento local de produtos para preenchimento automático ultra-rápido.
-3.  **Gestão de Inventário:** Lançamento simplificado com cálculo automático de dias restantes e status de risco.
-4.  **Exportação e Segurança:** Geração de documentos PDF oficiais, integração com redes sociais e sistemas de backup.
+* **Identidade e Perfil:** Customização total da interface e relatórios com os dados do responsável.
+* **Banco de Inteligência:** Armazenamento local de produtos para preenchimento automático ultra-rápido.
+* **Gestão de Inventário:** Lançamento simplificado com cálculo automático de dias restantes e status de risco.
+* **Exportação e Segurança:** Geração de documentos PDF oficiais, integração com redes sociais e sistemas de backup.
 
 ---
 
-## 📸 3. Demonstração Visual (Guia do Sistema)
+## 📸 3. Demonstração Visual (Manual de Screenshots)
 
-Abaixo, detalhamos cada módulo do sistema através de capturas de tela:
+Abaixo estão as 15 capturas de tela que exemplificam a profundidade e a facilidade de uso do sistema:
 
-### 🖼️ Módulo de Interface e Perfil
+### 🖼️ Interface e Personalização
 
-**IMAGEM 01: DASHBOARD INICIAL** > *Onde tirar: Tela principal (Home).* > Mostra a saudação de boas-vindas com o nome do mercado e do responsável, além do menu de navegação superior.  
+**IMAGEM 01: DASHBOARD INICIAL**
+> *Onde capturar: Logo ao abrir o sistema.*
+> Exibe a saudação personalizada e o menu de navegação superior com ícones intuitivos.
 ![Dashboard](screenshots/01.jpg)
 
-**IMAGEM 02: TELA DE PERFIL (FOCO VISUAL)** > *Onde tirar: Perfil do usuário.* > Exibe a estética do perfil com a foto de capa e avatar, demonstrando o design moderno e personalização.  
+**IMAGEM 02: TELA DE PERFIL (FOCO VISUAL)**
+> *Onde capturar: Menu de perfil.*
+> Demonstra a estética moderna com foto de capa e avatar circular personalizado.
 ![Perfil](screenshots/02.jpg)
 
-**IMAGEM 03: EDIÇÃO DE DADOS PROFISSIONAIS** > *Onde tirar: Campos de entrada na tela de perfil.* > Local onde o usuário insere seu nome profissional e contato para alimentar a assinatura dos relatórios.  
+**IMAGEM 03: EDIÇÃO DE DADOS PROFISSIONAIS**
+> *Onde capturar: Rodapé da tela de perfil.*
+> Mostra os campos onde o usuário define seu nome para assinatura automática nos relatórios.
 ![Edição](screenshots/03.jpg)
 
-**IMAGEM 04: MODO ESCURO (DARK MODE)** > *Onde tirar: Tela principal após alternar o tema.* > Exibe a adaptação das cores para tons escuros, ideal para ambientes de baixa luminosidade em estoques.  
+**IMAGEM 04: MODO ESCURO (DARK MODE)**
+> *Onde capturar: Botão de alternância de tema.*
+> Exibe a interface adaptada para ambientes de baixa luminosidade, reduzindo a fadiga visual.
 ![DarkMode](screenshots/04.jpg)
 
 ---
 
-### 🗄️ Módulo de Banco de Dados
+### 🗄️ Inteligência e Banco de Dados
 
-**IMAGEM 05: GESTÃO DE GRAMATURAS (TAGS)** > *Onde tirar: Seção Banco de Dados > Gramaturas.* > Sistema de tags dinâmicas para cadastro de pesos (1kg, 2L, 500g), padronizando os registros.  
+**IMAGEM 05: GESTÃO DE GRAMATURAS (TAGS)**
+> *Onde capturar: Configurações de Banco de Dados.*
+> Sistema de tags para padronização de pesos e medidas (ex: 1kg, 2L).
 ![Gramaturas](screenshots/05.jpg)
 
-**IMAGEM 06: FORMULÁRIO DE CADASTRO NO BANCO** > *Onde tirar: Seção Configurar Produto no Banco.* > Campos de Nome, Peso, Tipo e Margem de Alerta, armazenando a inteligência de cada item.  
-![CadastroBanco](screenshots/06.jpg)
+**IMAGEM 06: FORMULÁRIO DE CADASTRO NO BANCO**
+> *Onde capturar: Seção de configuração de novos produtos.*
+> Mostra como o sistema aprende os detalhes técnicos de cada item do estoque.
+![Cadastro](screenshots/06.jpg)
 
-**IMAGEM 07: LISTAGEM DO BANCO DE DADOS** > *Onde tirar: Tabela abaixo do botão Salvar no Banco.* > Mostra os produtos já salvos e a facilidade de organização e edição.  
+**IMAGEM 07: LISTAGEM DO BANCO DE DADOS**
+> *Onde capturar: Tabela de produtos salvos.*
+> Visualização clara de todos os itens prontos para lançamento rápido.
 ![ListaBanco](screenshots/07.jpg)
 
 ---
 
-### 🚀 Lançamento e Monitoramento
+### 🚀 Operação e Monitoramento
 
-**IMAGEM 08: LANÇAMENTO COM AUTO-FILL** > *Onde tirar: Seção Lançamento Diário.* > Demonstra o preenchimento automático de detalhes ao selecionar um produto já cadastrado.  
+**IMAGEM 08: LANÇAMENTO COM AUTO-FILL**
+> *Onde capturar: Campo de nome no lançamento diário.*
+> Demonstra a busca inteligente que preenche os dados da embalagem automaticamente.
 ![AutoFill](screenshots/08.jpg)
 
-**IMAGEM 09: SELETOR DE DATA E CALENDÁRIO** > *Onde tirar: Campo Data Vencimento.* > Interface nativa de calendário para garantir precisão absoluta nas datas.  
+**IMAGEM 09: SELETOR DE DATA E CALENDÁRIO**
+> *Onde capturar: Seleção de vencimento.*
+> Interface otimizada para evitar erros humanos na inserção de datas críticas.
 ![Calendario](screenshots/09.jpg)
 
-**IMAGEM 10: TABELA DE MONITORAMENTO ATIVA** > *Onde tirar: Tabela principal de produtos lançados.* > Exibe a lista completa de produtos em estoque com suas respectivas datas e quantidades.  
+**IMAGEM 10: TABELA DE MONITORAMENTO ATIVA**
+> *Onde capturar: Painel principal de listagem.*
+> Exibe os produtos lançados com quantidades e datas formatadas (PT-BR).
 ![Monitoramento](screenshots/10.jpg)
 
-**IMAGEM 11: BADGES DE STATUS (ESTRATÉGIA VISUAL)** > *Onde tirar: Close-up na coluna Status.* > Cores Verde (Ótimo), Amarelo (Alerta) e Vermelho (Crítico) indicando prioridade de retirada.  
-Gestão de Alertas Visuais
-- 🔴 **CRÍTICO:** Ação imediata (dentro da margem de alerta).
-- 🟡 **ALERTA:** Vencimento próximo (próximos 15 dias após a margem).
-- 🟢 **ÓTIMO:** Prazo seguro.
-
----
-
+**IMAGEM 11: BADGES DE STATUS (ESTRATÉGIA VISUAL)**
+> *Onde capturar: Coluna de status da tabela.*
+> Cores intuitivas: Verde (Ótimo), Amarelo (Alerta) e Vermelho (Crítico).
 ![Status](screenshots/11.jpg)
 
-**IMAGEM 12: BUSCA E FILTRAGEM NA LISTA** > *Onde tirar: Barra de busca da tabela.* > Filtragem instantânea por nome, essencial para o gerenciamento de grandes estoques.  
+**IMAGEM 12: BUSCA E FILTRAGEM NA LISTA**
+> *Onde capturar: Barra de pesquisa superior.*
+> Filtragem instantânea que facilita a localização de itens em listas extensas.
 ![Busca](screenshots/12.jpg)
 
 ---
 
-### 📄 Exportação e Segurança
+### 📄 Relatórios e Segurança
 
-**IMAGEM 13: RELATÓRIO PDF GERADO** > *Onde tirar: Arquivo PDF aberto.* > Documento oficial com cabeçalho personalizado e assinatura de autoria de Lucas Silva.  
+**IMAGEM 13: RELATÓRIO PDF GERADO**
+> *Onde capturar: Visualização do PDF gerado.*
+> Exibe o documento oficial com data, hora e assinatura do desenvolvedor.
 ![PDF](screenshots/13.jpg)
 
-**IMAGEM 14: INTEGRAÇÃO WHATSAPP (TOAST)** > *Onde tirar: Clique em Copiar WhatsApp.* > Feedback visual da cópia dos dados formatados para compartilhamento rápido.  
+**IMAGEM 14: INTEGRAÇÃO WHATSAPP (TOAST)**
+> *Onde capturar: Ao clicar em "Copiar WhatsApp".*
+> Mostra a notificação de sucesso e a formatação do texto para envio imediato.
 ![WhatsApp](screenshots/14.jpg)
 
-**IMAGEM 15: SISTEMA DE BACKUP E SEGURANÇA** > *Onde tirar: Botões de Exportar/Importar Backup.* > Funcionalidade de salvaguarda que permite trocar de aparelho sem perder as configurações.  
+**IMAGEM 15: SISTEMA DE BACKUP E SEGURANÇA**
+> *Onde capturar: Rodapé das configurações.*
+> Botões de Exportar/Importar que garantem a portabilidade total dos seus dados.
 ![Backup](screenshots/15.jpg)
 
 ---
 
 ## 🏆 4. Conclusão e Autoria
-Este sistema representa uma solução completa de ponta a ponta. Desde a entrada de dados inteligente até a exportação de documentos oficiais, cada linha de código foi pensada para oferecer a melhor experiência ao usuário final.
+Este sistema representa uma solução completa de ponta a ponta. Desde a entrada de dados inteligente até a exportação de documentos oficiais, cada linha de código foi pensada para oferecer a melhor experiência ao usuário final. A documentação visual garante que o valor prático e técnico deste projeto seja compreendido instantaneamente.
 
-Desenvolvido com dedicação por **Lucas Silva**.
-
-📍 **Araguaína, Tocantins - 2026** *© Todos os direitos reservados.*
+**Desenvolvido por Lucas Silva** 📍 Araguaína, Tocantins - 2026  
+*© Todos os direitos reservados.*
