@@ -1,64 +1,69 @@
 # 🛒 Controle de Validade Profissional | Koda Sistemas 🛡️
 
-**Gestão inteligente de estoque e monitoramento de vencimentos em tempo real.**
+**Sistema inteligente para monitoramento de estoque e prevenção de perdas de produtos perecíveis.**
 
-🌐 **Acesso ao Sistema Ao Vivo:** [Clique aqui para abrir o sistema](https://lucas-silva28.github.io/Controle_de_Validade/)
+🌐 **Acesso ao Sistema:** [Clique aqui para abrir](https://lucas-silva28.github.io/Controle_de_Validade/)
 
-![Status](https://img.shields.io/badge/Status-Concluído-success?style=for-the-badge)
-![Company](https://img.shields.io/badge/Empresa-Koda_Sistemas-blue?style=for-the-badge)
+<div align="center">
+  <!-- Espaço para sua futura logo -->
+  <img src="logo.png" alt="Logo Koda Sistemas" width="200">
+</div>
 
 ---
 
 ## 📝 1. Visão Geral
-O **Controle de Validade Profissional** é uma solução corporativa desenvolvida pela **Koda Sistemas** para eliminar o desperdício em mercados e depósitos. O sistema automatiza o cálculo de vencimento, organiza o banco de dados de produtos e gera relatórios profissionais em segundos.
-
-### ⚙️ Engenharia do Projeto:
-* **Interface:** HTML5 e CSS3 com variáveis de tema para suporte nativo a **Modo Escuro**.
-* **Inteligência:** JavaScript ES6+ com algoritmos de contagem regressiva em tempo real.
-* **Relatórios:** Integração com bibliotecas `jsPDF` para documentos oficiais.
-* **Dados:** Persistência via `LocalStorage` (sem necessidade de servidor externo).
+Esta solução foi desenvolvida pela **Koda Sistemas** para automatizar o controle de validade em comércios e depósitos[span_0](start_span)[span_0](end_span). O foco principal é a praticidade no lançamento de dados e a precisão no monitoramento de itens como bebidas e alimentos, garantindo que nenhum produto vença na prateleira.
 
 ---
 
-## 🏗️ 2. Arquitetura Funcional
-* **👤 Perfil Koda:** Personalização de foto, capa e dados da unidade.
-* **🧠 Banco de Inteligência:** Cadastro de itens com preenchimento automático (Auto-fill).
-* **⏳ Monitorização:** Tabela dinâmica com badges de status (Crítico, Alerta, Ótimo).
-* **💾 Segurança:** Sistema de Backup completo (Exportar/Importar JSON).
+## 📸 2. Demonstração Visual
+
+Abaixo, você confere a interface e as ferramentas disponíveis no sistema:
+
+### 🖥️ Painel de Controle e Status
+O sistema classifica automaticamente a urgência de cada item através de alertas visuais.
+
+| Dashboard Principal | Monitoramento de Vencidos |
+| :---: | :---: |
+| ![Início](screenshots/01.jpg) | ![Status](screenshots/11.jpg) |
+| *Visualização clara de todo o estoque.* | *Alertas coloridos por nível de criticidade.* |
 
 ---
 
-## 📸 3. Guia Visual (Manual do Sistema)
+### 🎨 Personalização e Modo Escuro
+Interface moderna adaptada para qualquer ambiente de trabalho.
 
-### 🎨 Interface e Design
-**DASHBOARD E MODO ESCURO** <img src="screenshots/01.jpg" width="400"> <img src="screenshots/04.jpg" width="400">  
-*Interface moderna adaptada para qualquer iluminação.*
-
-**PERFIL DA EMPRESA** <img src="screenshots/02.jpg" width="400">  
-*Gestão de identidade visual e estatísticas.*
-
----
-
-### 🚀 Operação e Lançamento
-**LANÇAMENTO INTELIGENTE E STATUS** <img src="screenshots/08.jpg" width="400"> <img src="screenshots/11.jpg" width="400">  
-*Busca rápida de produtos e alertas visuais por cores.*
-
-**BUSCA E FILTRAGEM** <img src="screenshots/12.jpg" width="400">  
-*Localize qualquer item instantaneamente.*
+| Modo Escuro | Gestão de Perfil |
+| :---: | :---: |
+| ![Modo Noturno](screenshots/04.jpg) | ![Perfil](screenshots/02.jpg) |
+| *Conforto visual para conferências rápidas.* | *Personalização da unidade de atendimento.* |
 
 ---
 
-### 📄 Relatórios e Segurança
-**EXPORTAÇÃO PDF E WHATSAPP** <img src="screenshots/13.jpg" width="400"> <img src="screenshots/14.jpg" width="400">  
-*Documentos oficiais e partilha rápida em grupos de reposição.*
+### 🚀 Operação e Relatórios
+Ferramentas de busca avançada e exportação de documentos oficiais.
 
-**BACKUP DE DADOS** <img src="screenshots/15.jpg" width="400">  
-*Garantia de portabilidade e segurança total das informações.*
+| Busca e Filtros | Exportação de Relatórios |
+| :---: | :---: |
+| ![Busca](screenshots/12.jpg) | ![Relatório](screenshots/13.jpg) |
+| *Localize qualquer produto em segundos.* | *Geração de PDF para auditoria e controle.* |
 
 ---
 
-## 🏆 4. Autoria e Suporte
-Este sistema é uma propriedade intelectual da **Koda Sistemas**. Focado em transformar a tecnologia em lucro e organização para o varejo.
+## ⚙️ 3. Funcionalidades de Destaque
+* **Gestão Mobile:** Otimizado para uso em dispositivos móveis, facilitando a conferência direta no estoque[span_1](start_span)[span_1](end_span).
+* **Backup de Segurança:** Sistema de importação e exportação de dados para garantir que suas informações estejam sempre salvas.
+* **Cálculo em Tempo Real:** O sistema indica exatamente quantos dias restam para o vencimento sem necessidade de cálculos manuais.
+* **Compartilhamento:** Envio rápido de listas de produtos críticos via redes sociais.
 
-**Koda Sistemas** 📍 Araguaína, Tocantins - 2026  
-*Tecnologia que impulsiona o seu negócio.*
+---
+
+## 🛠️ 4. Tecnologias Utilizadas
+* **Desenvolvimento Web:** HTML5, CSS3 e JavaScript ES6+[span_2](start_span)[span_2](end_span).
+* **Automação:** Lógica em Python para processamento de dados[span_3](start_span)[span_3](end_span).
+* **Persistência:** Armazenamento local seguro para funcionamento offline.
+
+---
+
+**Koda Sistemas** 📍 Araguaína - Tocantins[span_4](start_span)[span_4](end_span)  
+*Tecnologia que impulsiona a organização do seu negócio.*
