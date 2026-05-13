@@ -6,7 +6,7 @@
 
 <div align="center">
   <!-- Espaço para sua futura logo -->
-  <img src="logo.png" alt="Logo Koda Sistemas" width="200">
+  <img src="screenshots/logo-koda.png" alt="Logo Koda Sistemas" width="200">
 </div>
 
 ---
