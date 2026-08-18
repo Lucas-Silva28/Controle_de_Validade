@@ -172,10 +172,12 @@
         background-position: center;
         position: relative;
     }
+    .profile-media-actions { position:absolute; right:10px; bottom:10px; z-index:3; }
+    .profile-media-hint { margin:-4px 0 18px; padding:10px 12px; border:1px dashed var(--border); border-radius:12px; color:var(--text-sub); background:var(--bg-body); font-size:.74rem; line-height:1.35; }
+    .btn-edit-cover:hover, .btn-edit-avatar:hover { transform:scale(1.06); }
+    .btn-edit-cover:active, .btn-edit-avatar:active { transform:scale(.96); }
     .btn-edit-cover {
-        position: absolute;
-        bottom: 15px;
-        right: 15px;
+        position: static;
         background: rgba(0,0,0,0.6);
         backdrop-filter: blur(5px);
         color: white;
@@ -284,6 +286,25 @@
         color: var(--text-sub);
         font-weight: bold;
     }
+    /* PERFIL PROFISSIONAL — claro e escuro */
+    .profile-identity { text-align:center; margin-bottom:25px; }
+    .profile-identity h2 { margin:0; font-size:1.7rem; color:var(--text-main); }
+    .profile-identity p { margin:6px 0 8px; color:var(--primary); font-weight:800; font-size:.95rem; }
+    .profile-cover-shade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.45)); pointer-events:none; }
+    .profile-cover-title { position:absolute; left:18px; bottom:16px; color:#fff; font-weight:800; font-size:1rem; text-shadow:0 2px 8px rgba(0,0,0,.5); }
+    .profile-section-title { font-size:.68rem; letter-spacing:.08em; font-weight:900; color:var(--text-sub); margin:4px 0 12px; }
+    .perfil-sync-status { display:inline-flex; align-items:center; gap:6px; padding:5px 10px; border-radius:999px; font-size:.68rem; font-weight:800; background:var(--bg-body); color:var(--text-sub); border:1px solid var(--border); transition:.25s; }
+    .perfil-sync-status::before { content:'●'; font-size:.65rem; }
+    .perfil-sync-status[data-status="ok"] { color:var(--success); }
+    .perfil-sync-status[data-status="sync"] { color:var(--primary); animation: perfilPulse 1.2s ease-in-out infinite; }
+    .perfil-sync-status[data-status="error"] { color:var(--danger); }
+    @keyframes perfilPulse { 50% { opacity:.55; transform:translateY(-1px); } }
+    [data-theme="dark"] .profile-cover-shade { background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.58)); }
+
+    .modal-guia .guia-item-animado { color: var(--text-main) !important; }
+    .modal-guia .guia-item-animado b { color: var(--primary) !important; }
+    .modal-guia h2 { color: var(--text-main) !important; }
+
     /* Fundo que cobre todo o sistema */
 .modal-guia {
     display: none;
@@ -640,6 +661,7 @@
         signOut
     } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
     import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyCnrW8h0KjnW4HEsZe_lf0ZuaNsPZcRnIE",
@@ -653,6 +675,9 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
+    const storage = getStorage(app);
+    let perfilSaveInFlight = false;
+    let perfilSaveTimer = null;
 
     // 1. FORÇAR A PERSISTÊNCIA ANTES DE QUALQUER AÇÃO (Essencial para PWAs)
     setPersistence(auth, browserLocalPersistence).catch(console.error);
@@ -724,6 +749,97 @@
         window.location.reload();
     };
 
+    // PERFIL — compressão e armazenamento das imagens
+    function arquivoParaDataURL(blob) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+        });
+    }
+
+    function comprimirImagem(file, maxW, maxH, quality = 0.82) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            const url = URL.createObjectURL(file);
+            img.onload = () => {
+                try {
+                    const ratio = Math.min(maxW / img.width, maxH / img.height, 1);
+                    const canvas = document.createElement('canvas');
+                    canvas.width = Math.max(1, Math.round(img.width * ratio));
+                    canvas.height = Math.max(1, Math.round(img.height * ratio));
+                    const ctx = canvas.getContext('2d', { alpha: false });
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    canvas.toBlob(async blob => {
+                        URL.revokeObjectURL(url);
+                        if (!blob) return reject(new Error('Não foi possível processar a imagem.'));
+                        resolve(blob);
+                    }, 'image/jpeg', quality);
+                } catch (e) { URL.revokeObjectURL(url); reject(e); }
+            };
+            img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('Imagem inválida.')); };
+            img.src = url;
+        });
+    }
+
+    async function salvarImagemPerfil(file, tipo, targetId) {
+        if (!file) return;
+        const user = auth.currentUser;
+        if (!user) {
+            showZapMsg('⚠️ Entre com sua conta para salvar imagens do perfil.', true);
+            return;
+        }
+        const isCapa = tipo === 'capa';
+        const maxW = isCapa ? 1400 : 700;
+        const maxH = isCapa ? 700 : 700;
+        const el = document.getElementById(targetId);
+        const oldText = isCapa ? 'capa' : 'foto';
+        try {
+            const blob = await comprimirImagem(file, maxW, maxH, 0.82);
+            const localData = await arquivoParaDataURL(blob);
+            if (isCapa) {
+                el.style.backgroundImage = `url(${localData})`;
+                PERFIL.capa = localData;
+            } else {
+                el.src = localData;
+                PERFIL.foto = localData;
+            }
+            PERFIL._perfilAtualizadoEm = Date.now();
+            localStorage.setItem(key.perfil(user.uid), JSON.stringify(PERFIL));
+            perfilSaveInFlight = true;
+            if (typeof atualizarStatusPerfil === 'function') atualizarStatusPerfil('Salvando…', 'sync');
+            showZapMsg(`📤 Salvando ${oldText}...`);
+
+            // Preferência: Firebase Storage. A URL fica no perfil e continua válida após recarregar.
+            try {
+                const ext = isCapa ? 'capa' : 'foto-perfil';
+                const imageRef = storageRef(storage, `usuarios/${user.uid}/perfil/${ext}.jpg`);
+                await uploadBytes(imageRef, blob, { contentType: 'image/jpeg', cacheControl: 'public,max-age=31536000' });
+                const downloadURL = await getDownloadURL(imageRef);
+                if (isCapa) PERFIL.capa = downloadURL;
+                else PERFIL.foto = downloadURL;
+            } catch (storageError) {
+                // Fallback: a versão comprimida continua funcionando mesmo se o armazenamento de arquivos não estiver disponível.
+                console.warn('Armazenamento de imagem indisponível; usando cópia compactada.', storageError);
+            }
+            await window.salvarTudo({ perfil: PERFIL });
+            if (typeof atualizarStatusPerfil === 'function') atualizarStatusPerfil('Salvo', 'ok');
+            setTimeout(() => { perfilSaveInFlight = false; }, 300);
+            showZapMsg('✅ Imagem salva no perfil!');
+        } catch (e) {
+            console.error('Erro ao salvar imagem:', e);
+            if (typeof atualizarStatusPerfil === 'function') atualizarStatusPerfil('Não foi possível salvar', 'error');
+            showZapMsg('❌ Não foi possível salvar a imagem.', true);
+        }
+    }
+
+    // Disponibiliza a rotina para os seletores de imagem do perfil.
+    // O HTML usa eventos inline e o bloco Firebase é um módulo ES.
+    window.salvarImagemPerfil = salvarImagemPerfil;
+
     // ✅ ÚNICA função de gravação do sistema
     // Grava no Firestore (nuvem) E no localStorage (cache offline)
     // Exibe confirmação toast após cada gravação bem-sucedida
@@ -733,7 +849,10 @@
         if (dados.produtos !== undefined) window.LISTA  = dados.produtos;
         if (dados.banco    !== undefined) window.BANCO  = dados.banco;
         if (dados.grams    !== undefined) window.GRAMS  = dados.grams;
-        if (dados.perfil   !== undefined) window.PERFIL = dados.perfil;
+        if (dados.perfil   !== undefined) {
+            window.PERFIL = dados.perfil;
+            if (!window.PERFIL._perfilAtualizadoEm) window.PERFIL._perfilAtualizadoEm = Date.now();
+        }
 
         if (!user) {
             // Sem conta Google — salva local isolado
@@ -757,7 +876,10 @@
             if (dados.produtos !== undefined) payload.produtos = window.LISTA;
             if (dados.banco    !== undefined) payload.banco    = window.BANCO;
             if (dados.grams    !== undefined) payload.grams    = window.GRAMS;
-            if (dados.perfil   !== undefined) payload.perfil   = window.PERFIL;
+            if (dados.perfil   !== undefined) {
+                payload.perfil = window.PERFIL;
+                payload.perfilAtualizadoEm = window.PERFIL._perfilAtualizadoEm || Date.now();
+            }
             await setDoc(doc(db, "usuarios", user.uid), payload, { merge: true });
             if (typeof showZapMsg === 'function') showZapMsg("☁️ Salvo na nuvem!");
         } catch (e) {
@@ -1077,6 +1199,28 @@
 <hr style="margin:20px 0; border:0; border-top:1px solid rgba(255,255,255,0.1);">
 
 <div class="guia-item-animado" style="color:#ffffff; line-height:1.8;">
+    <b style="color:#38bdf8; font-size:18px; display:block; margin-bottom:10px;">
+        👤 6. Perfil e Personalização
+    </b>
+    <div style="margin-bottom:15px;">
+        <b style="color:#facc15;">✏️ Alterar seus dados</b><br>
+        Abra o perfil pelo botão 👤. Você pode alterar seu nome, o nome da loja e o contato. Depois toque em <b>Salvar Perfil</b>.
+    </div>
+    <div style="margin-bottom:15px;">
+        <b style="color:#facc15;">📷 Foto e capa</b><br>
+        Toque no ícone de câmera da capa ou no lápis da foto para escolher uma imagem do celular. A imagem é ajustada automaticamente para ficar mais leve e adequada ao aplicativo.
+    </div>
+    <div style="margin-bottom:15px;">
+        <b style="color:#facc15;">☁️ Seus dados continuam no perfil</b><br>
+        Quando você estiver conectado à sua conta, as alterações do perfil ficam associadas a ela. Assim, ao voltar ao aplicativo, suas informações e imagens podem ser recuperadas automaticamente.
+    </div>
+    <div>
+        <b style="color:#facc15;">🟢 Status do perfil</b><br>
+        A indicação abaixo do seu nome mostra quando o perfil foi carregado, está sendo salvo ou já foi salvo.
+    </div>
+</div>
+
+<div class="guia-item-animado" style="color:#ffffff; line-height:1.8;">
     <b style="color:#22c55e; font-size:18px; display:block; margin-bottom:10px;">
         🚀 Dica Final
     </b>
@@ -1105,45 +1249,51 @@
             <div id="tela-perfil" class="profile-screen card">
                 <div class="header-profile">
                     <div class="cover-photo" id="capa-preview" style="background-image: url('https://images.unsplash.com/photo-1550525811-e5869dd03032?q=80&w=800');">
-                        <button class="btn-edit-cover" onclick="document.getElementById('input-capa').click()">📷</button>
+                        <div class="profile-cover-shade"></div>
+                        <div class="profile-cover-title"> </div>
+                        <div class="profile-media-actions">
+                            <button class="btn-edit-cover" onclick="document.getElementById('input-capa').click()" title="Alterar capa">📷</button>
+                        </div>
                     </div>
                     <div class="profile-avatar-container">
-                        <img src="https://via.placeholder.com/150" class="profile-avatar" id="foto-preview">
-                        <button class="btn-edit-avatar" onclick="document.getElementById('input-foto').click()">✏️</button>
+                        <img src="https://via.placeholder.com/150" class="profile-avatar" id="foto-preview" alt="Foto do perfil">
+                        <button class="btn-edit-avatar" onclick="document.getElementById('input-foto').click()" title="Alterar foto">📷</button>
                     </div>
                 </div>
 
                 <div class="profile-info">
-                    <div style="text-align: center; margin-bottom: 25px;">
-                        <h2 id="nome-display" style="margin: 0; font-size: 1.6rem; color: var(--text-main);">Usuário</h2>
-                        <p id="loja-display" style="margin: 5px 0 0 0; color: var(--primary); font-weight: bold; font-size: 0.9rem;">
-                            Loja não definida
-                        </p>
+                    <div class="profile-identity">
+                        <h2 id="nome-display">Usuário</h2>
+                        <p id="loja-display">Loja não definida</p>
+                        <div id="perfil-sync-status" class="perfil-sync-status" data-status="ok">Perfil carregado</div>
                     </div>
 
                     <div class="stats-container">
-                        <div class="stat-box">
-                            <b id="stat-banco">0</b><span>No Banco</span>
-                        </div>
-                        <div class="stat-box">
-                            <b id="stat-lista">0</b><span>Na Lista</span>
-                        </div>
+                        <div class="stat-box"><b id="stat-banco">0</b><span>No Banco</span></div>
+                        <div class="stat-box"><b id="stat-lista">0</b><span>Na Lista</span></div>
                     </div>
 
+                    <div class="profile-section-title">INFORMAÇÕES DO PERFIL</div>
                     <input type="file" id="input-foto" style="display:none" accept="image/*" onchange="previewImg(this, 'foto-preview')">
                     <input type="file" id="input-capa" style="display:none" accept="image/*" onchange="previewImg(this, 'capa-preview')">
+                    <div class="profile-media-hint">📸 Toque na câmera para trocar sua foto ou capa. A imagem aparece na hora e é sincronizada automaticamente quando houver conexão.</div>
 
                     <div class="modern-input-group">
                         <label>👤 Nome Profissional</label>
-                        <input type="text" id="perfil_nome_full" placeholder="Ex: Seu Nome" oninput="syncPerfil()">
+                        <input type="text" id="perfil_nome_full" placeholder="Digite seu nome" oninput="syncPerfil()">
+                    </div>
+
+                    <div class="modern-input-group">
+                        <label>🏪 Nome da Loja</label>
+                        <input type="text" id="perfil_loja_full" placeholder="Digite o nome da loja" oninput="syncPerfilLoja()">
                     </div>
 
                     <div class="modern-input-group">
                         <label>📱 Contato (WhatsApp / Instagram)</label>
-                        <input type="text" id="perfil_tel_full" placeholder="(00) 00000-0000">
+                        <input type="text" id="perfil_tel_full" placeholder="(00) 00000-0000" oninput="syncPerfil()">
                     </div>
 
-                    <button class="btn" style="background:var(--success); margin-top:15px; font-size: 1.05rem; padding: 15px; border-radius: 12px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25);" onclick="toggleTela('home')">✅ Salvar Perfil</button>
+                    <button class="btn" style="background:var(--success); margin-top:15px; font-size:1.05rem; padding:15px; border-radius:12px; box-shadow:0 8px 20px rgba(16,185,129,0.25);" onclick="toggleTela('home')">✅ Salvar Perfil</button>
                 </div>
             </div>
 
@@ -1163,12 +1313,12 @@
                         <div class="grid">
                             <div>
                                 <label>Responsável</label><div class="input-container">
-                                    <input type="text" id="user_name" oninput="salvarPerfil()"><button class="clear-input" onclick="limpar('user_name', true)">✕</button>
+                                    <input type="text" id="user_name" oninput="syncPerfilHome()"><button class="clear-input" onclick="limpar('user_name', true)">✕</button>
                                 </div>
                             </div>
                             <div>
                                 <label>Nome da Loja</label><div class="input-container">
-                                    <input type="text" id="market_name" oninput="salvarPerfil()"><button class="clear-input" onclick="limpar('market_name', true)">✕</button>
+                                    <input type="text" id="market_name" oninput="syncPerfilHome()"><button class="clear-input" onclick="limpar('market_name', true)">✕</button>
                                 </div>
                             </div>
                         </div>
@@ -1304,7 +1454,7 @@
 
                                     Desenvolvido por Koda Sistemas.
                     <div style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; color: #6b7280; font-weight: 500; letter-spacing: 0.5px; margin-top: 8px;">
-    Versão v6.1.0
+    Versão v6.1.6
 </div>
 
               
@@ -1390,40 +1540,124 @@
             return `Vencido há ${Math.abs(diffDays)} dias`;
         }
 
+        function atualizarStatusPerfil(texto, tipo = 'idle') {
+            const el = document.getElementById('perfil-sync-status');
+            if (!el) return;
+            el.textContent = texto;
+            el.dataset.status = tipo;
+        }
+
+        function atualizarPerfilNaTelaCompleto() {
+            sincronizarComJanela();
+            const pnf = document.getElementById('perfil_nome_full');
+            const ptf = document.getElementById('perfil_tel_full');
+            if (pnf) pnf.value = PERFIL.user ?? '';
+            if (ptf) ptf.value = PERFIL.contato ?? '';
+            const plf = document.getElementById('perfil_loja_full');
+            if (plf) plf.value = PERFIL.market ?? '';
+            const foto = document.getElementById('foto-preview');
+            const capa = document.getElementById('capa-preview');
+            if (foto) foto.src = PERFIL.foto || 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 200\"><rect width=\"200\" height=\"200\" fill=\"#cbd5e1\"/><circle cx=\"100\" cy=\"78\" r=\"34\" fill=\"#64748b\"/><path d=\"M35 180c8-42 32-62 65-62s57 20 65 62\" fill=\"#64748b\"/></svg>');
+            if (capa) capa.style.backgroundImage = PERFIL.capa ? `url(${PERFIL.capa})` : "url('https://images.unsplash.com/photo-1550525811-e5869dd03032?q=80&w=800')";
+            const nome = PERFIL.user || 'Usuário';
+            const loja = PERFIL.market || 'Loja não definida';
+            const nd = document.getElementById('nome-display');
+            const ld = document.getElementById('loja-display');
+            if (nd) nd.innerText = nome;
+            if (ld) ld.innerText = loja;
+            atualizarStatusPerfil('Perfil carregado', 'ok');
+        }
+
         function toggleTela(onde) {
+            sincronizarComJanela();
             const h = document.getElementById('conteudo-home'); const p = document.getElementById('tela-perfil');
             if (onde === 'perfil') {
                 h.style.display = 'none'; p.style.display = 'block'; window.scrollTo(0, 0);
                 document.getElementById('stat-banco').innerText = BANCO.length;
                 document.getElementById('stat-lista').innerText = LISTA.length;
-                document.getElementById('nome-display').innerText = PERFIL.user || "Usuário";
-                document.getElementById('loja-display').innerText = PERFIL.market || "Loja não definida";
+                atualizarPerfilNaTelaCompleto();
             } else {
-                p.style.display = 'none'; h.style.display = 'block'; salvarPerfil(); showZapMsg("Dados Salvos!");
+                p.style.display = 'none'; h.style.display = 'block';
+                salvarPerfil(); showZapMsg('Dados do perfil salvos!');
             }
         }
 
         function previewImg(input, targetId) {
-            sincronizarComJanela();
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const el = document.getElementById(targetId);
-                    if (targetId === 'capa-preview') { el.style.backgroundImage = `url(${e.target.result})`; PERFIL.capa = e.target.result; }
-                    else { el.src = e.target.result; PERFIL.foto = e.target.result; }
-                    if (window.salvarTudo) window.salvarTudo({ perfil: PERFIL });
-                    else localStorage.setItem('LOCAL_PERFIL', JSON.stringify(PERFIL));
-                    showZapMsg("Imagem atualizada!");
-                };
-                reader.readAsDataURL(input.files[0]);
+            if (!input || !input.files || !input.files[0]) return;
+            const file = input.files[0];
+            if (!file.type || !file.type.startsWith('image/')) {
+                showZapMsg('❌ Selecione uma imagem válida.', true);
+                input.value = '';
+                return;
             }
+            const tipo = targetId === 'capa-preview' ? 'capa' : 'foto';
+            if (typeof window.salvarImagemPerfil === 'function') {
+                window.salvarImagemPerfil(file, tipo, targetId);
+            } else {
+                showZapMsg('❌ Não foi possível abrir o editor de imagem.', true);
+            }
+            input.value = '';
         }
+        window.previewImg = previewImg;
 
         function syncPerfil() {
-            PERFIL.user = document.getElementById('perfil_nome_full').value;
+            sincronizarComJanela();
+            PERFIL.user = document.getElementById('perfil_nome_full')?.value ?? '';
+            const contato = document.getElementById('perfil_tel_full');
+            if (contato) PERFIL.contato = contato.value ?? '';
             document.getElementById('user_name').value = PERFIL.user;
-            document.getElementById('nome-display').innerText = PERFIL.user || "Usuário";
-            salvarPerfil();
+            const nd = document.getElementById('nome-display');
+            if (nd) nd.innerText = PERFIL.user || 'Usuário';
+            PERFIL._perfilAtualizadoEm = Date.now();
+            localStorage.setItem(auth.currentUser ? key.perfil(auth.currentUser.uid) : 'LOCAL_PERFIL', JSON.stringify(PERFIL));
+            atualizarStatusPerfil('Salvando…', 'sync');
+            clearTimeout(perfilSaveTimer);
+            perfilSaveTimer = setTimeout(async () => {
+                perfilSaveInFlight = true;
+                try { await salvarPerfil(); atualizarStatusPerfil('Salvo', 'ok'); }
+                finally { setTimeout(() => { perfilSaveInFlight = false; }, 250); }
+            }, 450);
+        }
+
+        function syncPerfilHome() {
+            sincronizarComJanela();
+            PERFIL.user = document.getElementById('user_name')?.value ?? '';
+            PERFIL.market = document.getElementById('market_name')?.value ?? '';
+            PERFIL._perfilAtualizadoEm = Date.now();
+            localStorage.setItem(auth.currentUser ? key.perfil(auth.currentUser.uid) : 'LOCAL_PERFIL', JSON.stringify(PERFIL));
+            const pnf = document.getElementById('perfil_nome_full');
+            const plf = document.getElementById('perfil_loja_full');
+            if (pnf) pnf.value = PERFIL.user;
+            if (plf) plf.value = PERFIL.market;
+            const nd = document.getElementById('nome-display');
+            const ld = document.getElementById('loja-display');
+            if (nd) nd.innerText = PERFIL.user || 'Usuário';
+            if (ld) ld.innerText = PERFIL.market || 'Loja não definida';
+            clearTimeout(perfilSaveTimer);
+            atualizarStatusPerfil('Salvando…', 'sync');
+            perfilSaveTimer = setTimeout(async () => {
+                perfilSaveInFlight = true;
+                try { await salvarPerfil(); atualizarStatusPerfil('Salvo', 'ok'); }
+                finally { setTimeout(() => { perfilSaveInFlight = false; }, 250); }
+            }, 450);
+        }
+
+        function syncPerfilLoja() {
+            sincronizarComJanela();
+            PERFIL.market = document.getElementById('perfil_loja_full')?.value ?? '';
+            const loja = document.getElementById('loja-display');
+            const homeLoja = document.getElementById('market_name');
+            if (loja) loja.innerText = PERFIL.market || 'Loja não definida';
+            if (homeLoja) homeLoja.value = PERFIL.market;
+            PERFIL._perfilAtualizadoEm = Date.now();
+            localStorage.setItem(auth.currentUser ? key.perfil(auth.currentUser.uid) : 'LOCAL_PERFIL', JSON.stringify(PERFIL));
+            atualizarStatusPerfil('Salvando…', 'sync');
+            clearTimeout(perfilSaveTimer);
+            perfilSaveTimer = setTimeout(async () => {
+                perfilSaveInFlight = true;
+                try { await salvarPerfil(); atualizarStatusPerfil('Salvo', 'ok'); }
+                finally { setTimeout(() => { perfilSaveInFlight = false; }, 250); }
+            }, 450);
         }
 
         function showZapMsg(texto, isErro = false) {
@@ -1552,14 +1786,22 @@
 
         function aplicarPerfilNaTela() {
             sincronizarComJanela();
-            if (PERFIL.foto) document.getElementById('foto-preview').src = PERFIL.foto;
-            if (PERFIL.capa) document.getElementById('capa-preview').style.backgroundImage = `url(${PERFIL.capa})`;
             const pnf = document.getElementById('perfil_nome_full');
             const ptf = document.getElementById('perfil_tel_full');
-            if (pnf) pnf.value = PERFIL.user  || "";
-            if (ptf) ptf.value = PERFIL.contato || "";
-            document.getElementById('user_name').value   = PERFIL.user   || "Usuário";
-            document.getElementById('market_name').value = PERFIL.market || "";
+            if (pnf) pnf.value = PERFIL.user ?? '';
+            if (ptf) ptf.value = PERFIL.contato ?? '';
+            const plf = document.getElementById('perfil_loja_full');
+            if (plf) plf.value = PERFIL.market ?? '';
+            const foto = document.getElementById('foto-preview');
+            const capa = document.getElementById('capa-preview');
+            if (foto) foto.src = PERFIL.foto || 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 200\"><rect width=\"200\" height=\"200\" fill=\"#cbd5e1\"/><circle cx=\"100\" cy=\"78\" r=\"34\" fill=\"#64748b\"/><path d=\"M35 180c8-42 32-62 65-62s57 20 65 62\" fill=\"#64748b\"/></svg>');
+            if (capa) capa.style.backgroundImage = PERFIL.capa ? `url(${PERFIL.capa})` : "url('https://images.unsplash.com/photo-1550525811-e5869dd03032?q=80&w=800')";
+            document.getElementById('user_name').value = PERFIL.user ?? '';
+            document.getElementById('market_name').value = PERFIL.market ?? '';
+            const nd = document.getElementById('nome-display');
+            const ld = document.getElementById('loja-display');
+            if (nd) nd.innerText = PERFIL.user || 'Usuário';
+            if (ld) ld.innerText = PERFIL.market || 'Loja não definida';
         }
 
         function migrarChavesAntigas() {
@@ -1587,7 +1829,7 @@
             }
             sincronizarComJanela();
             aplicarPerfilNaTela();
-            renderGrams(); renderBanco(); renderLista(); salvarPerfil();
+            renderGrams(); renderBanco(); renderLista();
         }
 
         function toggleDiv(id) {
@@ -1601,15 +1843,25 @@
             showZapMsg(isDark ? "Modo Claro": "Modo Escuro");
         }
 
-        function salvarPerfil() {
+        async function salvarPerfil() {
             sincronizarComJanela();
-            PERFIL.user    = document.getElementById('user_name').value   || "Usuário";
-            PERFIL.market  = document.getElementById('market_name').value || "Loja";
+            // Campos vazios são valores válidos: não substituímos o que o usuário apagou.
+            PERFIL.user = document.getElementById('user_name')?.value ?? '';
+            PERFIL.market = document.getElementById('market_name')?.value ?? '';
             const ptf = document.getElementById('perfil_tel_full');
-            if (ptf) PERFIL.contato = ptf.value;
-            if (window.salvarTudo) window.salvarTudo({ perfil: PERFIL });
-            else localStorage.setItem('LOCAL_PERFIL', JSON.stringify(PERFIL));
-            document.getElementById('display-welcome').innerText = `${PERFIL.market} | Resp: ${PERFIL.user}`;
+            if (ptf) PERFIL.contato = ptf.value ?? '';
+            PERFIL._perfilAtualizadoEm = Date.now();
+            const user = auth.currentUser;
+            localStorage.setItem(user ? key.perfil(user.uid) : 'LOCAL_PERFIL', JSON.stringify(PERFIL));
+            const welcome = document.getElementById('display-welcome');
+            if (welcome) welcome.innerText = `${PERFIL.market || 'Loja não definida'} | Resp: ${PERFIL.user || 'Usuário'}`;
+            if (user) {
+                perfilSaveInFlight = true;
+                try { await window.salvarTudo({ perfil: PERFIL }); }
+                finally { setTimeout(() => { perfilSaveInFlight = false; }, 250); }
+            } else {
+                atualizarInterface();
+            }
         }
 
         function addGram() {
