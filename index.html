@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Koda Sistemas">
-    <title>Controle de Validade Profissional</title>
+    <title>Controle de Validade Profissional — Conta e Sincronização</title>
 
     <link rel="manifest" href="/manifest.json">
 
@@ -301,7 +301,43 @@
     @keyframes perfilPulse { 50% { opacity:.55; transform:translateY(-1px); } }
     [data-theme="dark"] .profile-cover-shade { background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.58)); }
 
+    .google-account-card{margin-top:25px;padding:16px;border:1px solid var(--border);border-radius:16px;background:var(--bg-body)}
+    .google-account-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+    .google-account-photo{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid var(--primary);background:#cbd5e1}
+    .google-account-name{font-weight:900;font-size:1rem;color:var(--text-main)}
+    .google-account-email{font-size:.72rem;color:var(--text-sub);word-break:break-all;margin-top:3px}
+    .google-account-status{display:inline-flex;align-items:center;padding:5px 9px;border-radius:999px;border:1px solid var(--border);font-size:.7rem;font-weight:800;color:var(--success);background:var(--bg-card);margin-top:5px}
+    .google-account-status[data-status="sync"]{color:var(--primary);animation:perfilPulse 1.2s ease-in-out infinite}
+    .google-account-status[data-status="error"]{color:var(--danger)}
+    .google-account-actions{display:grid;grid-template-columns:1fr;gap:9px}
+    .google-account-btn{width:100%;border:none;border-radius:11px;padding:12px;font-weight:900;cursor:pointer;font-size:.86rem}
+    .google-account-btn:disabled{opacity:.5;cursor:not-allowed}
+    .google-btn-sync{background:var(--primary);color:#fff}.google-btn-out{background:var(--danger);color:#fff}
+    .google-sync-last{font-size:.72rem;color:var(--text-sub);margin:11px 0 0;line-height:1.4}
+    .sync-alert-delete{padding:12px;border-radius:10px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:var(--danger);margin:12px 0;line-height:1.5}
+    #modalSincronizacao{display:none;position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:30000;align-items:center;justify-content:center;padding:18px;box-sizing:border-box}
+    .sync-modal-box{width:100%;max-width:430px;background:var(--bg-card);color:var(--text-main);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+    .sync-modal-box h3{margin:0 0 12px;color:var(--primary);font-size:1.15rem}.sync-modal-box p{font-size:.88rem;line-height:1.55}.sync-modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.sync-modal-actions button{border:0;border-radius:10px;padding:12px;font-weight:900;cursor:pointer}.sync-cancel{background:var(--border);color:var(--text-main)}.sync-confirm{background:var(--primary);color:#fff}
+
     .modal-guia .guia-item-animado { color: var(--text-main) !important; }
+    .google-account-card{margin-top:25px;padding:16px;border:1px solid var(--border);border-radius:16px;background:var(--bg-body)}
+    .google-account-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+    .google-account-photo{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid var(--primary);background:#cbd5e1}
+    .google-account-name{font-weight:900;font-size:1rem;color:var(--text-main)}
+    .google-account-email{font-size:.72rem;color:var(--text-sub);word-break:break-all;margin-top:3px}
+    .google-account-status{display:inline-flex;align-items:center;padding:5px 9px;border-radius:999px;border:1px solid var(--border);font-size:.7rem;font-weight:800;color:var(--success);background:var(--bg-card);margin-top:5px}
+    .google-account-status[data-status="sync"]{color:var(--primary);animation:perfilPulse 1.2s ease-in-out infinite}
+    .google-account-status[data-status="error"]{color:var(--danger)}
+    .google-account-actions{display:grid;grid-template-columns:1fr;gap:9px}
+    .google-account-btn{width:100%;border:none;border-radius:11px;padding:12px;font-weight:900;cursor:pointer;font-size:.86rem}
+    .google-account-btn:disabled{opacity:.5;cursor:not-allowed}
+    .google-btn-sync{background:var(--primary);color:#fff}.google-btn-out{background:var(--danger);color:#fff}
+    .google-sync-last{font-size:.72rem;color:var(--text-sub);margin:11px 0 0;line-height:1.4}
+    .sync-alert-delete{padding:12px;border-radius:10px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:var(--danger);margin:12px 0;line-height:1.5}
+    #modalSincronizacao{display:none;position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:30000;align-items:center;justify-content:center;padding:18px;box-sizing:border-box}
+    .sync-modal-box{width:100%;max-width:430px;background:var(--bg-card);color:var(--text-main);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+    .sync-modal-box h3{margin:0 0 12px;color:var(--primary);font-size:1.15rem}.sync-modal-box p{font-size:.88rem;line-height:1.55}.sync-modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.sync-modal-actions button{border:0;border-radius:10px;padding:12px;font-weight:900;cursor:pointer}.sync-cancel{background:var(--border);color:var(--text-main)}.sync-confirm{background:var(--primary);color:#fff}
+
     .modal-guia .guia-item-animado b { color: var(--primary) !important; }
     .modal-guia h2 { color: var(--text-main) !important; }
 
@@ -648,6 +684,29 @@
         from { transform: translateY(0);    opacity: 1; }
         to   { transform: translateY(100%); opacity: 0; }
     }
+    
+    /* ============================================================
+       v6.1.7 — Atualização controlada
+    ============================================================ */
+    #modalAtualizacaoSistema {
+        display:none; position:fixed; inset:0; z-index:30000;
+        background:rgba(2,6,23,.72); align-items:center; justify-content:center;
+        padding:18px; box-sizing:border-box;
+    }
+    .update-card {
+        width:min(460px,100%); background:var(--bg-card); color:var(--text-main);
+        border:1px solid var(--border); border-radius:22px; padding:24px;
+        box-shadow:0 24px 70px rgba(0,0,0,.35);
+    }
+    .update-card h2 { margin:0 0 8px; color:var(--primary); }
+    .update-version { font-size:.82rem; color:var(--text-sub); margin-bottom:16px; }
+    .update-list { margin:0 0 18px; padding-left:20px; line-height:1.7; color:var(--text-main); }
+    .update-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .update-actions button { border:0; border-radius:12px; padding:13px; font-weight:800; cursor:pointer; }
+    #btnUpdateLater { background:var(--border); color:var(--text-main); }
+    #btnUpdateNow { background:var(--primary); color:white; }
+    .google-avatar-real { object-fit:cover; display:block; border-radius:50%; }
+
     </style>
     <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -660,7 +719,7 @@
         setPersistence,
         signOut
     } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getFirestore, doc, setDoc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
     import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
     const firebaseConfig = {
@@ -684,6 +743,9 @@
 
     let informouSucessoLogin = false;
     let unsubscribeSnapshot = null;
+    let syncInProgress = false;
+    let syncBaseline = null;
+    const SYNC_BASELINE_PREFIX = 'SYNC_BASELINE_';
 
     // ╔══════════════════════════════════════════════════════╗
     // ║   FIREBASE — SINCRONIZAÇÃO COMPLETA COM A NUVEM     ║
@@ -715,6 +777,131 @@
     }
     window.carregarLocal = carregarLocal;
 
+    function syncBaselineKey(uid) { return SYNC_BASELINE_PREFIX + uid; }
+    function cloneData(v) { try { return JSON.parse(JSON.stringify(v)); } catch(e) { return v; } }
+    function itemSignature(item) { return JSON.stringify(item); }
+    function diffArrays(oldArr = [], newArr = []) {
+        const oldMap = new Map(oldArr.map(x => [itemSignature(x), x]));
+        const newMap = new Map(newArr.map(x => [itemSignature(x), x]));
+        const removed = [...oldMap.entries()].filter(([k]) => !newMap.has(k)).map(([,v]) => v);
+        const added = [...newMap.entries()].filter(([k]) => !oldMap.has(k)).map(([,v]) => v);
+        return { removed, added };
+    }
+    function carregarBaseline(uid) {
+        try { syncBaseline = JSON.parse(localStorage.getItem(syncBaselineKey(uid)) || 'null'); } catch(e) { syncBaseline = null; }
+        return syncBaseline;
+    }
+    function salvarBaseline(uid, dados) {
+        syncBaseline = cloneData(dados);
+        localStorage.setItem(syncBaselineKey(uid), JSON.stringify(syncBaseline));
+    }
+    function nomeContaGoogle(user) { return user?.displayName || 'Conta Google'; }
+    function fotoContaGoogle(user) {
+        const uid = user?.uid || '';
+        const url = user?.photoURL || '';
+        if (uid && url) localStorage.setItem('GOOGLE_PHOTO_' + uid, url);
+        return url || (uid ? localStorage.getItem('GOOGLE_PHOTO_' + uid) || '' : '');
+    }
+    function emailContaGoogle(user) { return user?.email || ''; }
+    function atualizarContaGoogleUI() {
+        const user = auth.currentUser;
+        const nome = document.getElementById('google-account-name');
+        const email = document.getElementById('google-account-email');
+        const foto = document.getElementById('google-account-photo');
+        const status = document.getElementById('google-account-status');
+        const btnSair = document.getElementById('btn-google-desconectar');
+        const btnSync = document.getElementById('btn-google-sincronizar');
+        if (user) {
+            if (nome) nome.textContent = nomeContaGoogle(user);
+            if (email) email.textContent = emailContaGoogle(user);
+            if (foto) {
+                const fallback = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#cbd5e1"/><circle cx="50" cy="38" r="18" fill="#64748b"/><path d="M18 90c4-25 17-36 32-36s28 11 32 36" fill="#64748b"/></svg>');
+                foto.classList.add('google-avatar-real');
+                foto.onerror = () => { foto.onerror = null; foto.src = fallback; };
+                foto.src = fotoContaGoogle(user) || fallback;
+            }
+            if (status) { status.textContent = '🟢 Conta conectada'; status.dataset.status = 'ok'; }
+            if (btnSair) btnSair.disabled = false;
+            if (btnSync) btnSync.disabled = false;
+        } else {
+            if (nome) nome.textContent = 'Nenhuma conta conectada';
+            if (email) email.textContent = 'Conecte uma conta Google para sincronizar';
+            if (foto) foto.src = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#cbd5e1"/><circle cx="50" cy="38" r="18" fill="#64748b"/><path d="M18 90c4-25 17-36 32-36s28 11 32 36" fill="#64748b"/></svg>');
+            if (status) { status.textContent = '⚪ Desconectado'; status.dataset.status = 'idle'; }
+            if (btnSair) btnSair.disabled = true;
+            if (btnSync) btnSync.disabled = true;
+        }
+    }
+    window.atualizarContaGoogleUI = atualizarContaGoogleUI;
+
+    function abrirModalSincronizacao(info) {
+        const modal = document.getElementById('modalSincronizacao');
+        if (!modal) return Promise.resolve(false);
+        document.getElementById('sync-modal-title').textContent = info.title || 'Confirmar sincronização';
+        document.getElementById('sync-modal-body').innerHTML = info.body || '';
+        modal.style.display = 'flex';
+        return new Promise(resolve => {
+            window._resolveSyncModal = resolve;
+        });
+    }
+    window.responderModalSincronizacao = (confirmado) => {
+        const modal = document.getElementById('modalSincronizacao');
+        if (modal) modal.style.display = 'none';
+        const resolve = window._resolveSyncModal;
+        window._resolveSyncModal = null;
+        if (resolve) resolve(!!confirmado);
+    };
+
+    async function sincronizarAgora() {
+        const user = auth.currentUser;
+        if (!user) { showZapMsg('⚠️ Conecte uma conta Google primeiro.', true); return; }
+        if (syncInProgress) return;
+        syncInProgress = true;
+        const status = document.getElementById('google-sync-last');
+        const statusConta = document.getElementById('google-account-status');
+        try {
+            if (status) status.textContent = '🔄 Verificando nuvem...';
+            if (statusConta) { statusConta.textContent = '🔄 Verificando sincronização...'; statusConta.dataset.status = 'sync'; }
+            const snap = await getDoc(doc(db, 'usuarios', user.uid));
+            const cloud = snap.exists() ? snap.data() : {};
+            const local = { produtos: cloneData(window.LISTA || []), banco: cloneData(window.BANCO || []), grams: cloneData(window.GRAMS || []), perfil: cloneData(window.PERFIL || {}) };
+            const base = carregarBaseline(user.uid) || cloud;
+            const dBanco = diffArrays(cloud.banco || [], local.banco || []);
+            const dLista = diffArrays(cloud.produtos || [], local.produtos || []);
+            const exclusoes = dBanco.removed.concat(dLista.removed);
+            const adicoes = dBanco.added.length + dLista.added.length;
+            const mudancasSimples = (JSON.stringify(cloud.grams || []) !== JSON.stringify(local.grams || [])) || (JSON.stringify(cloud.perfil || {}) !== JSON.stringify(local.perfil || {}));
+            const temDiferenca = exclusoes.length || adicoes || mudancasSimples || !snap.exists();
+            if (!temDiferenca) {
+                salvarBaseline(user.uid, cloud);
+                if (status) status.textContent = 'Última sincronização: ' + new Date().toLocaleString('pt-BR');
+                if (statusConta) { statusConta.textContent = '🟢 Tudo sincronizado'; statusConta.dataset.status = 'ok'; }
+                showZapMsg('☁️ Tudo já está sincronizado!');
+                return;
+            }
+            const nomesExcluidos = exclusoes.slice(0, 8).map(x => x?.n || x?.nome || 'Item sem nome');
+            let body = `<p>O sistema encontrou diferenças entre este aparelho e a nuvem.</p>`;
+            if (exclusoes.length) {
+                body += `<div class="sync-alert-delete"><b>🗑️ ${exclusoes.length} item(ns) serão removidos da nuvem.</b><br><small>${nomesExcluidos.map(n => '• ' + n).join('<br>')}${exclusoes.length > 8 ? '<br>• ...' : ''}</small></div><p><b>Depois de sincronizar, esses itens não estarão mais na nuvem.</b></p>`;
+            }
+            if (adicoes) body += `<p>➕ ${adicoes} item(ns) serão enviados/atualizados na nuvem.</p>`;
+            if (mudancasSimples) body += `<p>🔄 Também existem alterações em medidas ou perfil.</p>`;
+            const ok = await abrirModalSincronizacao({ title: exclusoes.length ? '⚠️ Exclusão encontrada' : '🔄 Confirmar sincronização', body });
+            if (!ok) { if (status) status.textContent = 'Sincronização cancelada'; if (statusConta) { statusConta.textContent = '🟡 Sincronização cancelada'; statusConta.dataset.status = 'idle'; } return; }
+            await setDoc(doc(db, 'usuarios', user.uid), { produtos: local.produtos, banco: local.banco, grams: local.grams, perfil: local.perfil, ultimaAtualizacao: new Date().toISOString() }, { merge: true });
+            salvarBaseline(user.uid, local);
+            if (status) status.textContent = 'Última sincronização: ' + new Date().toLocaleString('pt-BR');
+            if (statusConta) { statusConta.textContent = '🟢 Sincronizado agora'; statusConta.dataset.status = 'ok'; }
+            showZapMsg('☁️ Sincronização concluída!');
+        } catch(e) {
+            console.error('Sincronização manual:', e);
+            if (status) status.textContent = '⚠️ Falha na sincronização';
+            if (statusConta) { statusConta.textContent = '🔴 Falha na sincronização'; statusConta.dataset.status = 'error'; }
+            showZapMsg('❌ Não foi possível sincronizar.', true);
+        } finally { syncInProgress = false; }
+    }
+    window.sincronizarAgora = sincronizarAgora;
+
     window.entrarComGoogle = async () => {
         try {
             const provider = new GoogleAuthProvider();
@@ -726,27 +913,57 @@
         }
     };
 
-    // Logout seguro: aguarda a última gravação antes de sair
+    // Logout: volta imediatamente para a tela de login.
+    // Os dados da conta permanecem no cache local por UID; dados sem conta permanecem em LOCAL_*.
     window.deslogarDoSistema = async () => {
-        if (typeof showZapMsg === 'function') showZapMsg("🔄 Sincronizando antes de sair...");
         try {
             const user = auth.currentUser;
-            if (user && window.LISTA !== undefined) {
-                await setDoc(doc(db, "usuarios", user.uid), {
-                    produtos: window.LISTA || [],
-                    banco:    window.BANCO || [],
-                    grams:    window.GRAMS || [],
-                    perfil:   window.PERFIL || {},
-                    ultimaAtualizacao: new Date().toISOString()
-                }, { merge: true });
+            if (unsubscribeSnapshot) { unsubscribeSnapshot(); unsubscribeSnapshot = null; }
+
+            // Não bloqueia o logout por falta de internet. Se houver conexão, tenta preservar a última gravação.
+            if (user && navigator.onLine && window.LISTA !== undefined) {
+                try {
+                    await setDoc(doc(db, "usuarios", user.uid), {
+                        produtos: window.LISTA || [],
+                        banco: window.BANCO || [],
+                        grams: window.GRAMS || [],
+                        perfil: window.PERFIL || {},
+                        ultimaAtualizacao: new Date().toISOString()
+                    }, { merge: true });
+                    salvarBaseline(user.uid, {
+                        produtos: window.LISTA || [], banco: window.BANCO || [],
+                        grams: window.GRAMS || [], perfil: window.PERFIL || {}
+                    });
+                } catch(e) { console.warn("Sync pré-logout ignorado:", e); }
             }
-        } catch(e) { console.warn("Sync pré-logout:", e); }
-        if (unsubscribeSnapshot) unsubscribeSnapshot();
-        await signOut(auth);
-        window.acessoLocalAtivo = false;
-        window.LISTA = []; window.BANCO = []; window.GRAMS = []; window.PERFIL = {};
-        informouSucessoLogin = false;
-        window.location.reload();
+
+            window.acessoLocalAtivo = false;
+            window.LISTA = []; window.BANCO = []; window.GRAMS = []; window.PERFIL = {};
+            informouSucessoLogin = false;
+
+            try { await signOut(auth); } catch(e) { console.warn("SignOut:", e); }
+
+            // Mostra a tela de escolha de acesso sem recarregar a aplicação.
+            const telaLogin = document.getElementById('tela-login-sistema');
+            const telaApp = document.getElementById('main-app-container');
+            if (telaLogin) telaLogin.style.display = 'flex';
+            if (telaApp) telaApp.style.display = 'none';
+
+            carregarLocal();
+            atualizarInterface();
+            atualizarContaGoogleUI();
+            const usuario = document.getElementById('user-login');
+            const senha = document.getElementById('pass-login');
+            if (senha) senha.value = '';
+            if (usuario) usuario.focus();
+            if (typeof showZapMsg === 'function') showZapMsg('🚪 Sessão encerrada. Escolha novamente como entrar.');
+        } catch(e) {
+            console.error('Logout:', e);
+            const telaLogin = document.getElementById('tela-login-sistema');
+            const telaApp = document.getElementById('main-app-container');
+            if (telaLogin) telaLogin.style.display = 'flex';
+            if (telaApp) telaApp.style.display = 'none';
+        }
     };
 
     // PERFIL — compressão e armazenamento das imagens
@@ -872,6 +1089,28 @@
         atualizarInterface();
 
         try {
+            // Segurança: antes de gravar uma exclusão, compara com a última fotografia
+            // confirmada da nuvem e pede autorização explícita. A exclusão local fica
+            // preservada mesmo se o usuário cancelar; ela poderá ser sincronizada depois.
+            const baseline = carregarBaseline(user.uid) || {};
+            const remBanco = diffArrays(baseline.banco || [], window.BANCO || []).removed;
+            const remLista = diffArrays(baseline.produtos || [], window.LISTA || []).removed;
+            const remocoes = remBanco.concat(remLista);
+            if (remocoes.length && !syncInProgress) {
+                const nomes = remocoes.slice(0, 8).map(x => x?.n || x?.nome || 'Item sem nome');
+                const ok = await abrirModalSincronizacao({
+                    title: '⚠️ Produto removido',
+                    body: `<p>Foi detectada uma exclusão antes de atualizar a nuvem.</p><div class="sync-alert-delete"><b>🗑️ ${remocoes.length} item(ns) deixarão de existir na nuvem.</b><br><small>${nomes.map(n => '• ' + n).join('<br>')}${remocoes.length > 8 ? '<br>• ...' : ''}</small></div><p><b>Depois de confirmar, esses itens não estarão mais disponíveis na sua conta Google.</b></p>`
+                });
+                if (!ok) {
+                    const st = document.getElementById('google-sync-last');
+                    const sc = document.getElementById('google-account-status');
+                    if (st) st.textContent = '⚠️ Exclusão pendente de sincronização';
+                    if (sc) { sc.textContent = '🟡 Alteração local não sincronizada'; sc.dataset.status = 'idle'; }
+                    showZapMsg('🛡️ Exclusão mantida somente neste aparelho por enquanto.');
+                    return;
+                }
+            }
             const payload = { ultimaAtualizacao: new Date().toISOString() };
             if (dados.produtos !== undefined) payload.produtos = window.LISTA;
             if (dados.banco    !== undefined) payload.banco    = window.BANCO;
@@ -895,6 +1134,8 @@
         const telaApp   = document.getElementById('main-app-container');
 
         if (user) {
+            carregarBaseline(user.uid);
+            atualizarContaGoogleUI();
             if (!informouSucessoLogin) {
                 const nome = user.displayName ? user.displayName.split(' ')[0] : "Usuário";
                 if (typeof showZapMsg === 'function') showZapMsg(`Bem-vindo, ${nome}!`);
@@ -902,45 +1143,102 @@
             }
             window.acessoLocalAtivo = false;
             if (telaLogin) telaLogin.style.display = 'none';
-            if (telaApp)   telaApp.style.display   = 'block';
+            if (telaApp) telaApp.style.display = 'block';
 
-            // Cache local desta conta (resposta instantânea enquanto nuvem carrega)
+            const localAnonimo = {
+                produtos: JSON.parse(localStorage.getItem('LOCAL_LISTA') || '[]'),
+                banco: JSON.parse(localStorage.getItem('LOCAL_BANCO') || '[]'),
+                grams: JSON.parse(localStorage.getItem('LOCAL_GRAMS') || '["1kg","2kg","500g","1L"]'),
+                perfil: JSON.parse(localStorage.getItem('LOCAL_PERFIL') || '{"user":"Usuário","market":"","foto":"","capa":"","contato":""}')
+            };
+            const temDadosAnonimos = localAnonimo.produtos.length || localAnonimo.banco.length ||
+                (localAnonimo.perfil && (localAnonimo.perfil.market || localAnonimo.perfil.contato || localAnonimo.perfil.foto || localAnonimo.perfil.capa));
+
+            // Cache da conta: resposta instantânea, sem apagar os dados locais anônimos.
             window.LISTA  = JSON.parse(localStorage.getItem(key.lista(user.uid))  || '[]');
             window.BANCO  = JSON.parse(localStorage.getItem(key.banco(user.uid))  || '[]');
-            window.GRAMS  = JSON.parse(localStorage.getItem(key.grams(user.uid))  || '["1kg","2kg","500g","1L"]');
+            window.GRAMS  = JSON.parse(localStorage.getItem(key.grams(user.uid)) || '["1kg","2kg","500g","1L"]');
             window.PERFIL = JSON.parse(localStorage.getItem(key.perfil(user.uid)) || '{"user":"Usuário","market":"","foto":"","capa":"","contato":""}');
             atualizarInterface();
 
-            // Listener em tempo real — sincroniza qualquer alteração de outro dispositivo
             if (unsubscribeSnapshot) unsubscribeSnapshot();
             window._migracaoFeita = false;
-            unsubscribeSnapshot = onSnapshot(doc(db, "usuarios", user.uid), (snap) => {
+            unsubscribeSnapshot = onSnapshot(doc(db, "usuarios", user.uid), async (snap) => {
                 if (snap.exists()) {
                     const d = snap.data();
-                    if (d.produtos !== undefined) { window.LISTA  = d.produtos; localStorage.setItem(key.lista(user.uid),  JSON.stringify(d.produtos)); }
-                    if (d.banco    !== undefined) { window.BANCO  = d.banco;    localStorage.setItem(key.banco(user.uid),  JSON.stringify(d.banco));    }
-                    if (d.grams    !== undefined) { window.GRAMS  = d.grams;    localStorage.setItem(key.grams(user.uid),  JSON.stringify(d.grams));    }
-                    if (d.perfil   !== undefined) { window.PERFIL = d.perfil;   localStorage.setItem(key.perfil(user.uid), JSON.stringify(d.perfil));   }
-                    atualizarInterface();
-                } else if (!window._migracaoFeita) {
-                    // Conta nova: migra dados locais para a nuvem (apenas 1x)
-                    window._migracaoFeita = true;
-                    const lb = localStorage.getItem('LOCAL_BANCO');
-                    const lg = localStorage.getItem('LOCAL_GRAMS');
-                    const lp = localStorage.getItem('LOCAL_PERFIL');
-                    const ll = localStorage.getItem('LOCAL_LISTA');
-                    if (lb || lg || lp || ll) {
-                        if (lb) window.BANCO  = JSON.parse(lb);
-                        if (lg) window.GRAMS  = JSON.parse(lg);
-                        if (lp) window.PERFIL = JSON.parse(lp);
-                        if (ll) window.LISTA  = JSON.parse(ll);
-                        if (typeof showZapMsg === 'function') showZapMsg("📦 Dados migrados para sua conta!");
-                        window.salvarTudo({ produtos: window.LISTA, banco: window.BANCO, grams: window.GRAMS, perfil: window.PERFIL });
+                    const cloud = {
+                        produtos: Array.isArray(d.produtos) ? d.produtos : [],
+                        banco: Array.isArray(d.banco) ? d.banco : [],
+                        grams: Array.isArray(d.grams) ? d.grams : ["1kg","2kg","500g","1L"],
+                        perfil: d.perfil && typeof d.perfil === 'object' ? d.perfil : {}
+                    };
+
+                    // Na primeira entrada, mescla dados feitos sem conta com os dados da conta.
+                    if (!window._migracaoFeita) {
+                        window._migracaoFeita = true;
+                        const unir = (a,b) => {
+                            const map = new Map();
+                            [...(a||[]), ...(b||[])].forEach(x => map.set(itemSignature(x), x));
+                            return [...map.values()];
+                        };
+                        const merged = {
+                            produtos: unir(cloud.produtos, localAnonimo.produtos),
+                            banco: unir(cloud.banco, localAnonimo.banco),
+                            grams: [...new Set([...(cloud.grams||[]), ...(localAnonimo.grams||[])])],
+                            perfil: { ...cloud.perfil }
+                        };
+                        Object.keys(localAnonimo.perfil || {}).forEach(k => {
+                            if (localAnonimo.perfil[k] !== undefined && localAnonimo.perfil[k] !== '' &&
+                                (!merged.perfil[k] || merged.perfil[k] === 'Usuário')) {
+                                merged.perfil[k] = localAnonimo.perfil[k];
+                            }
+                        });
+                        const houveMigracao = temDadosAnonimos && (
+                            merged.produtos.length !== cloud.produtos.length ||
+                            merged.banco.length !== cloud.banco.length ||
+                            merged.grams.length !== cloud.grams.length ||
+                            JSON.stringify(merged.perfil) !== JSON.stringify(cloud.perfil)
+                        );
+                        window.LISTA = merged.produtos; window.BANCO = merged.banco;
+                        window.GRAMS = merged.grams; window.PERFIL = merged.perfil;
+                        atualizarInterface();
+                        if (houveMigracao) {
+                            await window.salvarTudo({produtos:merged.produtos,banco:merged.banco,grams:merged.grams,perfil:merged.perfil});
+                            ['LOCAL_LISTA','LOCAL_BANCO','LOCAL_GRAMS','LOCAL_PERFIL'].forEach(k=>localStorage.removeItem(k));
+                            showZapMsg('📦 Dados locais mesclados e salvos na sua conta!');
+                        } else {
+                            salvarBaseline(user.uid, merged);
+                        }
+                    } else {
+                        window.LISTA  = cloud.produtos;
+                        window.BANCO  = cloud.banco;
+                        window.GRAMS  = cloud.grams;
+                        window.PERFIL = cloud.perfil;
+                        localStorage.setItem(key.lista(user.uid), JSON.stringify(window.LISTA));
+                        localStorage.setItem(key.banco(user.uid), JSON.stringify(window.BANCO));
+                        localStorage.setItem(key.grams(user.uid), JSON.stringify(window.GRAMS));
+                        localStorage.setItem(key.perfil(user.uid), JSON.stringify(window.PERFIL));
+                        salvarBaseline(user.uid, cloud);
+                        atualizarInterface();
                     }
+                } else if (!window._migracaoFeita) {
+                    window._migracaoFeita = true;
+                    window.LISTA = localAnonimo.produtos;
+                    window.BANCO = localAnonimo.banco;
+                    window.GRAMS = localAnonimo.grams;
+                    window.PERFIL = localAnonimo.perfil;
+                    await window.salvarTudo({ produtos:window.LISTA, banco:window.BANCO, grams:window.GRAMS, perfil:window.PERFIL });
+                    ['LOCAL_LISTA','LOCAL_BANCO','LOCAL_GRAMS','LOCAL_PERFIL'].forEach(k=>localStorage.removeItem(k));
+                    salvarBaseline(user.uid, {produtos:window.LISTA,banco:window.BANCO,grams:window.GRAMS,perfil:window.PERFIL});
                     atualizarInterface();
+                    if (temDadosAnonimos) showZapMsg('📦 Dados locais salvos na sua nova conta!');
                 }
+            }, (err) => {
+                console.warn('Listener Firebase:', err);
+                showZapMsg('📱 Modo offline: usando dados salvos neste aparelho.');
             });
         } else {
+            atualizarContaGoogleUI();
             informouSucessoLogin = false;
             if (!window.acessoLocalAtivo) {
                 if (telaLogin) telaLogin.style.display = 'flex';
@@ -957,6 +1255,25 @@
 
 </head>
 <body data-theme="dark">
+
+    <div id="modalAtualizacaoSistema" aria-hidden="true">
+        <div class="update-card">
+            <div style="font-size:2rem;margin-bottom:6px;">🚀</div>
+            <h2>Atualização disponível</h2>
+            <div class="update-version" id="updateVersionText">Uma nova versão do sistema está pronta.</div>
+            <ul class="update-list" id="updateChangelog">
+                <li>Central de Conta Google e sincronização aprimorada</li>
+                <li>Perfil da conta Google com foto e informações</li>
+                <li>Proteção contra exclusões acidentais na sincronização</li>
+                <li>Melhor preservação dos dados offline</li>
+            </ul>
+            <div class="update-actions">
+                <button id="btnUpdateLater" type="button">MAIS TARDE</button>
+                <button id="btnUpdateNow" type="button">ATUALIZAR AGORA</button>
+            </div>
+        </div>
+    </div>
+
 
     <div id="tela-login-sistema">
         <div class="login-card">
@@ -1293,6 +1610,23 @@
                         <input type="text" id="perfil_tel_full" placeholder="(00) 00000-0000" oninput="syncPerfil()">
                     </div>
 
+                    <div class="google-account-card">
+                        <div class="profile-section-title">☁️ CONTA E SINCRONIZAÇÃO</div>
+                        <div class="google-account-head">
+                            <img id="google-account-photo" class="google-account-photo" alt="Foto da conta Google">
+                            <div style="min-width:0;flex:1">
+                                <div id="google-account-name" class="google-account-name">Nenhuma conta conectada</div>
+                                <div id="google-account-email" class="google-account-email">Conecte uma conta Google para sincronizar</div>
+                                <div id="google-account-status" class="google-account-status" data-status="idle">⚪ Desconectado</div>
+                            </div>
+                        </div>
+                        <div class="google-account-actions">
+                            <button id="btn-google-desconectar" class="google-account-btn google-btn-out" onclick="deslogarDoSistema()">🔌 Desconectar</button>
+                            <button id="btn-google-sincronizar" class="google-account-btn google-btn-sync" onclick="sincronizarAgora()">🔄 Sincronizar agora</button>
+                        </div>
+                        <div id="google-sync-last" class="google-sync-last">Última sincronização: aguardando conexão</div>
+                    </div>
+
                     <button class="btn" style="background:var(--success); margin-top:15px; font-size:1.05rem; padding:15px; border-radius:12px; box-shadow:0 8px 20px rgba(16,185,129,0.25);" onclick="toggleTela('home')">✅ Salvar Perfil</button>
                 </div>
             </div>
@@ -1454,7 +1788,7 @@
 
                                     Desenvolvido por Koda Sistemas.
                     <div style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; color: #6b7280; font-weight: 500; letter-spacing: 0.5px; margin-top: 8px;">
-    Versão v6.1.6
+    Versão v6.1.7
 </div>
 
               
@@ -2502,6 +2836,17 @@ function salvarEdicaoLista() {
         _pwaOcultarBanner(dispensado);
     }
     </script>
+<div id="modalSincronizacao">
+    <div class="sync-modal-box">
+        <h3 id="sync-modal-title">Confirmar sincronização</h3>
+        <div id="sync-modal-body"></div>
+        <div class="sync-modal-actions">
+            <button class="sync-cancel" onclick="responderModalSincronizacao(false)">Cancelar</button>
+            <button class="sync-confirm" onclick="responderModalSincronizacao(true)">Sim, sincronizar</button>
+        </div>
+    </div>
+</div>
+
     <div id="painelUrgenica" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); z-index: 10000; justify-content: center; align-items: center;">
     <div style="background-color: var(--bg-main, #fff); width: 90%; max-width: 500px; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-align: center; border: 3px solid #ef4444;">
         <h3 style="color: #ef4444; margin-top: 0; font-size: 1.3rem;">🚨 RETIRAR DA VENDA IMEDIATAMENTE!</h3>
@@ -2603,6 +2948,75 @@ function salvarEdicaoLista() {
         </div>
     </div>
 </div>
+
+
+<script>
+/* ============================================================
+   v6.1.7 — Atualização controlada
+   A nova versão é preparada pelo Service Worker e fica WAITING.
+   "Mais tarde" não ativa a atualização.
+============================================================ */
+(() => {
+    const APP_VERSION = '6.1.7';
+    const UPDATE_KEY = 'KODA_UPDATE_DISMISSED_' + APP_VERSION;
+    let waitingWorker = null;
+    let updateModalShown = false;
+
+    const modal = () => document.getElementById('modalAtualizacaoSistema');
+    function showUpdate(reg) {
+        if (!reg || !reg.waiting || updateModalShown) return;
+        waitingWorker = reg.waiting;
+        // Não mostrar novamente nesta mesma versão após "Mais tarde".
+        if (localStorage.getItem(UPDATE_KEY) === '1') return;
+        updateModalShown = true;
+        const m = modal();
+        if (!m) return;
+        const v = document.getElementById('updateVersionText');
+        if (v) v.textContent = 'Sua versão atual será mantida até você escolher ATUALIZAR AGORA. Nova versão: v' + APP_VERSION;
+        m.style.display = 'flex';
+        m.setAttribute('aria-hidden','false');
+    }
+    function closeLater() {
+        const m=modal(); if(m){m.style.display='none';m.setAttribute('aria-hidden','true');}
+        localStorage.setItem(UPDATE_KEY,'1');
+        // O SW continua waiting; nada é atualizado.
+        waitingWorker=null; updateModalShown=false;
+    }
+    async function updateNow() {
+        const w=waitingWorker;
+        if(!w) return;
+        const m=modal(); if(m) m.style.display='none';
+        localStorage.removeItem(UPDATE_KEY);
+        try {
+            w.postMessage({type:'SKIP_WAITING'});
+        } catch(e) { console.warn('Ativação da atualização:',e); }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        const later=document.getElementById('btnUpdateLater');
+        const now=document.getElementById('btnUpdateNow');
+        if(later) later.addEventListener('click', closeLater);
+        if(now) now.addEventListener('click', updateNow);
+
+        if(!('serviceWorker' in navigator)) return;
+        navigator.serviceWorker.register('./sw.js').then(reg => {
+            if(reg.waiting) showUpdate(reg);
+            reg.addEventListener('updatefound', () => {
+                const nw=reg.installing;
+                if(!nw) return;
+                nw.addEventListener('statechange', () => {
+                    if(nw.state === 'installed' && navigator.serviceWorker.controller) showUpdate(reg);
+                });
+            });
+        }).catch(e=>console.warn('SW atualização:',e));
+
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if(window.__kodaUpdating) return;
+            window.__kodaUpdating=true;
+            window.location.reload();
+        });
+    });
+})();
+</script>
 
 </body>
 </html>
