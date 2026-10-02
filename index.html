@@ -686,7 +686,7 @@
     }
     
     /* ============================================================
-       v6.1.7 — Atualização controlada
+       v6.1.8 — Atualização controlada
     ============================================================ */
     #modalAtualizacaoSistema {
         display:none; position:fixed; inset:0; z-index:30000;
@@ -707,7 +707,71 @@
     #btnUpdateNow { background:var(--primary); color:white; }
     .google-avatar-real { object-fit:cover; display:block; border-radius:50%; }
 
-    </style>
+
+    /* === MODAIS PERSONALIZADOS / COMPATIBILIDADE COM TEMAS === */
+    #painelConfirmarExclusao, #painelConfirmarExclusaoLista, #painelEditarLista,
+    #painelUrgenica {
+        background: rgba(2, 6, 23, .68) !important;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        padding: 16px;
+        box-sizing: border-box;
+    }
+    #painelConfirmarExclusao > div, #painelConfirmarExclusaoLista > div,
+    #painelEditarLista > div, #painelUrgenica > div {
+        background: var(--bg-card) !important;
+        color: var(--text-main) !important;
+        border-color: var(--border) !important;
+        width: min(100%, 430px) !important;
+        max-height: min(90vh, 680px);
+        overflow-y: auto;
+        box-shadow: 0 24px 70px rgba(0,0,0,.32) !important;
+    }
+    #painelConfirmarExclusao h3, #painelConfirmarExclusaoLista h3,
+    #painelEditarLista h3 { color: var(--danger) !important; }
+    #painelConfirmarExclusao p, #painelConfirmarExclusaoLista p,
+    #painelEditarLista label { color: var(--text-sub) !important; }
+    #painelConfirmarExclusao button, #painelConfirmarExclusaoLista button,
+    #painelEditarLista button { min-height: 44px; }
+    #painelConfirmarExclusao input, #painelConfirmarExclusaoLista input,
+    #painelEditarLista input, #painelEditarLista select, #painelEditarLista textarea {
+        background: var(--input-bg) !important;
+        color: var(--text-main) !important;
+        border-color: var(--border) !important;
+    }
+    #painelConfirmarExclusao #btnCancelarExclusao,
+    #painelConfirmarExclusaoLista button:first-child {
+        background: var(--border) !important;
+        color: var(--text-main) !important;
+    }
+    [data-theme="dark"] #painelConfirmarExclusao strong,
+    [data-theme="dark"] #painelConfirmarExclusaoLista strong { color: #f87171 !important; }
+    @media (max-width: 480px) {
+        #painelConfirmarExclusao > div, #painelConfirmarExclusaoLista > div,
+        #painelEditarLista > div, #painelUrgenica > div { padding: 20px !important; border-radius: 18px !important; }
+    }
+
+    
+    /* === KODA 6.1.8 — Lixeira + pesquisa persistente + atualização controlada === */
+    .app-panel-overlay{position:fixed;inset:0;display:none;justify-content:center;align-items:center;padding:16px;box-sizing:border-box;background:rgba(15,23,42,.62);backdrop-filter:blur(4px);z-index:30000;}
+    .app-panel{width:100%;max-width:520px;max-height:86vh;overflow:auto;background:var(--bg-card);color:var(--text-main);border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px rgba(0,0,0,.32);padding:20px;box-sizing:border-box;}
+    .app-panel h2,.app-panel h3{color:var(--text-main);margin:0 0 10px;}
+    .app-panel p{color:var(--text-sub);line-height:1.45;}
+    .app-panel-close{float:right;border:1px solid var(--border);background:var(--input-bg);color:var(--text-main);width:34px;height:34px;border-radius:10px;cursor:pointer;font-size:1.1rem;}
+    .trash-entry{padding:12px;border:1px solid var(--border);border-radius:12px;margin:8px 0;background:var(--input-bg);color:var(--text-main);}
+    .trash-entry small{color:var(--text-sub);}
+    .panel-actions{display:flex;gap:8px;margin-top:15px;flex-wrap:wrap;}
+    .panel-actions .btn{flex:1;min-width:130px;}
+    .app-dialog-message{white-space:pre-line;color:var(--text-sub);line-height:1.5;margin:12px 0 18px;}
+    .search-wrap{position:relative;width:100%;}
+    .search-wrap input{padding-right:44px !important;}
+    .search-clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:32px;height:32px;border:0;border-radius:50%;background:transparent;color:var(--text-sub);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+    .search-clear:hover{background:var(--border);color:var(--text-main);}
+    #koda-update-reminder{display:none;position:fixed;right:14px;bottom:76px;z-index:29999;border:1px solid var(--border);background:var(--bg-card);color:var(--text-main);border-radius:999px;padding:10px 14px;box-shadow:0 8px 28px rgba(0,0,0,.22);font-weight:800;cursor:pointer;}
+    #koda-update-reminder.is-visible{display:flex;align-items:center;gap:7px;}
+    @media(max-width:480px){.app-panel{padding:16px;border-radius:16px}.panel-actions{flex-direction:column}.panel-actions .btn{width:100%;}}
+
+</style>
     <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import {
@@ -909,7 +973,7 @@
             await signInWithPopup(auth, provider);
         } catch (error) {
             const msg = "❌ Erro no login: " + (error && error.message ? error.message : error);
-            if (typeof showZapMsg === 'function') showZapMsg(msg, true); else alert(msg);
+            if (typeof showZapMsg === 'function') showZapMsg(msg, true); else console.warn(msg);
         }
     };
 
@@ -1089,28 +1153,8 @@
         atualizarInterface();
 
         try {
-            // Segurança: antes de gravar uma exclusão, compara com a última fotografia
-            // confirmada da nuvem e pede autorização explícita. A exclusão local fica
-            // preservada mesmo se o usuário cancelar; ela poderá ser sincronizada depois.
-            const baseline = carregarBaseline(user.uid) || {};
-            const remBanco = diffArrays(baseline.banco || [], window.BANCO || []).removed;
-            const remLista = diffArrays(baseline.produtos || [], window.LISTA || []).removed;
-            const remocoes = remBanco.concat(remLista);
-            if (remocoes.length && !syncInProgress) {
-                const nomes = remocoes.slice(0, 8).map(x => x?.n || x?.nome || 'Item sem nome');
-                const ok = await abrirModalSincronizacao({
-                    title: '⚠️ Produto removido',
-                    body: `<p>Foi detectada uma exclusão antes de atualizar a nuvem.</p><div class="sync-alert-delete"><b>🗑️ ${remocoes.length} item(ns) deixarão de existir na nuvem.</b><br><small>${nomes.map(n => '• ' + n).join('<br>')}${remocoes.length > 8 ? '<br>• ...' : ''}</small></div><p><b>Depois de confirmar, esses itens não estarão mais disponíveis na sua conta Google.</b></p>`
-                });
-                if (!ok) {
-                    const st = document.getElementById('google-sync-last');
-                    const sc = document.getElementById('google-account-status');
-                    if (st) st.textContent = '⚠️ Exclusão pendente de sincronização';
-                    if (sc) { sc.textContent = '🟡 Alteração local não sincronizada'; sc.dataset.status = 'idle'; }
-                    showZapMsg('🛡️ Exclusão mantida somente neste aparelho por enquanto.');
-                    return;
-                }
-            }
+            // Exclusões já foram confirmadas pelo painel da interface.
+            // Não abrir uma segunda confirmação ao salvar na nuvem.
             const payload = { ultimaAtualizacao: new Date().toISOString() };
             if (dados.produtos !== undefined) payload.produtos = window.LISTA;
             if (dados.banco    !== undefined) payload.banco    = window.BANCO;
@@ -1559,6 +1603,7 @@
         <div class="container">
             <div class="top-nav">
                 <button class="btn-top" onclick="toggleTela('perfil')" title="Editar Perfil">👤</button>
+                <button class="btn-top" onclick="abrirLixeira()" title="Lixeira">🗑️</button>
                 <button class="btn-top btn-help" onclick="abrirGuia()">❓</button>
                 <button class="btn-top" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
             </div>
@@ -1696,7 +1741,10 @@
 
 <!-- 🔍 Barra de Pesquisa do Banco de Dados (Encaixada aqui!) -->
 <div style="margin-top: 15px; margin-bottom: 10px; padding: 0 5px;">
-    <input type="text" id="buscaBanco" onkeyup="filtrarBancoDados()" placeholder="🔍 Pesquisar produto cadastrado..." style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #334155; background-color: #1e293b; color: #ffffff; font-size: 16px; box-sizing: border-box;">
+    <div class="search-wrap">
+        <input type="text" id="buscaBanco" oninput="filtrarBancoDados()" placeholder="🔍 Pesquisar produto cadastrado..." style="width:100%; padding:12px; border-radius:8px; border:1px solid #334155; background-color:#1e293b; color:#ffffff; font-size:16px; box-sizing:border-box;">
+        <button id="clear-banco" class="search-clear" type="button" aria-label="Limpar pesquisa" title="Limpar pesquisa" onclick="limparBuscaBanco()">✕</button>
+    </div>
 </div>
 
 <div style="max-height:200px; overflow-y:auto; margin-top:15px; border: 1px solid var(--border);">
@@ -1788,7 +1836,7 @@
 
                                     Desenvolvido por Koda Sistemas.
                     <div style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; color: #6b7280; font-weight: 500; letter-spacing: 0.5px; margin-top: 8px;">
-    Versão v6.1.7
+    Versão v6.1.8
 </div>
 
               
@@ -1992,6 +2040,45 @@
                 try { await salvarPerfil(); atualizarStatusPerfil('Salvo', 'ok'); }
                 finally { setTimeout(() => { perfilSaveInFlight = false; }, 250); }
             }, 450);
+        }
+
+        // ================= LIXEIRA =================
+        let LIXEIRA = JSON.parse(localStorage.getItem('LOCAL_LIXEIRA') || '[]');
+        function salvarLixeira(){ localStorage.setItem('LOCAL_LIXEIRA', JSON.stringify(LIXEIRA)); }
+        function adicionarLixeira(item, origem){
+            if (!item) return;
+            LIXEIRA.unshift({ id: Date.now() + Math.random(), origem, item: JSON.parse(JSON.stringify(item)), excluidoEm: new Date().toISOString() });
+            salvarLixeira();
+        }
+        function abrirLixeira(){
+            const html = LIXEIRA.length ? LIXEIRA.map((x,i)=>`<div class="trash-entry"><b>${x.item.n || 'Item'}</b><div><small>Origem: ${x.origem === 'banco' ? 'Banco de Produtos' : 'Lançamento Diário'}<br>Excluído em: ${new Date(x.excluidoEm).toLocaleString('pt-BR')}</small></div><div class="panel-actions"><button class="btn" style="padding:8px;background:#0d9488" onclick="restaurarLixeira(${i})">↩️ Restaurar</button><button class="btn" style="padding:8px;background:#dc2626" onclick="excluirItemLixeira(${i})">Excluir</button></div></div>`).join('') : '<p style="text-align:center">A lixeira está vazia.</p>';
+            const modal=document.getElementById('painelLixeira');
+            if (modal) { modal.querySelector('[data-lixeira-corpo]').innerHTML=html; modal.style.display='flex'; }
+        }
+        function fecharLixeira(){ const modal=document.getElementById('painelLixeira'); if(modal) modal.style.display='none'; }
+        function restaurarLixeira(i){
+            const x=LIXEIRA[i]; if(!x)return;
+            if(x.origem==='banco') BANCO.push(x.item); else LISTA.push(x.item);
+            LIXEIRA.splice(i,1); salvarLixeira();
+            if(window.salvarTudo) window.salvarTudo({banco:BANCO,produtos:LISTA});
+            else { localStorage.setItem('LOCAL_BANCO',JSON.stringify(BANCO)); localStorage.setItem('LOCAL_LISTA',JSON.stringify(LISTA)); }
+            renderBanco(); renderLista(); abrirLixeira(); showZapMsg('↩️ Item restaurado!');
+        }
+        function abrirDialogoPersonalizado(titulo, mensagem, confirmar, textoBotao='Confirmar'){
+            const modal=document.getElementById('painelDialogoPersonalizado'); if(!modal)return;
+            modal.querySelector('[data-dialogo-titulo]').textContent=titulo;
+            modal.querySelector('[data-dialogo-mensagem]').textContent=mensagem;
+            const btn=modal.querySelector('[data-dialogo-confirmar]'); btn.textContent=textoBotao;
+            btn.onclick=()=>{ fecharDialogoPersonalizado(); confirmar(); }; modal.style.display='flex';
+        }
+        function fecharDialogoPersonalizado(){ const modal=document.getElementById('painelDialogoPersonalizado'); if(modal) modal.style.display='none'; }
+        function excluirItemLixeira(i){
+            if(!LIXEIRA[i])return;
+            abrirDialogoPersonalizado('Excluir permanentemente','Tem certeza que deseja excluir este item permanentemente? Esta ação não poderá ser desfeita.',()=>{ LIXEIRA.splice(i,1); salvarLixeira(); abrirLixeira(); showZapMsg('Item excluído permanentemente.'); },'Excluir definitivamente');
+        }
+        function esvaziarLixeira(){
+            if(!LIXEIRA.length)return;
+            abrirDialogoPersonalizado('Esvaziar lixeira','Tem certeza que deseja esvaziar a lixeira? Todos os itens serão apagados permanentemente. Esta ação não poderá ser desfeita.',()=>{ LIXEIRA=[]; salvarLixeira(); abrirLixeira(); showZapMsg('Lixeira esvaziada.'); },'Esvaziar lixeira');
         }
 
         function showZapMsg(texto, isErro = false) {
@@ -2248,82 +2335,86 @@
             }
             if (window.salvarTudo) window.salvarTudo({ banco: BANCO });
             else localStorage.setItem('LOCAL_BANCO', JSON.stringify(BANCO));
-            limpar('cfg_n'); limpar('cfg_u'); renderBanco();
+            limpar('cfg_n'); limpar('cfg_u');
+            document.getElementById('editing_index').value = '-1';
+            document.getElementById('btn-salvar-banco').innerHTML = '💾 Salvar no Banco';
+            renderBanco();
         }
 
-        // 🛠️ Variável para guardar o índice do produto que será excluído
+        // 🛠️ Controle de edição/exclusão do Banco
 let indiceExclusaoBanco = null;
 
-// Função para abrir o painel
 function removerDoBanco(i, event) {
-    event.stopPropagation(); 
+    if (event) event.stopPropagation();
     indiceExclusaoBanco = i;
     const painel = document.getElementById('painelConfirmarExclusao');
-    painel.style.display = 'flex';
+    if (painel) painel.style.display = 'flex';
 }
 
-// Função ligada ao botão Cancelar
 function fecharPainelExclusao() {
-    document.getElementById('painelConfirmarExclusao').style.display = 'none';
+    const painel = document.getElementById('painelConfirmarExclusao');
+    if (painel) painel.style.display = 'none';
     indiceExclusaoBanco = null;
 }
 
-// Função ligada ao botão Sim, Excluir
 function executarExclusaoBanco() {
-    if (indiceExclusaoBanco !== null) {
-        sincronizarComJanela();
-        BANCO.splice(indiceExclusaoBanco, 1);
-        if (window.salvarTudo) window.salvarTudo({ banco: BANCO });
-        else localStorage.setItem('LOCAL_BANCO', JSON.stringify(BANCO));
-        renderBanco(); 
-        fecharPainelExclusao();
-        if (typeof showZapMsg === 'function') showZapMsg("Produto Removido do Banco!");
-    }
+    if (indiceExclusaoBanco === null) return;
+    sincronizarComJanela();
+    const item = BANCO[indiceExclusaoBanco];
+    if (!item) { fecharPainelExclusao(); return; }
+    adicionarLixeira(item, 'banco');
+    BANCO.splice(indiceExclusaoBanco, 1);
+    if (window.salvarTudo) window.salvarTudo({ banco: BANCO });
+    else localStorage.setItem('LOCAL_BANCO', JSON.stringify(BANCO));
+    renderBanco();
+    fecharPainelExclusao();
+    showZapMsg('🗑️ Produto movido para a lixeira!');
 }
 
-        function renderBanco() {
+function renderBanco() {
     sincronizarComJanela();
-    document.getElementById('sugestoes').innerHTML = BANCO.map(b => `<option value="${b.n}">`).join('');
-    
+    const sugestoes = document.getElementById('sugestoes');
+    if (sugestoes) sugestoes.innerHTML = BANCO.map(b => `<option value="${b.n}">`).join('');
+    const corpo = document.getElementById('lista-banco-corpo');
+    if (!corpo) return;
     const bancoInvertido = [...BANCO].reverse();
-    
-    document.getElementById('lista-banco-corpo').innerHTML = bancoInvertido.map((b, i) => {
+    corpo.innerHTML = bancoInvertido.map((b, i) => {
         const indiceReal = BANCO.length - 1 - i;
-        
-        return `
-            <tr class="clickable-row" onclick="prepararEdicao(${indiceReal})">
+        return `<tr class="clickable-row" onclick="prepararEdicao(${indiceReal})">
             <td><b>${b.n}</b></td>
             <td>${b.t === "Unid" ? b.v : b.v+" ("+b.t+" c/"+b.u+")"}</td>
-            <td><button onclick="removerDoBanco(${indiceReal}, event)" style="border:none;background:none;cursor:pointer">🗑️</button></td>
-            </tr>
-        `;
+            <td><button onclick="removerDoBanco(${indiceReal}, event)" style="border:none;background:none;cursor:pointer" aria-label="Mover para a lixeira">🗑️</button></td>
+        </tr>`;
     }).join('');
-// Limpa o campo de busca quando o banco for redesenhado
-if(document.getElementById('buscaBanco')) document.getElementById('buscaBanco').value = '';
+    // IMPORTANTE: o termo pesquisado permanece após editar, salvar, excluir ou sincronizar.
+    filtrarBancoDados();
 }
 
-      function filtrarBancoDados() {
-    let input = document.getElementById('buscaBanco');
-    let filtro = input.value.toLowerCase();
-    let container = document.getElementById('lista-banco-corpo'); 
-    
-    if (!container) return;
-    
-    // Pega diretamente todas as linhas (<tr>) de produtos cadastrados
-    let linhas = container.children; 
-
-    for (let i = 0; i < linhas.length; i++) {
-        let textoProduto = linhas[i].textContent || linhas[i].innerText;
-        
-        // Se o nome do produto bater com a busca, ele aparece; se não, a linha some
-        if (textoProduto.toLowerCase().indexOf(filtro) > -1) {
-            linhas[i].style.display = ""; 
-        } else {
-            linhas[i].style.display = "none"; 
-        }
-    }
+function filtrarBancoDados() {
+    const input = document.getElementById('buscaBanco');
+    const container = document.getElementById('lista-banco-corpo');
+    if (!input || !container) return;
+    const filtro = input.value.trim().toLocaleLowerCase('pt-BR');
+    Array.from(container.children).forEach(linha => {
+        const texto = (linha.textContent || '').toLocaleLowerCase('pt-BR');
+        linha.style.display = !filtro || texto.includes(filtro) ? '' : 'none';
+    });
+    atualizarXBuscaBanco();
 }
 
+function atualizarXBuscaBanco() {
+    const input = document.getElementById('buscaBanco');
+    const btn = document.getElementById('clear-banco');
+    if (input && btn) btn.style.visibility = input.value.length ? 'visible' : 'hidden';
+}
+
+function limparBuscaBanco() {
+    const input = document.getElementById('buscaBanco');
+    if (!input) return;
+    input.value = '';
+    filtrarBancoDados();
+    input.focus();
+}
 
         function autoFill() {
             const val = document.getElementById('p_n').value.toLowerCase(); const p = BANCO.find(x => x.n.toLowerCase() === val);
@@ -2546,6 +2637,8 @@ function executarExclusaoLista() {
     if (window.LISTA !== undefined) { LISTA = window.LISTA; }
 
     if (window.indiceExclusaoLista !== null && window.indiceExclusaoLista !== undefined) {
+        const itemRemovido = LISTA[window.indiceExclusaoLista];
+        if (itemRemovido) adicionarLixeira(itemRemovido, 'lista');
         LISTA.splice(window.indiceExclusaoLista, 1); 
         
         // Gravação isolada na Nuvem e Local
@@ -2848,7 +2941,7 @@ function salvarEdicaoLista() {
 </div>
 
     <div id="painelUrgenica" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); z-index: 10000; justify-content: center; align-items: center;">
-    <div style="background-color: var(--bg-main, #fff); width: 90%; max-width: 500px; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-align: center; border: 3px solid #ef4444;">
+    <div style="background-color: var(--bg-card); width: 90%; max-width: 500px; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-align: center; border: 3px solid #ef4444;">
         <h3 style="color: #ef4444; margin-top: 0; font-size: 1.3rem;">🚨 RETIRAR DA VENDA IMEDIATAMENTE!</h3>
         <p style="color: var(--text-main, #333); font-size: 0.95rem;">Os seguintes produtos atingiram o estado crítico ou estão vencidos:</p>
         
@@ -2862,7 +2955,7 @@ function salvarEdicaoLista() {
         </button>
     </div>
   </div> <div id="painelConfirmarExclusao" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); z-index: 20000; justify-content: center; align-items: center; font-family: sans-serif;">
-    <div style="background-color: var(--bg-main, #fff); width: 85%; max-width: 400px; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-align: center; border: 2px solid #ef4444;">
+    <div style="background-color: var(--bg-card); width: 85%; max-width: 400px; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-align: center; border: 2px solid #ef4444;">
         <div style="font-size: 2.5rem; margin-bottom: 10px;">🗑️</div>
         <h3 style="color: #ef4444; margin-top: 0; font-size: 1.2rem;">Confirmar Exclusão</h3>
         <p style="color: #1f2937; font-size: 1.1rem; margin-bottom: 25px; line-height: 1.5;">
@@ -2885,7 +2978,7 @@ function salvarEdicaoLista() {
   </div>
 <!-- 📋 Painel de Confirmação Exclusivo para o Lançamento Diário -->
 <div id="painelConfirmarExclusaoLista" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); z-index: 20000; justify-content: center; align-items: center; font-family: sans-serif;">
-    <div style="background-color: var(--bg-main, #fff); width: 85%; max-width: 400px; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-align: center; border: 2px solid #ef4444;">
+    <div style="background-color: var(--bg-card); width: 85%; max-width: 400px; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-align: center; border: 2px solid #ef4444;">
         <div style="font-size: 2.5rem; margin-bottom: 10px;">📋</div>
         <h3 style="color: #ef4444; margin-top: 0; font-size: 1.2rem;">Remover do Lançamento</h3>
         <p style="color: #1f2937; font-size: 1.1rem; margin-bottom: 25px; line-height: 1.5;">
@@ -2905,7 +2998,7 @@ function salvarEdicaoLista() {
 
 <!-- ✏️ Painel de Edição Rápida do Lançamento Diário -->
 <div id="painelEditarLista" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); z-index: 20000; justify-content: center; align-items: center; font-family: sans-serif;">
-    <div style="background-color: var(--bg-main, #fff); width: 85%; max-width: 400px; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); border: 2px solid var(--primary, #2563eb);">
+    <div style="background-color: var(--bg-card); width: 85%; max-width: 400px; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); border: 2px solid var(--primary, #2563eb);">
         <div style="font-size: 2.2rem; margin-bottom: 6px; text-align:center;">✏️</div>
         <h3 id="editListaTitulo" style="color: var(--primary, #2563eb); margin-top: 0; font-size: 1.1rem; text-align:center;">Editar Lançamento</h3>
 
@@ -2927,6 +3020,31 @@ function salvarEdicaoLista() {
             </button>
         </div>
     </div>
+</div>
+
+<!-- 🗑️ Lixeira reversível -->
+<div id="painelLixeira" class="app-panel-overlay" role="dialog" aria-modal="true" aria-labelledby="tituloLixeira">
+  <div class="app-panel">
+    <button class="app-panel-close" onclick="fecharLixeira()" aria-label="Fechar">✕</button>
+    <h2 id="tituloLixeira">🗑️ Lixeira</h2>
+    <p>Itens removidos ficam aqui até serem restaurados ou excluídos permanentemente.</p>
+    <div data-lixeira-corpo></div>
+    <div class="panel-actions">
+      <button class="btn" style="background:#dc2626" onclick="esvaziarLixeira()">Esvaziar lixeira</button>
+      <button class="btn" style="background:#64748b" onclick="fecharLixeira()">Fechar</button>
+    </div>
+  </div>
+</div>
+<div id="painelDialogoPersonalizado" class="app-panel-overlay" role="dialog" aria-modal="true" aria-labelledby="tituloDialogo">
+  <div class="app-panel" style="max-width:430px">
+    <button class="app-panel-close" onclick="fecharDialogoPersonalizado()" aria-label="Fechar">✕</button>
+    <h3 data-dialogo-titulo id="tituloDialogo">Confirmação</h3>
+    <div class="app-dialog-message" data-dialogo-mensagem></div>
+    <div class="panel-actions">
+      <button class="btn" style="background:#64748b" onclick="fecharDialogoPersonalizado()">Cancelar</button>
+      <button class="btn" style="background:#dc2626" data-dialogo-confirmar>Confirmar</button>
+    </div>
+  </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
@@ -2952,68 +3070,113 @@ function salvarEdicaoLista() {
 
 <script>
 /* ============================================================
-   v6.1.7 — Atualização controlada
+   v6.1.8 — Atualização controlada
    A nova versão é preparada pelo Service Worker e fica WAITING.
    "Mais tarde" não ativa a atualização.
 ============================================================ */
 (() => {
-    const APP_VERSION = '6.1.7';
-    const UPDATE_KEY = 'KODA_UPDATE_DISMISSED_' + APP_VERSION;
+    const APP_VERSION = '6.1.8';
+    const VERSION_URL = './version.json';
+    const PENDING_KEY = 'KODA_UPDATE_PENDING';
+    let registration = null;
     let waitingWorker = null;
-    let updateModalShown = false;
+    let remoteInfo = null;
 
     const modal = () => document.getElementById('modalAtualizacaoSistema');
-    function showUpdate(reg) {
-        if (!reg || !reg.waiting || updateModalShown) return;
-        waitingWorker = reg.waiting;
-        // Não mostrar novamente nesta mesma versão após "Mais tarde".
-        if (localStorage.getItem(UPDATE_KEY) === '1') return;
-        updateModalShown = true;
-        const m = modal();
-        if (!m) return;
-        const v = document.getElementById('updateVersionText');
-        if (v) v.textContent = 'Sua versão atual será mantida até você escolher ATUALIZAR AGORA. Nova versão: v' + APP_VERSION;
-        m.style.display = 'flex';
-        m.setAttribute('aria-hidden','false');
+    const reminder = () => document.getElementById('koda-update-reminder');
+    const compareVersions = (a,b) => {
+        const pa=String(a).replace(/^v/i,'').split('.').map(Number);
+        const pb=String(b).replace(/^v/i,'').split('.').map(Number);
+        for(let i=0;i<Math.max(pa.length,pb.length);i++){ const x=pa[i]||0,y=pb[i]||0; if(x!==y)return x-y; }
+        return 0;
+    };
+    const savePending = info => { if(info?.version) localStorage.setItem(PENDING_KEY, JSON.stringify({version:info.version,info})); };
+    const getPending = () => { try{return JSON.parse(localStorage.getItem(PENDING_KEY)||'null')}catch(e){return null} };
+
+    function showReminder(info){
+        const r=reminder(); if(!r) return;
+        if(info?.version) r.innerHTML=`🔄 Atualização v${info.version}`;
+        r.classList.add('is-visible');
     }
-    function closeLater() {
+    function hideReminder(){ const r=reminder(); if(r) r.classList.remove('is-visible'); }
+    function showUpdate(info){
+        if(!info?.version || compareVersions(info.version,APP_VERSION)<=0) return;
+        remoteInfo=info; savePending(info);
+        const m=modal(); if(!m)return;
+        const v=document.getElementById('updateVersionText');
+        const list=document.getElementById('updateChangelog');
+        if(v) v.textContent=`Versão atual: v${APP_VERSION} • Nova versão: v${info.version}`;
+        if(list){ list.innerHTML=''; (info.changelog||[]).forEach(item=>{const li=document.createElement('li');li.textContent=item;list.appendChild(li);}); }
+        m.style.display='flex'; m.setAttribute('aria-hidden','false');
+        hideReminder();
+    }
+    function closeLater(){
         const m=modal(); if(m){m.style.display='none';m.setAttribute('aria-hidden','true');}
-        localStorage.setItem(UPDATE_KEY,'1');
-        // O SW continua waiting; nada é atualizado.
-        waitingWorker=null; updateModalShown=false;
+        if(remoteInfo) { savePending(remoteInfo); showReminder(remoteInfo); }
     }
-    async function updateNow() {
-        const w=waitingWorker;
-        if(!w) return;
-        const m=modal(); if(m) m.style.display='none';
-        localStorage.removeItem(UPDATE_KEY);
-        try {
-            w.postMessage({type:'SKIP_WAITING'});
-        } catch(e) { console.warn('Ativação da atualização:',e); }
+    async function fetchVersion(){
+        try{
+            const r=await fetch(`${VERSION_URL}?_=${Date.now()}`,{cache:'no-store',headers:{'Cache-Control':'no-cache'}});
+            if(!r.ok) throw new Error('HTTP '+r.status);
+            return await r.json();
+        }catch(e){ console.warn('[KODA UPDATE] Verificação:',e); return null; }
     }
-    document.addEventListener('DOMContentLoaded', () => {
+    async function prepareWorker(){
+        if(!('serviceWorker' in navigator)) return false;
+        try{
+            registration=registration||await navigator.serviceWorker.getRegistration()||await navigator.serviceWorker.register('./sw.js');
+            if(registration.waiting){waitingWorker=registration.waiting;return true;}
+            await registration.update();
+            if(registration.waiting){waitingWorker=registration.waiting;return true;}
+            return false;
+        }catch(e){console.warn('[KODA UPDATE] Service Worker:',e);return false;}
+    }
+    async function updateNow(){
+        const info=remoteInfo||await fetchVersion();
+        if(!info?.version || compareVersions(info.version,APP_VERSION)<=0){return;}
+        savePending(info);
+        const ready=await prepareWorker();
+        if(!ready || !waitingWorker){
+            showZapMsg('⚠️ A nova versão foi encontrada, mas ainda está sendo preparada. Tente novamente em instantes.');
+            return;
+        }
+        localStorage.removeItem(PENDING_KEY);
+        waitingWorker.postMessage({type:'SKIP_WAITING'});
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
         const later=document.getElementById('btnUpdateLater');
         const now=document.getElementById('btnUpdateNow');
-        if(later) later.addEventListener('click', closeLater);
-        if(now) now.addEventListener('click', updateNow);
+        const r=document.createElement('button');
+        r.id='koda-update-reminder'; r.type='button'; r.setAttribute('aria-label','Abrir atualização pendente');
+        r.onclick=()=>showUpdate(remoteInfo||getPending()?.info);
+        document.body.appendChild(r);
+        if(later) later.addEventListener('click',closeLater);
+        if(now) now.addEventListener('click',updateNow);
 
         if(!('serviceWorker' in navigator)) return;
-        navigator.serviceWorker.register('./sw.js').then(reg => {
-            if(reg.waiting) showUpdate(reg);
-            reg.addEventListener('updatefound', () => {
-                const nw=reg.installing;
-                if(!nw) return;
-                nw.addEventListener('statechange', () => {
-                    if(nw.state === 'installed' && navigator.serviceWorker.controller) showUpdate(reg);
-                });
-            });
-        }).catch(e=>console.warn('SW atualização:',e));
+        try{
+            registration=await navigator.serviceWorker.register('./sw.js');
+            if(registration.waiting) waitingWorker=registration.waiting;
+        }catch(e){console.warn('[KODA UPDATE] Registro:',e);}
 
-        navigator.serviceWorker.addEventListener('controllerchange', () => {
-            if(window.__kodaUpdating) return;
-            window.__kodaUpdating=true;
-            window.location.reload();
-        });
+        const pending=getPending();
+        if(pending?.version && compareVersions(pending.version,APP_VERSION)>0) showReminder(pending.info);
+
+        const info=await fetchVersion();
+        if(info?.version && compareVersions(info.version,APP_VERSION)>0){
+            remoteInfo=info;
+            const ready=await prepareWorker();
+            if(ready) waitingWorker=registration?.waiting||waitingWorker;
+            if(waitingWorker) showUpdate(info);
+            else showUpdate(info);
+        }
+    });
+
+    navigator.serviceWorker?.addEventListener('controllerchange', () => {
+        if(window.__kodaUpdating) return;
+        window.__kodaUpdating=true;
+        window.location.reload();
     });
 })();
 </script>

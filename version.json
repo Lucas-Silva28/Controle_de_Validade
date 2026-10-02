@@ -1,0 +1,14 @@
+{
+  "version": "6.1.8",
+  "mandatory": false,
+  "title": "Nova versão disponível",
+  "message": "Nova versão disponível. A versão atual continua funcionando até você escolher ATUALIZAR AGORA.",
+  "releaseDate": "2026-10-02",
+  "changelog": [
+    "Lixeira com restauração, exclusão permanente e opção de esvaziar tudo.",
+    "Pesquisa do Banco de Produtos com botão X para limpar tudo de uma vez.",
+    "Pesquisa permanece preenchida depois de editar e atualizar um produto.",
+    "Atualização PWA controlada: MAIS TARDE mantém a versão atual e deixa um lembrete discreto.",
+    "A nova versão só passa a valer depois de ATUALIZAR AGORA."
+  ]
+}
