@@ -1,14 +1,12 @@
 {
-  "version": "6.1.8",
-  "mandatory": false,
-  "title": "Nova versão disponível",
-  "message": "Nova versão disponível. A versão atual continua funcionando até você escolher ATUALIZAR AGORA.",
-  "releaseDate": "2026-10-02",
+  "version": "6.1.8.7",
   "changelog": [
-    "Lixeira com restauração, exclusão permanente e opção de esvaziar tudo.",
-    "Pesquisa do Banco de Produtos com botão X para limpar tudo de uma vez.",
-    "Pesquisa permanece preenchida depois de editar e atualizar um produto.",
-    "Atualização PWA controlada: MAIS TARDE mantém a versão atual e deixa um lembrete discreto.",
-    "A nova versão só passa a valer depois de ATUALIZAR AGORA."
+    "Login Google/Firebase preservado com a estrutura da base estável.",
+    "Gramaturas agora são persistentes por conta e isoladas por UID.",
+    "Exclusão de gramatura não é recriada pelo acesso à conta.",
+    "Resumo de sincronização inclui Banco de Produtos, Lançamento Diário, Gramatura e Lixeira.",
+    "Histórico de adições e exclusões de gramatura por conta.",
+    "Lixeira isolada por UID e persistida na nuvem.",
+    "Atualização PWA controlada: Mais tarde mantém a versão atual; Atualizar agora ativa a nova versão."
   ]
 }

@@ -314,9 +314,15 @@
     .google-account-btn:disabled{opacity:.5;cursor:not-allowed}
     .google-btn-sync{background:var(--primary);color:#fff}.google-btn-out{background:var(--danger);color:#fff}
     .google-sync-last{font-size:.72rem;color:var(--text-sub);margin:11px 0 0;line-height:1.4}
-    .sync-alert-delete{padding:12px;border-radius:10px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:var(--danger);margin:12px 0;line-height:1.5}
+    .sync-alert-delete{padding:12px;border-radius:10px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:var(--danger);margin:12px 0;line-height:1.5}.sync-report-section{padding:10px 0;line-height:1.5}.sync-report-section small{line-height:1.55}
     #modalSincronizacao{display:none;position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:30000;align-items:center;justify-content:center;padding:18px;box-sizing:border-box}
-    .sync-modal-box{width:100%;max-width:430px;background:var(--bg-card);color:var(--text-main);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+    .sync-modal-box{width:100%;max-width:430px;background:var(--bg-card);color:var(--text-main);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:0 20px 50px rgba(0,0,0,.35);max-height:calc(100vh - 36px);overflow-y:auto;box-sizing:border-box}
+    .sync-summary-intro p{margin:7px 0 0;font-size:.82rem;line-height:1.45;color:var(--text-sub)}
+    .sync-history-section{margin-top:12px;padding:12px;border:1px solid var(--border);border-radius:12px;background:var(--bg-body)}
+    .sync-history-title{font-weight:900;font-size:.9rem;margin-bottom:7px;color:var(--text-main)}
+    .sync-history-items{font-size:.82rem;line-height:1.65;color:var(--text-main)}
+    .sync-total{margin-top:12px;padding:10px;border-radius:10px;background:rgba(37,99,235,.08);font-size:.8rem;line-height:1.45}
+    .sync-save-note{margin-top:10px;padding:10px;border-radius:10px;background:rgba(16,185,129,.08);font-size:.78rem;line-height:1.45}
     .sync-modal-box h3{margin:0 0 12px;color:var(--primary);font-size:1.15rem}.sync-modal-box p{font-size:.88rem;line-height:1.55}.sync-modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.sync-modal-actions button{border:0;border-radius:10px;padding:12px;font-weight:900;cursor:pointer}.sync-cancel{background:var(--border);color:var(--text-main)}.sync-confirm{background:var(--primary);color:#fff}
 
     .modal-guia .guia-item-animado { color: var(--text-main) !important; }
@@ -333,9 +339,15 @@
     .google-account-btn:disabled{opacity:.5;cursor:not-allowed}
     .google-btn-sync{background:var(--primary);color:#fff}.google-btn-out{background:var(--danger);color:#fff}
     .google-sync-last{font-size:.72rem;color:var(--text-sub);margin:11px 0 0;line-height:1.4}
-    .sync-alert-delete{padding:12px;border-radius:10px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:var(--danger);margin:12px 0;line-height:1.5}
+    .sync-alert-delete{padding:12px;border-radius:10px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:var(--danger);margin:12px 0;line-height:1.5}.sync-report-section{padding:10px 0;line-height:1.5}.sync-report-section small{line-height:1.55}
     #modalSincronizacao{display:none;position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:30000;align-items:center;justify-content:center;padding:18px;box-sizing:border-box}
-    .sync-modal-box{width:100%;max-width:430px;background:var(--bg-card);color:var(--text-main);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+    .sync-modal-box{width:100%;max-width:430px;background:var(--bg-card);color:var(--text-main);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:0 20px 50px rgba(0,0,0,.35);max-height:calc(100vh - 36px);overflow-y:auto;box-sizing:border-box}
+    .sync-summary-intro p{margin:7px 0 0;font-size:.82rem;line-height:1.45;color:var(--text-sub)}
+    .sync-history-section{margin-top:12px;padding:12px;border:1px solid var(--border);border-radius:12px;background:var(--bg-body)}
+    .sync-history-title{font-weight:900;font-size:.9rem;margin-bottom:7px;color:var(--text-main)}
+    .sync-history-items{font-size:.82rem;line-height:1.65;color:var(--text-main)}
+    .sync-total{margin-top:12px;padding:10px;border-radius:10px;background:rgba(37,99,235,.08);font-size:.8rem;line-height:1.45}
+    .sync-save-note{margin-top:10px;padding:10px;border-radius:10px;background:rgba(16,185,129,.08);font-size:.78rem;line-height:1.45}
     .sync-modal-box h3{margin:0 0 12px;color:var(--primary);font-size:1.15rem}.sync-modal-box p{font-size:.88rem;line-height:1.55}.sync-modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.sync-modal-actions button{border:0;border-radius:10px;padding:12px;font-weight:900;cursor:pointer}.sync-cancel{background:var(--border);color:var(--text-main)}.sync-confirm{background:var(--primary);color:#fff}
 
     .modal-guia .guia-item-animado b { color: var(--primary) !important; }
@@ -477,6 +489,25 @@
     }
     .btn-help {
         background: #475569;
+    }
+    .trash-count-badge {
+        position:absolute;
+        top:-4px;
+        right:-4px;
+        min-width:18px;
+        height:18px;
+        padding:0 5px;
+        box-sizing:border-box;
+        border-radius:999px;
+        display:none;
+        align-items:center;
+        justify-content:center;
+        background:var(--danger);
+        color:#fff;
+        font-size:.65rem;
+        font-weight:900;
+        line-height:1;
+        border:2px solid var(--bg-card);
     }
     .card {
         background: var(--bg-card);
@@ -686,7 +717,7 @@
     }
     
     /* ============================================================
-       v6.1.8 — Atualização controlada
+       v6.1.8.7 — Atualização controlada
     ============================================================ */
     #modalAtualizacaoSistema {
         display:none; position:fixed; inset:0; z-index:30000;
@@ -810,6 +841,40 @@
     let syncInProgress = false;
     let syncBaseline = null;
     const SYNC_BASELINE_PREFIX = 'SYNC_BASELINE_';
+    const SYNC_ACTIONS_PREFIX = 'SYNC_ACTIONS_';
+    function syncActionsKey(uid) { return SYNC_ACTIONS_PREFIX + uid; }
+    function emptySyncActions() {
+        return {
+            banco: { adicionados: 0, editados: 0, excluidos: 0 },
+            lista: { adicionados: 0, editados: 0, excluidos: 0 },
+            gramatura: { adicionados: 0, editados: 0, excluidos: 0 }
+        };
+    }
+    function carregarAcoesSync(uid) {
+        try {
+            const raw = JSON.parse(localStorage.getItem(syncActionsKey(uid)) || 'null');
+            const base = emptySyncActions();
+            ['banco','lista','gramatura'].forEach(origem => {
+                if (raw?.[origem]) {
+                    base[origem].adicionados = Number(raw[origem].adicionados) || 0;
+                    base[origem].editados = Number(raw[origem].editados) || 0;
+                    base[origem].excluidos = Number(raw[origem].excluidos) || 0;
+                }
+            });
+            return base;
+        } catch(e) { return emptySyncActions(); }
+    }
+    function registrarAcaoSync(origem, acao, quantidade = 1) {
+        const user = auth.currentUser;
+        if (!user || !['banco','lista','gramatura'].includes(origem) || !['adicionados','editados','excluidos'].includes(acao)) return;
+        const dados = carregarAcoesSync(user.uid);
+        dados[origem][acao] += Math.max(1, Number(quantidade) || 1);
+        localStorage.setItem(syncActionsKey(user.uid), JSON.stringify(dados));
+    }
+    function limparAcoesSync(uid) {
+        localStorage.removeItem(syncActionsKey(uid));
+    }
+    window.registrarAcaoSync = registrarAcaoSync;
 
     // ╔══════════════════════════════════════════════════════╗
     // ║   FIREBASE — SINCRONIZAÇÃO COMPLETA COM A NUVEM     ║
@@ -823,7 +888,12 @@
         banco:  uid => 'BANCO_'  + uid,
         grams:  uid => 'GRAMS_'  + uid,
         perfil: uid => 'PERFIL_' + uid,
+        lixeira: uid => 'LIXEIRA_' + uid
     };
+
+    // Ponte mínima para scripts comuns: expõe somente o usuário atual,
+    // sem expor o objeto interno auth nem mover a autenticação de módulo.
+    window.kodaGetCurrentUser = () => auth.currentUser;
 
     function atualizarInterface() {
         if (typeof renderBanco  === 'function') renderBanco();
@@ -844,12 +914,48 @@
     function syncBaselineKey(uid) { return SYNC_BASELINE_PREFIX + uid; }
     function cloneData(v) { try { return JSON.parse(JSON.stringify(v)); } catch(e) { return v; } }
     function itemSignature(item) { return JSON.stringify(item); }
-    function diffArrays(oldArr = [], newArr = []) {
-        const oldMap = new Map(oldArr.map(x => [itemSignature(x), x]));
-        const newMap = new Map(newArr.map(x => [itemSignature(x), x]));
-        const removed = [...oldMap.entries()].filter(([k]) => !newMap.has(k)).map(([,v]) => v);
-        const added = [...newMap.entries()].filter(([k]) => !oldMap.has(k)).map(([,v]) => v);
-        return { removed, added };
+    function identidadeItem(item) {
+        return String(item?.n ?? item?.nome ?? '').trim().toLocaleLowerCase('pt-BR');
+    }
+    function compararListaSimples(oldArr = [], newArr = []) {
+        const antigos = new Set((oldArr || []).map(v => String(v)));
+        const atuais = new Set((newArr || []).map(v => String(v)));
+        return {
+            removed: [...antigos].filter(v => !atuais.has(v)),
+            added: [...atuais].filter(v => !antigos.has(v)),
+            changed: []
+        };
+    }
+
+    function compararColecao(oldArr = [], newArr = []) {
+        // Compara pela identidade do produto, e não pela assinatura completa.
+        // Assim, alterar quantidade, lote, validade ou outro campo gera "Alterado",
+        // em vez de transformar o mesmo item em "Removido + Adicionado".
+        const usadosNovos = new Set();
+        const removed = [];
+        const changed = [];
+
+        (oldArr || []).forEach((antigo) => {
+            const id = identidadeItem(antigo);
+            let indiceNovo = -1;
+            for (let i = 0; i < (newArr || []).length; i++) {
+                if (usadosNovos.has(i)) continue;
+                if (identidadeItem(newArr[i]) === id && id) {
+                    indiceNovo = i;
+                    break;
+                }
+            }
+            if (indiceNovo === -1) {
+                removed.push(antigo);
+                return;
+            }
+            usadosNovos.add(indiceNovo);
+            const novo = newArr[indiceNovo];
+            if (itemSignature(antigo) !== itemSignature(novo)) changed.push(novo);
+        });
+
+        const added = (newArr || []).filter((_, i) => !usadosNovos.has(i));
+        return { removed, added, changed };
     }
     function carregarBaseline(uid) {
         try { syncBaseline = JSON.parse(localStorage.getItem(syncBaselineKey(uid)) || 'null'); } catch(e) { syncBaseline = null; }
@@ -924,44 +1030,131 @@
         const status = document.getElementById('google-sync-last');
         const statusConta = document.getElementById('google-account-status');
         try {
-            if (status) status.textContent = '🔄 Verificando nuvem...';
-            if (statusConta) { statusConta.textContent = '🔄 Verificando sincronização...'; statusConta.dataset.status = 'sync'; }
+            if (status) status.textContent = '🔄 Verificando salvamento...';
+            if (statusConta) { statusConta.textContent = '🔄 Preparando confirmação...'; statusConta.dataset.status = 'sync'; }
+
             const snap = await getDoc(doc(db, 'usuarios', user.uid));
             const cloud = snap.exists() ? snap.data() : {};
-            const local = { produtos: cloneData(window.LISTA || []), banco: cloneData(window.BANCO || []), grams: cloneData(window.GRAMS || []), perfil: cloneData(window.PERFIL || {}) };
-            const base = carregarBaseline(user.uid) || cloud;
-            const dBanco = diffArrays(cloud.banco || [], local.banco || []);
-            const dLista = diffArrays(cloud.produtos || [], local.produtos || []);
-            const exclusoes = dBanco.removed.concat(dLista.removed);
-            const adicoes = dBanco.added.length + dLista.added.length;
-            const mudancasSimples = (JSON.stringify(cloud.grams || []) !== JSON.stringify(local.grams || [])) || (JSON.stringify(cloud.perfil || {}) !== JSON.stringify(local.perfil || {}));
-            const temDiferenca = exclusoes.length || adicoes || mudancasSimples || !snap.exists();
-            if (!temDiferenca) {
-                salvarBaseline(user.uid, cloud);
-                if (status) status.textContent = 'Última sincronização: ' + new Date().toLocaleString('pt-BR');
-                if (statusConta) { statusConta.textContent = '🟢 Tudo sincronizado'; statusConta.dataset.status = 'ok'; }
-                showZapMsg('☁️ Tudo já está sincronizado!');
+            const local = {
+                produtos: cloneData(window.LISTA || []),
+                banco: cloneData(window.BANCO || []),
+                grams: cloneData(window.GRAMS || []),
+                perfil: cloneData(window.PERFIL || {}),
+                lixeira: cloneData(window.LIXEIRA || [])
+            };
+            const dBanco = compararColecao(cloud.banco || [], local.banco || []);
+            const dLista = compararColecao(cloud.produtos || [], local.produtos || []);
+            const dGramatura = compararListaSimples(cloud.grams || [], local.grams || []);
+            const acoes = carregarAcoesSync(user.uid);
+
+            // O salvamento normal já grava automaticamente na nuvem. Este botão é uma
+            // confirmação/reforço: mostramos o histórico resumido das ações e gravamos
+            // novamente o estado atual, sem expor comparações técnicas ou nomes.
+            const banco = {
+                adicionados: acoes.banco.adicionados,
+                editados: acoes.banco.editados,
+                excluidos: acoes.banco.excluidos,
+                nuvemNovos: dBanco.added.length,
+                nuvemAlterados: dBanco.changed.length,
+                nuvemRemovidos: dBanco.removed.length
+            };
+            const lista = {
+                adicionados: acoes.lista.adicionados,
+                editados: acoes.lista.editados,
+                excluidos: acoes.lista.excluidos,
+                nuvemNovos: dLista.added.length,
+                nuvemAlterados: dLista.changed.length,
+                nuvemRemovidos: dLista.removed.length
+            };
+            const gramatura = {
+                adicionados: acoes.gramatura.adicionados,
+                editados: acoes.gramatura.editados,
+                excluidos: acoes.gramatura.excluidos,
+                nuvemNovos: dGramatura.added.length,
+                nuvemAlterados: dGramatura.changed.length,
+                nuvemRemovidos: dGramatura.removed.length
+            };
+
+            // Se houver diferença detectada na nuvem sem histórico local correspondente,
+            // ela também entra no resumo, sem duplicar uma ação já registrada localmente.
+            banco.adicionados = Math.max(banco.adicionados, banco.nuvemNovos);
+            banco.editados = Math.max(banco.editados, banco.nuvemAlterados);
+            banco.excluidos = Math.max(banco.excluidos, banco.nuvemRemovidos);
+            lista.adicionados = Math.max(lista.adicionados, lista.nuvemNovos);
+            lista.editados = Math.max(lista.editados, lista.nuvemAlterados);
+            lista.excluidos = Math.max(lista.excluidos, lista.nuvemRemovidos);
+            gramatura.adicionados = Math.max(gramatura.adicionados, gramatura.nuvemNovos);
+            gramatura.editados = Math.max(gramatura.editados, gramatura.nuvemAlterados);
+            gramatura.excluidos = Math.max(gramatura.excluidos, gramatura.nuvemRemovidos);
+
+            const totalAcoes =
+                banco.adicionados + banco.editados + banco.excluidos +
+                lista.adicionados + lista.editados + lista.excluidos +
+                gramatura.adicionados + gramatura.editados + gramatura.excluidos;
+            const totalAtual =
+                (local.banco || []).length +
+                (local.produtos || []).length +
+                (local.grams || []).length +
+                (local.lixeira || []).length;
+
+            let body = `<div class="sync-summary-intro">`+
+                `<b>☁️ Confirmação de salvamento</b>`+
+                `<p>O sistema já salva automaticamente na nuvem. Esta sincronização faz um novo salvamento dos dados atuais como reforço.</p>`+
+                `</div>`;
+
+            const bloco = (titulo, dados) => {
+                const partes = [];
+                if (dados.adicionados) partes.push(`➕ <b>${dados.adicionados}</b> adicionados`);
+                if (dados.editados) partes.push(`✏️ <b>${dados.editados}</b> editados`);
+                if (dados.excluidos) partes.push(`🗑️ <b>${dados.excluidos}</b> excluídos`);
+                if (!partes.length) partes.push('Nenhuma alteração registrada');
+                return `<div class="sync-history-section"><div class="sync-history-title">${titulo}</div><div class="sync-history-items">${partes.join('<br>')}</div></div>`;
+            };
+
+            body += bloco('📦 Banco de Produtos', banco);
+            body += bloco('📋 Lançamento Diário', lista);
+            body += bloco('⚖️ Gramatura', gramatura);
+            body += `<div class="sync-history-section"><div class="sync-history-title">🗑️ Lixeira</div><div class="sync-history-items"><b>${(local.lixeira || []).length}</b> item(ns) atualmente na lixeira<br><small>Itens permanecem isolados nesta conta e também serão salvos na nuvem.</small></div></div>`;
+
+            if (totalAcoes) {
+                body += `<div class="sync-total">📊 Total de ações registradas: <b>${totalAcoes}</b></div>`;
+            } else {
+                body += `<div class="sync-total">☁️ Nenhuma alteração pendente no histórico.</div>`;
+            }
+            body += `<div class="sync-save-note">🔒 ${totalAtual} registros atuais (incluindo a lixeira) serão gravados novamente na nuvem. Os dados existentes serão preservados.</div>`;
+            if (banco.excluidos || lista.excluidos || gramatura.excluidos) {
+                body += `<div class="sync-alert-delete"><b>🗑️ Exclusões registradas: ${banco.excluidos + lista.excluidos + gramatura.excluidos}</b><br><small>A confirmação apenas reforça o estado atual da sua conta na nuvem, inclusive as gramaturas removidas.</small></div>`;
+            }
+
+            const ok = await abrirModalSincronizacao({
+                title: '🔄 Confirmar salvamento na nuvem',
+                body
+            });
+            if (!ok) {
+                if (status) status.textContent = 'Sincronização cancelada';
+                if (statusConta) { statusConta.textContent = '🟡 Sincronização cancelada'; statusConta.dataset.status = 'idle'; }
                 return;
             }
-            const nomesExcluidos = exclusoes.slice(0, 8).map(x => x?.n || x?.nome || 'Item sem nome');
-            let body = `<p>O sistema encontrou diferenças entre este aparelho e a nuvem.</p>`;
-            if (exclusoes.length) {
-                body += `<div class="sync-alert-delete"><b>🗑️ ${exclusoes.length} item(ns) serão removidos da nuvem.</b><br><small>${nomesExcluidos.map(n => '• ' + n).join('<br>')}${exclusoes.length > 8 ? '<br>• ...' : ''}</small></div><p><b>Depois de sincronizar, esses itens não estarão mais na nuvem.</b></p>`;
-            }
-            if (adicoes) body += `<p>➕ ${adicoes} item(ns) serão enviados/atualizados na nuvem.</p>`;
-            if (mudancasSimples) body += `<p>🔄 Também existem alterações em medidas ou perfil.</p>`;
-            const ok = await abrirModalSincronizacao({ title: exclusoes.length ? '⚠️ Exclusão encontrada' : '🔄 Confirmar sincronização', body });
-            if (!ok) { if (status) status.textContent = 'Sincronização cancelada'; if (statusConta) { statusConta.textContent = '🟡 Sincronização cancelada'; statusConta.dataset.status = 'idle'; } return; }
-            await setDoc(doc(db, 'usuarios', user.uid), { produtos: local.produtos, banco: local.banco, grams: local.grams, perfil: local.perfil, ultimaAtualizacao: new Date().toISOString() }, { merge: true });
+
+            await setDoc(doc(db, 'usuarios', user.uid), {
+                produtos: local.produtos,
+                banco: local.banco,
+                grams: local.grams,
+                perfil: local.perfil,
+                lixeira: local.lixeira,
+                ultimaAtualizacao: new Date().toISOString()
+            }, { merge: true });
+
             salvarBaseline(user.uid, local);
+            limparAcoesSync(user.uid);
             if (status) status.textContent = 'Última sincronização: ' + new Date().toLocaleString('pt-BR');
-            if (statusConta) { statusConta.textContent = '🟢 Sincronizado agora'; statusConta.dataset.status = 'ok'; }
-            showZapMsg('☁️ Sincronização concluída!');
+            if (statusConta) { statusConta.textContent = '🟢 Salvamento confirmado'; statusConta.dataset.status = 'ok'; }
+            showZapMsg('☁️ Salvamento confirmado na nuvem!');
         } catch(e) {
             console.error('Sincronização manual:', e);
-            if (status) status.textContent = '⚠️ Falha na sincronização';
-            if (statusConta) { statusConta.textContent = '🔴 Falha na sincronização'; statusConta.dataset.status = 'error'; }
-            showZapMsg('❌ Não foi possível sincronizar.', true);
+            if (status) status.textContent = '⚠️ Falha no salvamento';
+            if (statusConta) { statusConta.textContent = '🔴 Falha no salvamento'; statusConta.dataset.status = 'error'; }
+            showZapMsg('❌ Não foi possível confirmar o salvamento.', true);
         } finally { syncInProgress = false; }
     }
     window.sincronizarAgora = sincronizarAgora;
@@ -992,17 +1185,19 @@
                         banco: window.BANCO || [],
                         grams: window.GRAMS || [],
                         perfil: window.PERFIL || {},
+                        lixeira: window.LIXEIRA || [],
                         ultimaAtualizacao: new Date().toISOString()
                     }, { merge: true });
                     salvarBaseline(user.uid, {
                         produtos: window.LISTA || [], banco: window.BANCO || [],
-                        grams: window.GRAMS || [], perfil: window.PERFIL || {}
+                        grams: window.GRAMS || [], perfil: window.PERFIL || {},
+                        lixeira: window.LIXEIRA || []
                     });
                 } catch(e) { console.warn("Sync pré-logout ignorado:", e); }
             }
 
             window.acessoLocalAtivo = false;
-            window.LISTA = []; window.BANCO = []; window.GRAMS = []; window.PERFIL = {};
+            window.LISTA = []; window.BANCO = []; window.GRAMS = []; window.PERFIL = {}; window.LIXEIRA = [];
             informouSucessoLogin = false;
 
             try { await signOut(auth); } catch(e) { console.warn("SignOut:", e); }
@@ -1134,6 +1329,7 @@
             window.PERFIL = dados.perfil;
             if (!window.PERFIL._perfilAtualizadoEm) window.PERFIL._perfilAtualizadoEm = Date.now();
         }
+        if (dados.lixeira  !== undefined) window.LIXEIRA = Array.isArray(dados.lixeira) ? dados.lixeira : [];
 
         if (!user) {
             // Sem conta Google — salva local isolado
@@ -1141,6 +1337,7 @@
             if (dados.banco    !== undefined) localStorage.setItem('LOCAL_BANCO',  JSON.stringify(window.BANCO));
             if (dados.grams    !== undefined) localStorage.setItem('LOCAL_GRAMS',  JSON.stringify(window.GRAMS));
             if (dados.perfil   !== undefined) localStorage.setItem('LOCAL_PERFIL', JSON.stringify(window.PERFIL));
+            if (dados.lixeira  !== undefined) localStorage.setItem('LOCAL_LIXEIRA', JSON.stringify(window.LIXEIRA || []));
             atualizarInterface();
             return;
         }
@@ -1150,6 +1347,7 @@
         if (dados.banco    !== undefined) localStorage.setItem(key.banco(user.uid),  JSON.stringify(window.BANCO));
         if (dados.grams    !== undefined) localStorage.setItem(key.grams(user.uid),  JSON.stringify(window.GRAMS));
         if (dados.perfil   !== undefined) localStorage.setItem(key.perfil(user.uid), JSON.stringify(window.PERFIL));
+        if (dados.lixeira  !== undefined) localStorage.setItem(key.lixeira(user.uid), JSON.stringify(window.LIXEIRA || []));
         atualizarInterface();
 
         try {
@@ -1163,6 +1361,7 @@
                 payload.perfil = window.PERFIL;
                 payload.perfilAtualizadoEm = window.PERFIL._perfilAtualizadoEm || Date.now();
             }
+            if (dados.lixeira  !== undefined) payload.lixeira = window.LIXEIRA || [];
             await setDoc(doc(db, "usuarios", user.uid), payload, { merge: true });
             if (typeof showZapMsg === 'function') showZapMsg("☁️ Salvo na nuvem!");
         } catch (e) {
@@ -1189,13 +1388,18 @@
             if (telaLogin) telaLogin.style.display = 'none';
             if (telaApp) telaApp.style.display = 'block';
 
+            const temLocalGrams = localStorage.getItem('LOCAL_GRAMS') !== null;
             const localAnonimo = {
                 produtos: JSON.parse(localStorage.getItem('LOCAL_LISTA') || '[]'),
                 banco: JSON.parse(localStorage.getItem('LOCAL_BANCO') || '[]'),
-                grams: JSON.parse(localStorage.getItem('LOCAL_GRAMS') || '["1kg","2kg","500g","1L"]'),
-                perfil: JSON.parse(localStorage.getItem('LOCAL_PERFIL') || '{"user":"Usuário","market":"","foto":"","capa":"","contato":""}')
+                grams: temLocalGrams
+                    ? JSON.parse(localStorage.getItem('LOCAL_GRAMS') || '[]')
+                    : [],
+                perfil: JSON.parse(localStorage.getItem('LOCAL_PERFIL') || '{"user":"Usuário","market":"","foto":"","capa":"","contato":""}'),
+                lixeira: JSON.parse(localStorage.getItem('LOCAL_LIXEIRA') || '[]')
             };
             const temDadosAnonimos = localAnonimo.produtos.length || localAnonimo.banco.length ||
+                localAnonimo.grams.length || localAnonimo.lixeira.length || temLocalGrams ||
                 (localAnonimo.perfil && (localAnonimo.perfil.market || localAnonimo.perfil.contato || localAnonimo.perfil.foto || localAnonimo.perfil.capa));
 
             // Cache da conta: resposta instantânea, sem apagar os dados locais anônimos.
@@ -1203,6 +1407,8 @@
             window.BANCO  = JSON.parse(localStorage.getItem(key.banco(user.uid))  || '[]');
             window.GRAMS  = JSON.parse(localStorage.getItem(key.grams(user.uid)) || '["1kg","2kg","500g","1L"]');
             window.PERFIL = JSON.parse(localStorage.getItem(key.perfil(user.uid)) || '{"user":"Usuário","market":"","foto":"","capa":"","contato":""}');
+            window.LIXEIRA = JSON.parse(localStorage.getItem(key.lixeira(user.uid)) || '[]');
+            if (typeof window.definirLixeiraKoda === 'function') window.definirLixeiraKoda(window.LIXEIRA);
             atualizarInterface();
 
             if (unsubscribeSnapshot) unsubscribeSnapshot();
@@ -1214,7 +1420,8 @@
                         produtos: Array.isArray(d.produtos) ? d.produtos : [],
                         banco: Array.isArray(d.banco) ? d.banco : [],
                         grams: Array.isArray(d.grams) ? d.grams : ["1kg","2kg","500g","1L"],
-                        perfil: d.perfil && typeof d.perfil === 'object' ? d.perfil : {}
+                        perfil: d.perfil && typeof d.perfil === 'object' ? d.perfil : {},
+                        lixeira: Array.isArray(d.lixeira) ? d.lixeira : []
                     };
 
                     // Na primeira entrada, mescla dados feitos sem conta com os dados da conta.
@@ -1228,8 +1435,11 @@
                         const merged = {
                             produtos: unir(cloud.produtos, localAnonimo.produtos),
                             banco: unir(cloud.banco, localAnonimo.banco),
-                            grams: [...new Set([...(cloud.grams||[]), ...(localAnonimo.grams||[])])],
-                            perfil: { ...cloud.perfil }
+                            grams: temLocalGrams
+                                ? [...new Set([...(cloud.grams||[]), ...(localAnonimo.grams||[])])]
+                                : [...(cloud.grams || [])],
+                            perfil: { ...cloud.perfil },
+                            lixeira: unir(cloud.lixeira, localAnonimo.lixeira)
                         };
                         Object.keys(localAnonimo.perfil || {}).forEach(k => {
                             if (localAnonimo.perfil[k] !== undefined && localAnonimo.perfil[k] !== '' &&
@@ -1241,14 +1451,16 @@
                             merged.produtos.length !== cloud.produtos.length ||
                             merged.banco.length !== cloud.banco.length ||
                             merged.grams.length !== cloud.grams.length ||
+                            merged.lixeira.length !== cloud.lixeira.length ||
                             JSON.stringify(merged.perfil) !== JSON.stringify(cloud.perfil)
                         );
                         window.LISTA = merged.produtos; window.BANCO = merged.banco;
-                        window.GRAMS = merged.grams; window.PERFIL = merged.perfil;
+                        window.GRAMS = merged.grams; window.PERFIL = merged.perfil; window.LIXEIRA = merged.lixeira;
+                        if (typeof window.definirLixeiraKoda === 'function') window.definirLixeiraKoda(merged.lixeira);
                         atualizarInterface();
                         if (houveMigracao) {
-                            await window.salvarTudo({produtos:merged.produtos,banco:merged.banco,grams:merged.grams,perfil:merged.perfil});
-                            ['LOCAL_LISTA','LOCAL_BANCO','LOCAL_GRAMS','LOCAL_PERFIL'].forEach(k=>localStorage.removeItem(k));
+                            await window.salvarTudo({produtos:merged.produtos,banco:merged.banco,grams:merged.grams,perfil:merged.perfil,lixeira:merged.lixeira});
+                            ['LOCAL_LISTA','LOCAL_BANCO','LOCAL_GRAMS','LOCAL_PERFIL','LOCAL_LIXEIRA'].forEach(k=>localStorage.removeItem(k));
                             showZapMsg('📦 Dados locais mesclados e salvos na sua conta!');
                         } else {
                             salvarBaseline(user.uid, merged);
@@ -1258,10 +1470,13 @@
                         window.BANCO  = cloud.banco;
                         window.GRAMS  = cloud.grams;
                         window.PERFIL = cloud.perfil;
+                        window.LIXEIRA = cloud.lixeira;
+                        if (typeof window.definirLixeiraKoda === 'function') window.definirLixeiraKoda(cloud.lixeira);
                         localStorage.setItem(key.lista(user.uid), JSON.stringify(window.LISTA));
                         localStorage.setItem(key.banco(user.uid), JSON.stringify(window.BANCO));
                         localStorage.setItem(key.grams(user.uid), JSON.stringify(window.GRAMS));
                         localStorage.setItem(key.perfil(user.uid), JSON.stringify(window.PERFIL));
+                        localStorage.setItem(key.lixeira(user.uid), JSON.stringify(window.LIXEIRA));
                         salvarBaseline(user.uid, cloud);
                         atualizarInterface();
                     }
@@ -1271,9 +1486,11 @@
                     window.BANCO = localAnonimo.banco;
                     window.GRAMS = localAnonimo.grams;
                     window.PERFIL = localAnonimo.perfil;
-                    await window.salvarTudo({ produtos:window.LISTA, banco:window.BANCO, grams:window.GRAMS, perfil:window.PERFIL });
-                    ['LOCAL_LISTA','LOCAL_BANCO','LOCAL_GRAMS','LOCAL_PERFIL'].forEach(k=>localStorage.removeItem(k));
-                    salvarBaseline(user.uid, {produtos:window.LISTA,banco:window.BANCO,grams:window.GRAMS,perfil:window.PERFIL});
+                    window.LIXEIRA = localAnonimo.lixeira;
+                    if (typeof window.definirLixeiraKoda === 'function') window.definirLixeiraKoda(window.LIXEIRA);
+                    await window.salvarTudo({ produtos:window.LISTA, banco:window.BANCO, grams:window.GRAMS, perfil:window.PERFIL, lixeira:window.LIXEIRA });
+                    ['LOCAL_LISTA','LOCAL_BANCO','LOCAL_GRAMS','LOCAL_PERFIL','LOCAL_LIXEIRA'].forEach(k=>localStorage.removeItem(k));
+                    salvarBaseline(user.uid, {produtos:window.LISTA,banco:window.BANCO,grams:window.GRAMS,perfil:window.PERFIL,lixeira:window.LIXEIRA});
                     atualizarInterface();
                     if (temDadosAnonimos) showZapMsg('📦 Dados locais salvos na sua nova conta!');
                 }
@@ -1306,10 +1523,11 @@
             <h2>Atualização disponível</h2>
             <div class="update-version" id="updateVersionText">Uma nova versão do sistema está pronta.</div>
             <ul class="update-list" id="updateChangelog">
-                <li>Central de Conta Google e sincronização aprimorada</li>
-                <li>Perfil da conta Google com foto e informações</li>
-                <li>Proteção contra exclusões acidentais na sincronização</li>
-                <li>Melhor preservação dos dados offline</li>
+                <li>Confirmação de sincronização resumida por quantidade de ações</li>
+                <li>Histórico separado do Banco de Produtos e Lançamento Diário</li>
+                <li>Lixeira isolada por conta e salva na nuvem</li>
+                <li>Salvamento reforçado na nuvem sem relatório técnico extenso</li>
+                <li>Modal de sincronização com rolagem segura em telas pequenas</li>
             </ul>
             <div class="update-actions">
                 <button id="btnUpdateLater" type="button">MAIS TARDE</button>
@@ -1603,7 +1821,9 @@
         <div class="container">
             <div class="top-nav">
                 <button class="btn-top" onclick="toggleTela('perfil')" title="Editar Perfil">👤</button>
-                <button class="btn-top" onclick="abrirLixeira()" title="Lixeira">🗑️</button>
+                <button class="btn-top" onclick="abrirLixeira()" title="Lixeira" style="position:relative;">
+                    🗑️<span id="lixeira-count" class="trash-count-badge" aria-label="Itens na lixeira">0</span>
+                </button>
                 <button class="btn-top btn-help" onclick="abrirGuia()">❓</button>
                 <button class="btn-top" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
             </div>
@@ -1804,8 +2024,8 @@
                     <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
                     <div class="input-container" style="margin-bottom: 20px;">
                         <div style="position: relative; width: 100%;">
-    <input type="text" id="searchTable" class="search-bar" placeholder="🔍 Buscar na lista..." oninput="renderLista()">
-    <button class="clear-input" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer;" onclick="limpar('searchTable'); renderLista()">✕</button> 
+    <input type="text" id="searchTable" class="search-bar" style="padding-right: 48px;" placeholder="🔍 Buscar na lista..." oninput="renderLista(); atualizarXBuscaLista()">
+    <button id="clear-lista" class="search-clear" type="button" aria-label="Limpar pesquisa" title="Limpar pesquisa" style="visibility:hidden;" onclick="limparBuscaLista()">✕</button>
 </div>
 
 <button onclick="verificarProdutosCriticos()" style="background-color: #ca1c1cf9; color: white; padding: 10px; margin: 10px 0; border: none; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold;">🚨 Varredura de Urgência</button>
@@ -1836,7 +2056,7 @@
 
                                     Desenvolvido por Koda Sistemas.
                     <div style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; color: #6b7280; font-weight: 500; letter-spacing: 0.5px; margin-top: 8px;">
-    Versão v6.1.8
+    Versão v6.1.8.7
 </div>
 
               
@@ -1991,7 +2211,8 @@
             const nd = document.getElementById('nome-display');
             if (nd) nd.innerText = PERFIL.user || 'Usuário';
             PERFIL._perfilAtualizadoEm = Date.now();
-            localStorage.setItem(auth.currentUser ? key.perfil(auth.currentUser.uid) : 'LOCAL_PERFIL', JSON.stringify(PERFIL));
+            const contaAtual = typeof window.kodaGetCurrentUser === 'function' ? window.kodaGetCurrentUser() : null;
+            localStorage.setItem(contaAtual ? ('PERFIL_' + contaAtual.uid) : 'LOCAL_PERFIL', JSON.stringify(PERFIL));
             atualizarStatusPerfil('Salvando…', 'sync');
             clearTimeout(perfilSaveTimer);
             perfilSaveTimer = setTimeout(async () => {
@@ -2006,7 +2227,8 @@
             PERFIL.user = document.getElementById('user_name')?.value ?? '';
             PERFIL.market = document.getElementById('market_name')?.value ?? '';
             PERFIL._perfilAtualizadoEm = Date.now();
-            localStorage.setItem(auth.currentUser ? key.perfil(auth.currentUser.uid) : 'LOCAL_PERFIL', JSON.stringify(PERFIL));
+            const contaAtual = typeof window.kodaGetCurrentUser === 'function' ? window.kodaGetCurrentUser() : null;
+            localStorage.setItem(contaAtual ? ('PERFIL_' + contaAtual.uid) : 'LOCAL_PERFIL', JSON.stringify(PERFIL));
             const pnf = document.getElementById('perfil_nome_full');
             const plf = document.getElementById('perfil_loja_full');
             if (pnf) pnf.value = PERFIL.user;
@@ -2032,7 +2254,8 @@
             if (loja) loja.innerText = PERFIL.market || 'Loja não definida';
             if (homeLoja) homeLoja.value = PERFIL.market;
             PERFIL._perfilAtualizadoEm = Date.now();
-            localStorage.setItem(auth.currentUser ? key.perfil(auth.currentUser.uid) : 'LOCAL_PERFIL', JSON.stringify(PERFIL));
+            const contaAtual = typeof window.kodaGetCurrentUser === 'function' ? window.kodaGetCurrentUser() : null;
+            localStorage.setItem(contaAtual ? ('PERFIL_' + contaAtual.uid) : 'LOCAL_PERFIL', JSON.stringify(PERFIL));
             atualizarStatusPerfil('Salvando…', 'sync');
             clearTimeout(perfilSaveTimer);
             perfilSaveTimer = setTimeout(async () => {
@@ -2044,13 +2267,46 @@
 
         // ================= LIXEIRA =================
         let LIXEIRA = JSON.parse(localStorage.getItem('LOCAL_LIXEIRA') || '[]');
-        function salvarLixeira(){ localStorage.setItem('LOCAL_LIXEIRA', JSON.stringify(LIXEIRA)); }
+
+        function atualizarContadorLixeira(){
+            const el = document.getElementById('lixeira-count');
+            if (!el) return;
+            const total = Array.isArray(LIXEIRA) ? LIXEIRA.length : 0;
+            el.textContent = total;
+            el.style.display = total > 0 ? 'inline-flex' : 'none';
+        }
+
+        function salvarLixeira(){
+            window.LIXEIRA = LIXEIRA;
+            const contaAtual = typeof window.kodaGetCurrentUser === 'function' ? window.kodaGetCurrentUser() : null;
+            if (contaAtual && typeof window.salvarTudo === 'function') {
+                window.salvarTudo({ lixeira: LIXEIRA });
+            } else {
+                localStorage.setItem('LOCAL_LIXEIRA', JSON.stringify(LIXEIRA));
+            }
+            atualizarContadorLixeira();
+        }
+
+        function definirLixeiraKoda(dados){
+            LIXEIRA = Array.isArray(dados) ? dados : [];
+            window.LIXEIRA = LIXEIRA;
+            atualizarContadorLixeira();
+        }
+        window.definirLixeiraKoda = definirLixeiraKoda;
+        window.LIXEIRA = LIXEIRA;
+
         function adicionarLixeira(item, origem){
             if (!item) return;
-            LIXEIRA.unshift({ id: Date.now() + Math.random(), origem, item: JSON.parse(JSON.stringify(item)), excluidoEm: new Date().toISOString() });
+            LIXEIRA.unshift({
+                id: Date.now() + Math.random(),
+                origem,
+                item: JSON.parse(JSON.stringify(item)),
+                excluidoEm: new Date().toISOString()
+            });
             salvarLixeira();
         }
         function abrirLixeira(){
+            atualizarContadorLixeira();
             const html = LIXEIRA.length ? LIXEIRA.map((x,i)=>`<div class="trash-entry"><b>${x.item.n || 'Item'}</b><div><small>Origem: ${x.origem === 'banco' ? 'Banco de Produtos' : 'Lançamento Diário'}<br>Excluído em: ${new Date(x.excluidoEm).toLocaleString('pt-BR')}</small></div><div class="panel-actions"><button class="btn" style="padding:8px;background:#0d9488" onclick="restaurarLixeira(${i})">↩️ Restaurar</button><button class="btn" style="padding:8px;background:#dc2626" onclick="excluirItemLixeira(${i})">Excluir</button></div></div>`).join('') : '<p style="text-align:center">A lixeira está vazia.</p>';
             const modal=document.getElementById('painelLixeira');
             if (modal) { modal.querySelector('[data-lixeira-corpo]').innerHTML=html; modal.style.display='flex'; }
@@ -2203,6 +2459,7 @@
             if (window.BANCO  !== undefined) BANCO  = window.BANCO;
             if (window.GRAMS  !== undefined) GRAMS  = window.GRAMS;
             if (window.PERFIL !== undefined) PERFIL = window.PERFIL;
+            if (window.LIXEIRA !== undefined) LIXEIRA = window.LIXEIRA;
         }
 
         function aplicarPerfilNaTela() {
@@ -2249,6 +2506,7 @@
                 window.PERFIL = JSON.parse(localStorage.getItem('LOCAL_PERFIL') || '{"user":"Usuário","market":"","foto":"","capa":"","contato":""}');
             }
             sincronizarComJanela();
+            atualizarContadorLixeira();
             aplicarPerfilNaTela();
             renderGrams(); renderBanco(); renderLista();
         }
@@ -2272,8 +2530,8 @@
             const ptf = document.getElementById('perfil_tel_full');
             if (ptf) PERFIL.contato = ptf.value ?? '';
             PERFIL._perfilAtualizadoEm = Date.now();
-            const user = auth.currentUser;
-            localStorage.setItem(user ? key.perfil(user.uid) : 'LOCAL_PERFIL', JSON.stringify(PERFIL));
+            const user = typeof window.kodaGetCurrentUser === 'function' ? window.kodaGetCurrentUser() : null;
+            localStorage.setItem(user ? ('PERFIL_' + user.uid) : 'LOCAL_PERFIL', JSON.stringify(PERFIL));
             const welcome = document.getElementById('display-welcome');
             if (welcome) welcome.innerText = `${PERFIL.market || 'Loja não definida'} | Resp: ${PERFIL.user || 'Usuário'}`;
             if (user) {
@@ -2291,6 +2549,7 @@
             if (!g) { showZapMsg("⚠️ Insira os dados!"); return; }
             if (GRAMS.includes(g)) { showZapMsg("⚠️ Peso já cadastrado!"); return; }
             GRAMS.push(g);
+            if (window.registrarAcaoSync) window.registrarAcaoSync('gramatura', 'adicionados');
             if (window.salvarTudo) window.salvarTudo({ grams: GRAMS });
             else localStorage.setItem('LOCAL_GRAMS', JSON.stringify(GRAMS));
             renderGrams(); document.getElementById('new_gram').value = ""; showZapMsg("Peso adicionado!");
@@ -2299,6 +2558,7 @@
         function removerGram(i) {
             sincronizarComJanela();
             GRAMS.splice(i, 1);
+            if (window.registrarAcaoSync) window.registrarAcaoSync('gramatura', 'excluidos');
             if (window.salvarTudo) window.salvarTudo({ grams: GRAMS });
             else localStorage.setItem('LOCAL_GRAMS', JSON.stringify(GRAMS));
             renderGrams(); showZapMsg("Peso removido!");
@@ -2329,9 +2589,13 @@
                 u: document.getElementById('cfg_u').value,
                 m: parseInt(document.getElementById('cfg_m').value || 7)};
             if (editIdx > -1) {
-                BANCO[editIdx] = prod; showZapMsg("Produto Atualizado!");
+                BANCO[editIdx] = prod;
+                if (window.registrarAcaoSync) window.registrarAcaoSync('banco', 'editados');
+                showZapMsg("Produto Atualizado!");
             } else {
-                BANCO.push(prod); showZapMsg("Salvo no Banco!");
+                BANCO.push(prod);
+                if (window.registrarAcaoSync) window.registrarAcaoSync('banco', 'adicionados');
+                showZapMsg("Salvo no Banco!");
             }
             if (window.salvarTudo) window.salvarTudo({ banco: BANCO });
             else localStorage.setItem('LOCAL_BANCO', JSON.stringify(BANCO));
@@ -2364,6 +2628,7 @@ function executarExclusaoBanco() {
     if (!item) { fecharPainelExclusao(); return; }
     adicionarLixeira(item, 'banco');
     BANCO.splice(indiceExclusaoBanco, 1);
+    if (window.registrarAcaoSync) window.registrarAcaoSync('banco', 'excluidos');
     if (window.salvarTudo) window.salvarTudo({ banco: BANCO });
     else localStorage.setItem('LOCAL_BANCO', JSON.stringify(BANCO));
     renderBanco();
@@ -2416,6 +2681,21 @@ function limparBuscaBanco() {
     input.focus();
 }
 
+function atualizarXBuscaLista() {
+    const input = document.getElementById('searchTable');
+    const btn = document.getElementById('clear-lista');
+    if (input && btn) btn.style.visibility = input.value.length ? 'visible' : 'hidden';
+}
+
+function limparBuscaLista() {
+    const input = document.getElementById('searchTable');
+    if (!input) return;
+    input.value = '';
+    renderLista();
+    atualizarXBuscaLista();
+    input.focus();
+}
+
         function autoFill() {
             const val = document.getElementById('p_n').value.toLowerCase(); const p = BANCO.find(x => x.n.toLowerCase() === val);
             const lbl = document.getElementById('label_q');
@@ -2459,7 +2739,8 @@ function limparBuscaBanco() {
     // Rótulo de quantidade: se avulso, sempre "unid"; senão usa o padrão do cadastro
     const labelQtd = avulsa ? "unid " : (pInfo.t === "Fardo" ? "Fardos" : (pInfo.t === "Cx" ? "Caixas" : "unid"));
 
-    LISTA.push({ n, e, q: q + " " + labelQtd, d, lote: "", avulsa: avulsa, s, ts: dataVenc.getTime() });
+    LISTA.push({ n, e, q: q + " " + labelQtd, d, lote: "", avulsa: avulsa, s, ts: dataVenc.getTime(), ultimaModificacao: Date.now() });
+    if (window.registrarAcaoSync) window.registrarAcaoSync('lista', 'adicionados');
     LISTA.sort((a, b) => a.ts - b.ts); renderLista();
 
     if (window.salvarTudo) {
@@ -2639,7 +2920,8 @@ function executarExclusaoLista() {
     if (window.indiceExclusaoLista !== null && window.indiceExclusaoLista !== undefined) {
         const itemRemovido = LISTA[window.indiceExclusaoLista];
         if (itemRemovido) adicionarLixeira(itemRemovido, 'lista');
-        LISTA.splice(window.indiceExclusaoLista, 1); 
+        LISTA.splice(window.indiceExclusaoLista, 1);
+        if (window.registrarAcaoSync) window.registrarAcaoSync('lista', 'excluidos');
         
         // Gravação isolada na Nuvem e Local
         if (window.salvarTudo) { window.salvarTudo({ produtos: LISTA }); }
@@ -2678,8 +2960,22 @@ function prepararEdicaoLista(i) {
     document.getElementById('edit_lista_q').value =
         !isNaN(qtdNumero) ? qtdNumero : '';
 
+    // Mantém a unidade/fardo/caixa já registrada no lançamento.
+    const tipoItem = String(item.q || '').replace(/^[\d.,\s]+/, '').trim().toLowerCase();
+    const tipoEdit = tipoItem.includes('caixa') || tipoItem === 'cx'
+        ? 'Caixa'
+        : (tipoItem.includes('fardo') ? 'Fardo' : 'Unidade');
+    const tipoSelect = document.getElementById('edit_lista_tipo');
+    if (tipoSelect) tipoSelect.value = tipoEdit;
+
     document.getElementById('edit_lista_lote').value = item.lote || '';
     document.getElementById('edit_lista_d').value = item.d;
+    const ultimaModificacao = document.getElementById('edit_lista_ultima_modificacao');
+    if (ultimaModificacao) {
+        ultimaModificacao.textContent = item.ultimaModificacao
+            ? '🕒 Última modificação: ' + new Date(item.ultimaModificacao).toLocaleString('pt-BR')
+            : '🕒 Última modificação: sem registro';
+    }
 
     document.getElementById('painelEditarLista').style.display = 'flex';
 }
@@ -2702,6 +2998,7 @@ function salvarEdicaoLista() {
 
     const novaQtdValor = document.getElementById('edit_lista_q').value.trim();
     const novoLote = document.getElementById('edit_lista_lote').value.trim();
+    const novoTipo = document.getElementById('edit_lista_tipo')?.value || 'Unidade';
     const novaData = document.getElementById('edit_lista_d').value;
 
     if (!novaQtdValor || !novaData) {
@@ -2709,18 +3006,8 @@ function salvarEdicaoLista() {
         return;
     }
 
-    // Extrai apenas o tipo da quantidade original
-    // Ex.: "5 Caixa" -> "Caixa"
-    //      "10 Fardo" -> "Fardo"
-    //      "3 Unidade" -> "Unidade"
-    const tipoOriginal = String(item.q)
-        .replace(/^[\d.,\s]+/, '')
-        .trim();
-
-    // Junta o novo número com o tipo antigo
-    item.q = tipoOriginal
-        ? `${novaQtdValor} ${tipoOriginal}`
-        : novaQtdValor;
+    // Mantém a quantidade numérica separada da unidade escolhida.
+    item.q = `${novaQtdValor} ${novoTipo}`;
 
     item.lote = novoLote;
 
@@ -2756,6 +3043,10 @@ function salvarEdicaoLista() {
         item.ts = dataVenc.getTime();
     }
 
+    // Registra o momento exato em que o botão Salvar foi acionado.
+    item.ultimaModificacao = Date.now();
+    if (window.registrarAcaoSync) window.registrarAcaoSync('lista', 'editados');
+
     LISTA.sort((a, b) => a.ts - b.ts);
 
     renderLista();
@@ -2780,8 +3071,12 @@ function salvarEdicaoLista() {
     document.getElementById('tabela-corpo').innerHTML = LISTA.filter(it => it.n.toLowerCase().includes(f)).map((it) => {
         const indiceReal = LISTA.indexOf(it);
         const loteHtml = it.lote ? `<br><small style="opacity:0.65;">Lote: ${it.lote}</small>` : '';
-        return `<tr class="clickable-row" onclick="prepararEdicaoLista(${indiceReal})"><td><b>${it.n}</b>${loteHtml}</td><td>${it.e}</td><td>${it.q}</td><td>${it.d.split('-').reverse().join('/')}</td><td><span class="badge ${it.s.c}">${it.s.l}</span><br><small style="display:block; margin-top:4px; font-weight:bold; font-size:0.75rem; color: var(--text-main);">⏳ ${getCountdown(it.d)}</small></td><td><button onclick="removerDaLista(${indiceReal}, event)" style="color:red;border:none;background:none;cursor:pointer">✖</button></td></tr>`;
+        const modificacaoHtml = it.ultimaModificacao
+            ? `<br><small style="display:block; margin-top:4px; opacity:0.72;">🕒 ${new Date(it.ultimaModificacao).toLocaleString('pt-BR')}</small>`
+            : `<br><small style="display:block; margin-top:4px; opacity:0.72;">🕒 Sem registro</small>`;
+        return `<tr class="clickable-row" onclick="prepararEdicaoLista(${indiceReal})"><td><b>${it.n}</b>${loteHtml}${modificacaoHtml}</td><td>${it.e}</td><td>${it.q}</td><td>${it.d.split('-').reverse().join('/')}</td><td><span class="badge ${it.s.c}">${it.s.l}</span><br><small style="display:block; margin-top:4px; font-weight:bold; font-size:0.75rem; color: var(--text-main);">⏳ ${getCountdown(it.d)}</small></td><td><button onclick="removerDaLista(${indiceReal}, event)" style="color:red;border:none;background:none;cursor:pointer">✖</button></td></tr>`;
     }).join('');
+    atualizarXBuscaLista();
 }
 
 
@@ -3003,13 +3298,22 @@ function salvarEdicaoLista() {
         <h3 id="editListaTitulo" style="color: var(--primary, #2563eb); margin-top: 0; font-size: 1.1rem; text-align:center;">Editar Lançamento</h3>
 
         <label style="display:block; margin-top:14px; font-size:0.85rem; color:#6b7280;">Quantidade</label>
-        <input type="text" id="edit_lista_q" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--border, #d1d5db); margin-top:4px; box-sizing:border-box;">
+        <div style="display:flex;gap:8px;align-items:center;margin-top:4px;">
+            <input type="number" id="edit_lista_q" inputmode="numeric" pattern="[0-9]*" min="0" step="1" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--border, #d1d5db); margin-top:4px; box-sizing:border-box;">
+            <select id="edit_lista_tipo" aria-label="Tipo da quantidade" style="width:120px;padding:10px;border-radius:8px;border:1px solid var(--border,#d1d5db);">
+                <option value="Unidade">Unidade</option>
+                <option value="Fardo">Fardo</option>
+                <option value="Caixa">Caixa</option>
+            </select>
+        </div>
 
         <label style="display:block; margin-top:14px; font-size:0.85rem; color:#6b7280;">Lote (opcional)</label>
         <input type="text" id="edit_lista_lote" placeholder="Ex: L2306" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--border, #d1d5db); margin-top:4px; box-sizing:border-box;">
 
         <label style="display:block; margin-top:14px; font-size:0.85rem; color:#6b7280;">Data de Vencimento</label>
         <input type="date" id="edit_lista_d" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--border, #d1d5db); margin-top:4px; box-sizing:border-box;">
+
+        <div id="edit_lista_ultima_modificacao" style="margin-top:14px; font-size:0.82rem; color:#6b7280; text-align:center;">🕒 Última modificação: sem registro</div>
 
         <div style="display: flex; gap: 10px; justify-content: center; margin-top: 22px;">
             <button onclick="fecharPainelEdicaoLista()" style="background-color: #e5e7eb; color: #374151; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; flex: 1;">
@@ -3070,12 +3374,12 @@ function salvarEdicaoLista() {
 
 <script>
 /* ============================================================
-   v6.1.8 — Atualização controlada
+   v6.1.8.7 — Atualização controlada
    A nova versão é preparada pelo Service Worker e fica WAITING.
    "Mais tarde" não ativa a atualização.
 ============================================================ */
 (() => {
-    const APP_VERSION = '6.1.8';
+    const APP_VERSION = '6.1.8.7';
     const VERSION_URL = './version.json';
     const PENDING_KEY = 'KODA_UPDATE_PENDING';
     let registration = null;
